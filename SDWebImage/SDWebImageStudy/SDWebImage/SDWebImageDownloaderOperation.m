@@ -76,22 +76,24 @@ NSString *const SDWebImageDownloadFinishNotification = @"SDWebImageDownloadFinis
 #if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
         Class UIApplicationClass = NSClassFromString(@"UIApplication");
         BOOL hasApplication = UIApplicationClass && [UIApplicationClass respondsToSelector:@selector(sharedApplication)];
+        //当前应用没有被终止并且设置后进入后台继续下载
         if (hasApplication && [self shouldContinueWhenAppEntersBackground]) {
             __weak __typeof__ (self) wself = self;
             UIApplication * app = [UIApplicationClass performSelector:@selector(sharedApplication)];
+            //设置后台处理代码
             self.backgroundTaskId = [app beginBackgroundTaskWithExpirationHandler:^{
                 __strong __typeof (wself) sself = wself;
 
                 if (sself) {
                     [sself cancel];
-
+                    
                     [app endBackgroundTask:sself.backgroundTaskId];
                     sself.backgroundTaskId = UIBackgroundTaskInvalid;
                 }
             }];
         }
 #endif
-
+        //处理网络下载
         self.executing = YES;
         self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
         self.thread = [NSThread currentThread];
@@ -103,10 +105,11 @@ NSString *const SDWebImageDownloadFinishNotification = @"SDWebImageDownloadFinis
         if (self.progressBlock) {
             self.progressBlock(0, NSURLResponseUnknownLength);
         }
+        //在主线程发通知，这样也保证在主线程收到通知
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:self];
         });
-
+        //在默认模式下运行当前runlooprun，直到调用CFRunLoopStop停止运行
         if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_5_1) {
             // Make sure to run the runloop in our background thread so it can process downloaded data
             // Note: we use a timeout to work around an issue with NSURLConnection cancel under iOS 5
@@ -360,13 +363,15 @@ NSString *const SDWebImageDownloadFinishNotification = @"SDWebImageDownloadFinis
 - (UIImage *)scaledImageForKey:(NSString *)key image:(UIImage *)image {
     return SDScaledImageForKey(key, image);
 }
-
+//将接收到的数据保存到NSMutableData中，[self.imageData appendData:data]，下载完成后在该线程完成图片的解码，并在完成的completionBlock中进行imageCache的缓存
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConnection {
     SDWebImageDownloaderCompletedBlock completionBlock = self.completedBlock;
+    //停止当前runloop
     @synchronized(self) {
         CFRunLoopStop(CFRunLoopGetCurrent());
         self.thread = nil;
         self.connection = nil;
+        //在主线程发送两个通知
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:self];
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadFinishNotification object:self];
@@ -387,7 +392,7 @@ NSString *const SDWebImageDownloadFinishNotification = @"SDWebImageDownloadFinis
             
             // Do not force decoding animated GIFs
             if (!image.images) {
-                if (self.shouldDecompressImages) {
+                if (self.shouldDecompressImages) {//对图片进行解码
                     image = [UIImage decodedImageWithImage:image];
                 }
             }
