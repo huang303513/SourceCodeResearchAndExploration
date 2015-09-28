@@ -1,5 +1,5 @@
 
-##学习博客地址列表：
+##学习博客地址列表,仓库中的部分代码带中文注释持续学习中，待会儿活干完了继续学习：
 
 [我自己实现SDWebImage基本功能的demo](https://github.com/huang303513/GCD-OperationQueue-Exploration/tree/master/HCDWebImage)
 
