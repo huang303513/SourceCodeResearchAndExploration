@@ -168,7 +168,7 @@
         [self.runningOperations addObject:operation];
     }
     NSString *key = [self cacheKeyForURL:url];
-
+    // cacheOperation应该是一个用来下载图片并且缓存的operation
     operation.cacheOperation = [self.imageCache queryDiskCacheForKey:key done:^(UIImage *image, SDImageCacheType cacheType) {
         if (operation.isCancelled) {
             @synchronized (self.runningOperations) {
@@ -177,7 +177,7 @@
 
             return;
         }
-
+        //如果实现了SDWebImageManagerDelegate的代理方法、则返回缓存图片。
         if ((!image || options & SDWebImageRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url])) {
             if (image && options & SDWebImageRefreshCached) {
                 dispatch_main_sync_safe(^{
@@ -188,6 +188,9 @@
             }
 
             // download if no image or requested to refresh anyway, and download allowed by delegate
+            //根据参数、配置下载选项。
+            //下面都是判断我们的options里包含哪些SDWebImageOptions,然后给我们的downloaderOptions相应的添加对应的SDWebImageDownloaderOptions. downloaderOptions |= SDWebImageDownloaderLowPriority这种表达式的意思等同于
+            // downloaderOptions = downloaderOptions | SDWebImageDownloaderLowPriority
             SDWebImageDownloaderOptions downloaderOptions = 0;
             if (options & SDWebImageLowPriority) downloaderOptions |= SDWebImageDownloaderLowPriority;
             if (options & SDWebImageProgressiveDownload) downloaderOptions |= SDWebImageDownloaderProgressiveDownload;
@@ -202,13 +205,15 @@
                 // ignore image read from NSURLCache if image if cached but force refreshing
                 downloaderOptions |= SDWebImageDownloaderIgnoreCachedResponse;
             }
+            //通过下载器imageDownloader来下载图片。
+            //// 调用imageDownloader去下载image并且返回执行这个request的download的operation
             id <SDWebImageOperation> subOperation = [self.imageDownloader downloadImageWithURL:url options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished) {
-                if (weakOperation.isCancelled) {
+                if (weakOperation.isCancelled) {//如果下载操作已经被取消了，则什么也不做。
                     // Do nothing if the operation was cancelled
                     // See #699 for more details
                     // if we would call the completedBlock, there could be a race condition between this block and another completedBlock for the same object, so if this one is called second, we will overwrite the new data
                 }
-                else if (error) {
+                else if (error) {//如果下载图片出错
                     dispatch_main_sync_safe(^{
                         if (!weakOperation.isCancelled) {
                             completedBlock(nil, error, SDImageCacheTypeNone, finished, url);
@@ -223,7 +228,7 @@
                         }
                     }
                 }
-                else {
+                else {//如果要尝试下载下载失败的链接，则把对应的链接从failedURLs重移除。
                     if ((options & SDWebImageRetryFailed)) {
                         @synchronized (self.failedURLs) {
                             [self.failedURLs removeObject:url];
@@ -235,12 +240,14 @@
                     if (options & SDWebImageRefreshCached && image && !downloadedImage) {
                         // Image refresh hit the NSURLCache cache, do not call the completion block
                     }
-                    else if (downloadedImage && (!downloadedImage.images || (options & SDWebImageTransformAnimatedImage)) && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)]) {
+                    else if (downloadedImage && (!downloadedImage.images || (options & SDWebImageTransformAnimatedImage)) && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)]) {//如果下载成功了，代理对象实现了SDWebImageManagerDelegate协议方法，并且设置了SDWebImageTransformAnimatedImage选项，则转换图片的方向。
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                            //返回转换方向以后的图片
                             UIImage *transformedImage = [self.delegate imageManager:self transformDownloadedImage:downloadedImage withURL:url];
 
                             if (transformedImage && finished) {
                                 BOOL imageWasTransformed = ![transformedImage isEqual:downloadedImage];
+                                //把图片加入缓存起来。
                                 [self.imageCache storeImage:transformedImage recalculateFromImage:imageWasTransformed imageData:(imageWasTransformed ? nil : data) forKey:key toDisk:cacheOnDisk];
                             }
 
@@ -310,7 +317,7 @@
         [self.imageCache storeImage:image forKey:key toDisk:YES];
     }
 }
-
+// cancel掉所有正在执行的operation
 - (void)cancelAll {
     @synchronized (self.runningOperations) {
         NSArray *copiedOperations = [self.runningOperations copy];
@@ -358,7 +365,9 @@
 
 @end
 
-
+/**
+ *  被废弃的接口。
+ */
 @implementation SDWebImageManager (Deprecated)
 
 // deprecated method, uses the non deprecated method

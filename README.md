@@ -11,8 +11,9 @@
 [SDWebImage源码解析之SDWebImageManager的注解(2)](http://www.jianshu.com/p/0f9a7296f4c0)
 
 ##结构说明：
-`UIImageView+WebCache.h`通过`SDWebImageManager`单列来实现图片的加载和回调。
+`UIImageView+WebCache.h`通过`SDWebImageManager`单列来管理图片的加载和回调。
 
-`SDWebImageManager`通过拥有一个`SDImageCache`和`SDWebImageDownloader`来实现图片的缓存和下载器功能。
+`SDWebImageManager`通过拥有一个`SDImageCache`和`SDWebImageDownloader`来实现图片的缓存和下载器功能。`SDImageCache`主要实现缓存功能。`SDWebImageDownloader`主要实现下载功能和下载回调。
+
 
 
