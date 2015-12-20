@@ -132,6 +132,10 @@ static NSString *const kCompletedCallbackKey = @"completed";
         else {
             request.allHTTPHeaderFields = wself.HTTPHeaders;
         }
+<<<<<<< HEAD
+=======
+        //通过一个自定义的操作下载图片
+>>>>>>> afd7a2b3cfc8fdee25a4a4b6f849871289a844c8
         operation = [[wself.operationClass alloc] initWithRequest:request
                                                           options:options
                                                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
