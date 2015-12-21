@@ -24,6 +24,11 @@
         
     }];
     
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://p18.qhimg.com/dr/48_48_/t0108c33d3321352682.png"] placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
     
     /**
      *  加载GIF图片
