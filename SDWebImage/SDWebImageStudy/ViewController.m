@@ -19,12 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-<<<<<<< HEAD
+
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://p18.qhimg.com/dr/48_48_/t0108c33d3321352682.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-=======
-    
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://7xidnq.com1.z0.glb.clouddn.com/2015-09-25_10:54:43_MYjXofh8.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
->>>>>>> afd7a2b3cfc8fdee25a4a4b6f849871289a844c8
         
     }];
     
