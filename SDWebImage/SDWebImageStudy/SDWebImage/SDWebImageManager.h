@@ -13,41 +13,35 @@
 
 typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
     /**
-     * By default, when a URL fail to be downloaded, the URL is blacklisted so the library won't keep trying.
-     * This flag disable this blacklisting.
+     *默认情况下,如果一个url在下载的时候失败了,那么这个url会被加入黑名单并且library不会尝试再次下载,这个flag会阻止library把失败的url加入黑名单(简单来说如果选择了这个flag,那么即使某个url下载失败了,sdwebimage还是会尝试再次下载他.)
      */
     SDWebImageRetryFailed = 1 << 0,
-
+    
     /**
-     * By default, image downloads are started during UI interactions, this flags disable this feature,
-     * leading to delayed download on UIScrollView deceleration for instance.
+     *默认情况下,图片会在交互发生的时候下载(例如你滑动tableview的时候),这个flag会禁止这个特性,导致的结果就是在scrollview减速的时候
+     *才会开始下载(也就是你滑动的时候scrollview不下载,你手从屏幕上移走,scrollview开始减速的时候才会开始下载图片)
      */
     SDWebImageLowPriority = 1 << 1,
-
-    /**
-     * This flag disables on-disk caching
+    
+    /*
+     *这个flag禁止磁盘缓存,只有内存缓存
      */
     SDWebImageCacheMemoryOnly = 1 << 2,
-
-    /**
-     * This flag enables progressive download, the image is displayed progressively during download as a browser would do.
-     * By default, the image is only displayed once completely downloaded.
+    
+    /*
+     *这个flag会在图片下载的时候就显示(就像你用浏览器浏览网页的时候那种图片下载,一截一截的显示(待确认))
+     *
      */
     SDWebImageProgressiveDownload = 1 << 3,
-
-    /**
-     * Even if the image is cached, respect the HTTP response cache control, and refresh the image from remote location if needed.
-     * The disk caching will be handled by NSURLCache instead of SDWebImage leading to slight performance degradation.
-     * This option helps deal with images changing behind the same request URL, e.g. Facebook graph api profile pics.
-     * If a cached image is refreshed, the completion block is called once with the cached image and again with the final image.
+    
+    /*
+     *这个选项的意思看的不是很懂,大意是即使一个图片缓存了,还是会重新请求.并且缓存侧略依据NSURLCache而不是SDWebImage.
      *
-     * Use this flag only if you can't make your URLs static with embedded cache busting parameter.
      */
     SDWebImageRefreshCached = 1 << 4,
-
-    /**
-     * In iOS 4+, continue the download of the image if the app goes to background. This is achieved by asking the system for
-     * extra time in background to let the request finish. If the background task expires the operation will be cancelled.
+    
+    /*
+     *启动后台下载,加入你进入一个页面,有一张图片正在下载这时候你让app进入后台,图片还是会继续下载(这个估计要开backgroundfetch才有用)
      */
     SDWebImageContinueInBackground = 1 << 5,
 
@@ -62,11 +56,10 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
      * Useful for testing purposes. Use with caution in production.
      */
     SDWebImageAllowInvalidSSLCertificates = 1 << 7,
-
-    /**
-     * By default, image are loaded in the order they were queued. This flag move them to
-     * the front of the queue and is loaded immediately instead of waiting for the current queue to be loaded (which 
-     * could take a while).
+    
+    /*
+     *默认情况下,image在装载的时候是按照他们在队列中的顺序装载的(就是先进先出).这个flag会把他们移动到队列的前端,并且立刻装载
+     *而不是等到当前队列装载的时候再装载.
      */
     SDWebImageHighPriority = 1 << 8,
     
@@ -80,6 +73,9 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
      * We usually don't call transformDownloadedImage delegate method on animated images,
      * as most transformation code would mangle it.
      * Use this flag to transform them anyway.
+     */
+    /*
+     *是否transform图片(没用过,还要再看,但是据我估计,是否是图片有可能方向不对需要调整方向,例如采用iPhone拍摄的照片如果不纠正方向,那么图片是向左旋转90度的.可能很多人不知道iPhone的摄像头并不是竖直的,而是向左偏了90度.具体请google.)
      */
     SDWebImageTransformAnimatedImage = 1 << 10,
     
@@ -112,6 +108,9 @@ typedef NSString *(^SDWebImageCacheKeyFilterBlock)(NSURL *url);
  *
  * @return Return NO to prevent the downloading of the image on cache misses. If not implemented, YES is implied.
  */
+/*
+ *主要作用是当缓存里没有发现某张图片的缓存时,是否选择下载这张图片(默认是yes),可以选择no,那么sdwebimage在缓存中没有找到这张图片的时候不会选择下载
+ */
 - (BOOL)imageManager:(SDWebImageManager *)imageManager shouldDownloadImageForURL:(NSURL *)imageURL;
 
 /**
@@ -123,6 +122,12 @@ typedef NSString *(^SDWebImageCacheKeyFilterBlock)(NSURL *url);
  * @param imageURL     The url of the image to transform
  *
  * @return The transformed image object.
+ */
+
+/**
+ *在图片下载完成并且还没有加入磁盘缓存或者内存缓存的时候就transform这个图片.这个方法是在异步线程执行的,防治阻塞主线程.
+ *至于为什么在异步执行很简单,对一张图片纠正方向(也就是transform)是很耗资源的,一张2M大小的图片纠正方向你可以用instrument测试一下耗时.
+ *很恐怖
  */
 - (UIImage *)imageManager:(SDWebImageManager *)imageManager transformDownloadedImage:(UIImage *)image withURL:(NSURL *)imageURL;
 
