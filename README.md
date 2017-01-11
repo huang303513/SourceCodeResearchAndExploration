@@ -27,6 +27,7 @@
 [浅析数字证书](http://www.cnblogs.com/hyddd/archive/2009/01/07/1371292.html)<br/>
 [iOS实用技巧 - AFNetworking2安全的使用自签证书访问HTTPS](https://my.oschina.net/non6/blog/290175)<br/>
 [AFNetworking之于https认证](http://www.jianshu.com/p/a84237b07611)<br/>
+[IOS-AFNetworking3.0配置https说明](http://www.jianshu.com/p/f10bd7cc47fc)<br/>
 
 ###源码阅读系列博客<br/>
 [FMDB源码阅读系列](http://www.cnblogs.com/polobymulberry/category/789988.html)
