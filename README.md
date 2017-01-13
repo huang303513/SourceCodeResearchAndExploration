@@ -28,6 +28,7 @@
 [iOS实用技巧 - AFNetworking2安全的使用自签证书访问HTTPS](https://my.oschina.net/non6/blog/290175)<br/>
 [AFNetworking之于https认证](http://www.jianshu.com/p/a84237b07611)<br/>
 [IOS-AFNetworking3.0配置https说明](http://www.jianshu.com/p/f10bd7cc47fc)<br/>
+[iOS 中 HTTPS 证书验证浅析](http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578489&idx=2&sn=2731c8de546f423b983aad1340f30af5&chksm=84b3b6feb3c43fe8309c70d3aa5a325451a60414ade02e533def9ccf2e017f91a6c08bbc7c3b&mpshare=1&scene=23&srcid=0112Y9LZ4FFh3McYUojtSV7F#rd)<br/>
 
 ###源码阅读系列博客<br/>
 [FMDB源码阅读系列](http://www.cnblogs.com/polobymulberry/category/789988.html)
