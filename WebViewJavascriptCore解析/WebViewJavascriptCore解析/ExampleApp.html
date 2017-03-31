@@ -61,11 +61,7 @@
 
 		document.body.appendChild(document.createElement('br'))
 
-        var button = document.createElement('input');
-        button.type = 'button';
-         button.value = '点击开始JS调用OC';
-        var callbackButton = document.getElementById('buttons').appendChild(button);
-		callbackButton.onclick = function(e) {
+		document.getElementById('buttons').onclick = function(e) {
 			e.preventDefault()
             var params =  {'JS调用OC参数': '参数值'};
 			log('JS马上调用OC方法',params)
@@ -75,6 +71,6 @@
 		}
 	})
 	</script>
-	<div id='buttons'></div>
+	<input type='button' id='buttons' class='button' value='点击开始JS调用OC'></input>
     <div id='log'></div>
 </body></html>
