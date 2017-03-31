@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WebViewJavascriptBridgeBase.h"
-#import "WebViewJavascriptBridge_JS.h"
+//#import "WebViewJavascriptBridge_JS.h"
 
 @implementation WebViewJavascriptBridgeBase {
     __weak id _webViewDelegate;
@@ -115,7 +115,7 @@ static int logMaxLength = 500;
     if (true) {
         js = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WebViewJavascriptBridge_JS.js" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     }else{
-        js = WebViewJavascriptBridge_js();
+        //js = WebViewJavascriptBridge_js();
     }
     [self _evaluateJavascript:js];
     if (self.startupMessageQueue) {

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ExampleUIWebViewController.h"
+//#import "ExampleUIWebViewController.h"
 #import "ExampleWKWebViewController.h"
 
 @interface AppDelegate ()
@@ -20,8 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // 1. Create the UIWebView example
-    ExampleUIWebViewController* UIWebViewExampleController = [[ExampleUIWebViewController alloc] init];
-    UIWebViewExampleController.tabBarItem.title             = @"UIWebView";
+//    ExampleUIWebViewController* UIWebViewExampleController = [[ExampleUIWebViewController alloc] init];
+   // UIWebViewExampleController.tabBarItem.title             = @"UIWebView";
     
     // 2. Create the tab footer and add the UIWebView example
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
@@ -31,7 +31,7 @@
         WKWebViewExampleController.tabBarItem.title             = @"WKWebView";
         [tabBarController addChildViewController:WKWebViewExampleController];
     }
-    [tabBarController addChildViewController:UIWebViewExampleController];
+    //[tabBarController addChildViewController:UIWebViewExampleController];
 
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

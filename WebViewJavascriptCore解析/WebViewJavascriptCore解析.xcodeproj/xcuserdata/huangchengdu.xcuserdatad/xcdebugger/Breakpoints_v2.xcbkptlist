@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512637335.737707"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512637335.737707"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-webView:didStartProvisionalNavigation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512637335.737707"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "-webView:didFinishNavigation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512637335.737707"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "-webView:didFinishNavigation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512637335.737707"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512637335.737707"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-callHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512637335.737707"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-loadExamplePage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512556357.043773"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512556352.371427"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
-            timestampString = "512556354.018322"
+            timestampString = "512662302.349062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,7 +346,7 @@
                   moduleName = "WebViewJavascriptCore&#x89e3;&#x6790;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/WebViewJavascriptCore%E8%A7%A3%E6%9E%90/WebViewJavascriptCore%E8%A7%A3%E6%9E%90/WebViewJavascriptBridge/WKWebViewJavascriptBridge.m"
-                  timestampString = "512639844.15038"
+                  timestampString = "512662440.319028"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "98"
@@ -361,7 +361,7 @@
                   moduleName = "WebViewJavascriptCore&#x89e3;&#x6790;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/WebViewJavascriptCore%E8%A7%A3%E6%9E%90/WebViewJavascriptCore%E8%A7%A3%E6%9E%90/WebViewJavascriptBridge/WKWebViewJavascriptBridge.m"
-                  timestampString = "512639844.152278"
+                  timestampString = "512662440.320434"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "99"
@@ -582,7 +582,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/WebViewJavascriptBridge/WebViewJavascriptBridgeBase.m"
@@ -1136,6 +1136,70 @@
             startingLineNumber = "125"
             endingLineNumber = "125"
             landmarkName = "-injectJavascriptFile"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/WebViewJavascriptBridge/WebViewJavascriptBridgeBase.m"
+            timestampString = "512655720.531194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-injectJavascriptFile"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/WebViewJavascriptBridge/WebViewJavascriptBridgeBase.m"
+            timestampString = "512655889.464321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-isQueueMessageURL:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/WebViewJavascriptBridge/WKWebViewJavascriptBridge.m"
+            timestampString = "512656083.110295"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-WKFlushMessageQueue"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WebViewJavascriptCore&#x89e3;&#x6790;/ExampleWKWebViewController.m"
+            timestampString = "512662440.167764"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "-relaod"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

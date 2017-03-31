@@ -44,6 +44,7 @@
 			var el = document.createElement('div')
 			el.className = 'logLine'
 			el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
+            
 			if (log.children.length) {
                log.insertBefore(el, log.children[0])
             }else {
@@ -51,10 +52,10 @@
             }
 		}
 
-		bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
-			log('ObjC called testJavascriptHandler with', data)
-			var responseData = { 'Javascript Says':'Right back atcha!' }
-			log('JS responding with', responseData)
+		bridge.registerHandler('OC调用JS提供的方法', function(data, responseCallback) {
+			log('OC调用JS方法成功', data)
+			var responseData = { 'JS给OC调用的回调':'回调值!' }
+			log('OC调用JS的返回值', responseData)
 			responseCallback(responseData)
 		})
 
@@ -62,13 +63,14 @@
 
         var button = document.createElement('input');
         button.type = 'button';
-         button.value = 'Fire testObjcCallback';
+         button.value = '点击开始JS调用OC';
         var callbackButton = document.getElementById('buttons').appendChild(button);
 		callbackButton.onclick = function(e) {
 			e.preventDefault()
-			log('JS calling handler "testObjcCallback"')
-			bridge.callHandler('testObjcCallback', {'foo': 'bar'}, function(response) {
-				log('JS got response', response)
+            var params =  {'JS调用OC参数': '参数值'};
+			log('JS马上调用OC方法',params)
+			bridge.callHandler('OC提供方法给JS调用',params, function(response) {
+				log('JS调用OC的返回值', response)
 			})
 		}
 	})

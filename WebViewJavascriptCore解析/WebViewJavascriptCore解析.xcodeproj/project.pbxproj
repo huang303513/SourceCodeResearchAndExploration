@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D6571411E8E935D00EE7E8E /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D65713C1E8E935D00EE7E8E /* WebViewJavascriptBridge_JS.m */; };
+		4D6571421E8E935D00EE7E8E /* ExampleUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D65713F1E8E935D00EE7E8E /* ExampleUIWebViewController.m */; };
+		4D6571431E8E935D00EE7E8E /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571401E8E935D00EE7E8E /* WebViewJavascriptBridge.m */; };
 		4D8748C31E8CDD3300B427DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748C21E8CDD3300B427DF /* main.m */; };
 		4D8748C61E8CDD3300B427DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748C51E8CDD3300B427DF /* AppDelegate.m */; };
-		4D8748C91E8CDD3300B427DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748C81E8CDD3300B427DF /* ViewController.m */; };
-		4D8748CC1E8CDD3300B427DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8748CA1E8CDD3300B427DF /* Main.storyboard */; };
 		4D8748CE1E8CDD3300B427DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D8748CD1E8CDD3300B427DF /* Assets.xcassets */; };
 		4D8748D11E8CDD3300B427DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8748CF1E8CDD3300B427DF /* LaunchScreen.storyboard */; };
 		4D8748DC1E8CDD3300B427DF /* WebViewJavascriptCore__Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748DB1E8CDD3300B427DF /* WebViewJavascriptCore__Tests.m */; };
 		4D8748E71E8CDD3300B427DF /* WebViewJavascriptCore__UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748E61E8CDD3300B427DF /* WebViewJavascriptCore__UITests.m */; };
-		4D8748F81E8CDDBD00B427DF /* ExampleUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748F51E8CDDBD00B427DF /* ExampleUIWebViewController.m */; };
 		4D8748F91E8CDDBD00B427DF /* ExampleWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748F71E8CDDBD00B427DF /* ExampleWKWebViewController.m */; };
 		4D8748FB1E8CDDD000B427DF /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = 4D8748FA1E8CDDD000B427DF /* ExampleApp.html */; };
-		4D8749051E8CDDE300B427DF /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8748FE1E8CDDE300B427DF /* WebViewJavascriptBridge.m */; };
-		4D8749061E8CDDE300B427DF /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8749001E8CDDE300B427DF /* WebViewJavascriptBridge_JS.m */; };
 		4D8749071E8CDDE300B427DF /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8749021E8CDDE300B427DF /* WebViewJavascriptBridgeBase.m */; };
 		4D8749081E8CDDE300B427DF /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8749041E8CDDE300B427DF /* WKWebViewJavascriptBridge.m */; };
 		4D87490A1E8E3F8500B427DF /* WebViewJavascriptBridge_JS.js in Resources */ = {isa = PBXBuildFile; fileRef = 4D8749091E8E3F8500B427DF /* WebViewJavascriptBridge_JS.js */; };
@@ -43,13 +41,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D65713B1E8E935D00EE7E8E /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
+		4D65713C1E8E935D00EE7E8E /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
+		4D65713D1E8E935D00EE7E8E /* ExampleUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleUIWebViewController.h; sourceTree = "<group>"; };
+		4D65713E1E8E935D00EE7E8E /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		4D65713F1E8E935D00EE7E8E /* ExampleUIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleUIWebViewController.m; sourceTree = "<group>"; };
+		4D6571401E8E935D00EE7E8E /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
 		4D8748BE1E8CDD3300B427DF /* WebViewJavascriptCore解析.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WebViewJavascriptCore解析.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8748C21E8CDD3300B427DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D8748C41E8CDD3300B427DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D8748C51E8CDD3300B427DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4D8748C71E8CDD3300B427DF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4D8748C81E8CDD3300B427DF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4D8748CB1E8CDD3300B427DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D8748CD1E8CDD3300B427DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D8748D01E8CDD3300B427DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D8748D21E8CDD3300B427DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,15 +60,9 @@
 		4D8748E21E8CDD3300B427DF /* WebViewJavascriptCore解析UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WebViewJavascriptCore解析UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D8748E61E8CDD3300B427DF /* WebViewJavascriptCore__UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptCore__UITests.m; sourceTree = "<group>"; };
 		4D8748E81E8CDD3300B427DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D8748F41E8CDDBD00B427DF /* ExampleUIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleUIWebViewController.h; sourceTree = "<group>"; };
-		4D8748F51E8CDDBD00B427DF /* ExampleUIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleUIWebViewController.m; sourceTree = "<group>"; };
 		4D8748F61E8CDDBD00B427DF /* ExampleWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleWKWebViewController.h; sourceTree = "<group>"; };
 		4D8748F71E8CDDBD00B427DF /* ExampleWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleWKWebViewController.m; sourceTree = "<group>"; };
 		4D8748FA1E8CDDD000B427DF /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
-		4D8748FD1E8CDDE300B427DF /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
-		4D8748FE1E8CDDE300B427DF /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
-		4D8748FF1E8CDDE300B427DF /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
-		4D8749001E8CDDE300B427DF /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
 		4D8749011E8CDDE300B427DF /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
 		4D8749021E8CDDE300B427DF /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
 		4D8749031E8CDDE300B427DF /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
@@ -100,6 +95,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D6571391E8E91DC00EE7E8E /* nouse */ = {
+			isa = PBXGroup;
+			children = (
+				4D65713B1E8E935D00EE7E8E /* WebViewJavascriptBridge_JS.h */,
+				4D65713C1E8E935D00EE7E8E /* WebViewJavascriptBridge_JS.m */,
+				4D65713D1E8E935D00EE7E8E /* ExampleUIWebViewController.h */,
+				4D65713F1E8E935D00EE7E8E /* ExampleUIWebViewController.m */,
+				4D65713E1E8E935D00EE7E8E /* WebViewJavascriptBridge.h */,
+				4D6571401E8E935D00EE7E8E /* WebViewJavascriptBridge.m */,
+			);
+			name = nouse;
+			sourceTree = "<group>";
+		};
+		4D65713A1E8E91E400EE7E8E /* useful */ = {
+			isa = PBXGroup;
+			children = (
+				4D8749011E8CDDE300B427DF /* WebViewJavascriptBridgeBase.h */,
+				4D8749021E8CDDE300B427DF /* WebViewJavascriptBridgeBase.m */,
+				4D8749031E8CDDE300B427DF /* WKWebViewJavascriptBridge.h */,
+				4D8749041E8CDDE300B427DF /* WKWebViewJavascriptBridge.m */,
+				4D8749091E8E3F8500B427DF /* WebViewJavascriptBridge_JS.js */,
+			);
+			name = useful;
+			sourceTree = "<group>";
+		};
 		4D8748B51E8CDD3300B427DF = {
 			isa = PBXGroup;
 			children = (
@@ -125,15 +145,10 @@
 			children = (
 				4D8748FC1E8CDDE300B427DF /* WebViewJavascriptBridge */,
 				4D8748FA1E8CDDD000B427DF /* ExampleApp.html */,
-				4D8748F41E8CDDBD00B427DF /* ExampleUIWebViewController.h */,
-				4D8748F51E8CDDBD00B427DF /* ExampleUIWebViewController.m */,
 				4D8748F61E8CDDBD00B427DF /* ExampleWKWebViewController.h */,
 				4D8748F71E8CDDBD00B427DF /* ExampleWKWebViewController.m */,
 				4D8748C41E8CDD3300B427DF /* AppDelegate.h */,
 				4D8748C51E8CDD3300B427DF /* AppDelegate.m */,
-				4D8748C71E8CDD3300B427DF /* ViewController.h */,
-				4D8748C81E8CDD3300B427DF /* ViewController.m */,
-				4D8748CA1E8CDD3300B427DF /* Main.storyboard */,
 				4D8748CD1E8CDD3300B427DF /* Assets.xcassets */,
 				4D8748CF1E8CDD3300B427DF /* LaunchScreen.storyboard */,
 				4D8748D21E8CDD3300B427DF /* Info.plist */,
@@ -171,15 +186,8 @@
 		4D8748FC1E8CDDE300B427DF /* WebViewJavascriptBridge */ = {
 			isa = PBXGroup;
 			children = (
-				4D8749091E8E3F8500B427DF /* WebViewJavascriptBridge_JS.js */,
-				4D8748FD1E8CDDE300B427DF /* WebViewJavascriptBridge.h */,
-				4D8748FE1E8CDDE300B427DF /* WebViewJavascriptBridge.m */,
-				4D8748FF1E8CDDE300B427DF /* WebViewJavascriptBridge_JS.h */,
-				4D8749001E8CDDE300B427DF /* WebViewJavascriptBridge_JS.m */,
-				4D8749011E8CDDE300B427DF /* WebViewJavascriptBridgeBase.h */,
-				4D8749021E8CDDE300B427DF /* WebViewJavascriptBridgeBase.m */,
-				4D8749031E8CDDE300B427DF /* WKWebViewJavascriptBridge.h */,
-				4D8749041E8CDDE300B427DF /* WKWebViewJavascriptBridge.m */,
+				4D65713A1E8E91E400EE7E8E /* useful */,
+				4D6571391E8E91DC00EE7E8E /* nouse */,
 			);
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
@@ -251,6 +259,7 @@
 				TargetAttributes = {
 					4D8748BD1E8CDD3300B427DF = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = F5L2MR9755;
 						ProvisioningStyle = Automatic;
 					};
 					4D8748D61E8CDD3300B427DF = {
@@ -292,7 +301,6 @@
 			files = (
 				4D8748D11E8CDD3300B427DF /* LaunchScreen.storyboard in Resources */,
 				4D8748CE1E8CDD3300B427DF /* Assets.xcassets in Resources */,
-				4D8748CC1E8CDD3300B427DF /* Main.storyboard in Resources */,
 				4D8748FB1E8CDDD000B427DF /* ExampleApp.html in Resources */,
 				4D87490A1E8E3F8500B427DF /* WebViewJavascriptBridge_JS.js in Resources */,
 			);
@@ -320,13 +328,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D8749071E8CDDE300B427DF /* WebViewJavascriptBridgeBase.m in Sources */,
+				4D6571431E8E935D00EE7E8E /* WebViewJavascriptBridge.m in Sources */,
 				4D8748F91E8CDDBD00B427DF /* ExampleWKWebViewController.m in Sources */,
-				4D8749051E8CDDE300B427DF /* WebViewJavascriptBridge.m in Sources */,
-				4D8748C91E8CDD3300B427DF /* ViewController.m in Sources */,
-				4D8749061E8CDDE300B427DF /* WebViewJavascriptBridge_JS.m in Sources */,
+				4D6571411E8E935D00EE7E8E /* WebViewJavascriptBridge_JS.m in Sources */,
 				4D8749081E8CDDE300B427DF /* WKWebViewJavascriptBridge.m in Sources */,
 				4D8748C61E8CDD3300B427DF /* AppDelegate.m in Sources */,
-				4D8748F81E8CDDBD00B427DF /* ExampleUIWebViewController.m in Sources */,
+				4D6571421E8E935D00EE7E8E /* ExampleUIWebViewController.m in Sources */,
 				4D8748C31E8CDD3300B427DF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,14 +370,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4D8748CA1E8CDD3300B427DF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4D8748CB1E8CDD3300B427DF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4D8748CF1E8CDD3300B427DF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -476,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F5L2MR9755;
 				INFOPLIST_FILE = "WebViewJavascriptCore解析/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "www.ctrip.cpm.WebViewJavascriptCore--";
@@ -487,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F5L2MR9755;
 				INFOPLIST_FILE = "WebViewJavascriptCore解析/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "www.ctrip.cpm.WebViewJavascriptCore--";
@@ -559,6 +560,7 @@
 				4D8748ED1E8CDD3300B427DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D8748EE1E8CDD3300B427DF /* Build configuration list for PBXNativeTarget "WebViewJavascriptCore解析Tests" */ = {
 			isa = XCConfigurationList;
@@ -567,6 +569,7 @@
 				4D8748F01E8CDD3300B427DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D8748F11E8CDD3300B427DF /* Build configuration list for PBXNativeTarget "WebViewJavascriptCore解析UITests" */ = {
 			isa = XCConfigurationList;
@@ -575,6 +578,7 @@
 				4D8748F31E8CDD3300B427DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

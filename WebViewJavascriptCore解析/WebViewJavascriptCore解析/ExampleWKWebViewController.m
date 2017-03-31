@@ -17,9 +17,15 @@
 
 @implementation ExampleWKWebViewController
 
+-(void)restart{
+    [self viewDidAppear:true];
+}
+
+
 - (void)viewDidAppear:(BOOL)animated {
     if (_bridge) {
         _bridge = nil;
+        //每次显示这个页面的时候都初始化。
         self.webview = nil;
     }
     
@@ -34,12 +40,11 @@
     //设置bridge对应的webview的delegate
     [_bridge setWebViewDelegate:self];
     
-    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"testObjcCallback called: %@", data);
-        responseCallback(@"Response from testObjcCallback");
+    [_bridge registerHandler:@"OC提供方法给JS调用" handler:^(id data, WVJBResponseCallback responseCallback) {
+        //NSLog(@"testObjcCallback called: %@", data);
+        responseCallback(@"OC发给JS的返回值");
     }];
     
-    //[_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
     
     [self renderButtons:webView];
     [self loadExamplePage:webView];
@@ -57,7 +62,7 @@
     UIFont* font = [UIFont fontWithName:@"HelveticaNeue" size:12.0];
     
     UIButton *callbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [callbackButton setTitle:@"Call handler" forState:UIControlStateNormal];
+    [callbackButton setTitle:@"点击OC调用JS" forState:UIControlStateNormal];
     [callbackButton addTarget:self action:@selector(callHandler:) forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:callbackButton aboveSubview:webView];
     callbackButton.frame = CGRectMake(10, 400, 100, 35);
@@ -65,16 +70,16 @@
     
     UIButton* reloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [reloadButton setTitle:@"Reload webview" forState:UIControlStateNormal];
-    [reloadButton addTarget:webView action:@selector(reload) forControlEvents:UIControlEventTouchUpInside];
+    [reloadButton addTarget:self action:@selector(restart) forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:reloadButton aboveSubview:webView];
     reloadButton.frame = CGRectMake(110, 400, 100, 35);
     reloadButton.titleLabel.font = font;
 }
 
 - (void)callHandler:(id)sender {
-    id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
-    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
-        NSLog(@"testJavascriptHandler responded: %@", response);
+    id data = @{ @"OC调用JS方法": @"OC调用JS方法的参数" };
+    [_bridge callHandler:@"OC调用JS提供的方法" data:data responseCallback:^(id response) {
+       // NSLog(@"testJavascriptHandler responded: %@", response);
     }];
 }
 
