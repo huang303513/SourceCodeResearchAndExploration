@@ -92,13 +92,14 @@
     _base.delegate = self;
 }
 
-
+////把消息或者WEB回调从OC发送到OC
 - (void)WKFlushMessageQueue {
     NSString *js = [_base webViewJavascriptFetchQueyCommand];
     [_webView evaluateJavaScript:js completionHandler:^(NSString* result, NSError* error) {
         if (error != nil) {
             NSLog(@"WebViewJavascriptBridge: WARNING: Error when trying to fetch data from WKWebView: %@", error);
         }
+        //把消息或者WEB回调从OC发送到OC
         [_base flushMessageQueue:result];
     }];
 }
@@ -139,11 +140,14 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     if (webView != _webView) { return; }
     NSURL *url = navigationAction.request.URL;
+    NSLog(@"点开URL%@",url);
     __strong typeof(_webViewDelegate) strongDelegate = _webViewDelegate;
-
+    //如果是WebViewJavascriptBridge发送或者接受的消息，则特殊处理。否则按照正常流程处理。
     if ([_base isWebViewJavascriptBridgeURL:url]) {
+        //第一次注入JS代码
         if ([_base isBridgeLoadedURL:url]) {
             [_base injectJavascriptFile];
+        //处理WEB发过来的消息
         } else if ([_base isQueueMessageURL:url]) {
             [self WKFlushMessageQueue];
         } else {

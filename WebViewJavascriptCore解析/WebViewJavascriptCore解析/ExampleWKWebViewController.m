@@ -69,7 +69,7 @@
     callbackButton.titleLabel.font = font;
     
     UIButton* reloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [reloadButton setTitle:@"Reload webview" forState:UIControlStateNormal];
+    [reloadButton setTitle:@"重新开始" forState:UIControlStateNormal];
     [reloadButton addTarget:self action:@selector(restart) forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:reloadButton aboveSubview:webView];
     reloadButton.frame = CGRectMake(110, 400, 100, 35);

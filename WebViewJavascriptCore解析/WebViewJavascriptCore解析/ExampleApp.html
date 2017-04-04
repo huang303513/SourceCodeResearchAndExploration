@@ -15,17 +15,19 @@
 	}
 
     function setupWebViewJavascriptBridge(callback) {
-        
+        //第一次调用这个方法的时候，为false
         if (window.WebViewJavascriptBridge) {
             var result = callback(WebViewJavascriptBridge);
             return result;
         }
+        //第一次调用的时候，也是false
         if (window.WVJBCallbacks) {
             var result = window.WVJBCallbacks.push(callback);
             return result;
         }
+        //把callback对象赋值给对象。
         window.WVJBCallbacks = [callback];
-        
+        //这段代码的意思就是执行加载WebViewJavascriptBridge_JS.js中代码的作用
         var WVJBIframe = document.createElement('iframe');
         WVJBIframe.style.display = 'none';
         WVJBIframe.src = 'https://__bridge_loaded__';
@@ -35,10 +37,10 @@
         }, 0);
     }
 
-    setupWebViewJavascriptBridge(
-        function(bridge) {
+    //setupWebViewJavascriptBridge执行的时候传入的参数，这是一个方法。
+    function callback(bridge) {
 		var uniqueId = 1
-        //记录日志
+        //把操作记录写入webview中
 		function log(message, data) {
 			var log = document.getElementById('log')
 			var el = document.createElement('div')
@@ -51,16 +53,15 @@
                 log.appendChild(el)
             }
 		}
-
+		//把WEB中要注册的方法注册到bridge里面
 		bridge.registerHandler('OC调用JS提供的方法', function(data, responseCallback) {
 			log('OC调用JS方法成功', data)
 			var responseData = { 'JS给OC调用的回调':'回调值!' }
 			log('OC调用JS的返回值', responseData)
 			responseCallback(responseData)
 		})
-
+		//获取web中的button，然后添加点击事件。
 		document.body.appendChild(document.createElement('br'))
-
 		document.getElementById('buttons').onclick = function(e) {
 			e.preventDefault()
             var params =  {'JS调用OC参数': '参数值'};
@@ -69,7 +70,9 @@
 				log('JS调用OC的返回值', response)
 			})
 		}
-	})
+	};
+	//驱动所有hander的初始化
+    setupWebViewJavascriptBridge(callback);
 	</script>
 	<input type='button' id='buttons' class='button' value='点击开始JS调用OC'></input>
     <div id='log'></div>

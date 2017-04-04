@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WebViewJavascriptBridgeBase.h"
-//#import "WebViewJavascriptBridge_JS.h"
+#import "WebViewJavascriptBridge_JS.h"
 
 @implementation WebViewJavascriptBridgeBase {
     __weak id _webViewDelegate;
@@ -60,7 +60,7 @@ static int logMaxLength = 500;
     }
     [self _queueMessage:message];
 }
-
+//把从WEB发送的消息返回。然后在这里处理
 - (void)flushMessageQueue:(NSString *)messageQueueString{
     if (messageQueueString == nil || messageQueueString.length == 0) {
         NSLog(@"WebViewJavascriptBridge: WARNING: ObjC got nil while fetching the message queue JSON from webview. This can happen if the WebViewJavascriptBridge JS is not currently present in the webview, e.g if the webview just loaded a new page.");
@@ -109,13 +109,14 @@ static int logMaxLength = 500;
         }
     }
 }
-
+//初始化的是否注入WebViewJavascriptBridge_JS.js
 - (void)injectJavascriptFile {
     NSString *js;
+    //WebViewJavascriptBridge_JS.js文件内容其实就是WebViewJavascriptBridge_JS.m对应的内容，我只是把它整理方便阅读。
     if (true) {
         js = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WebViewJavascriptBridge_JS.js" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     }else{
-        //js = WebViewJavascriptBridge_js();
+        js = WebViewJavascriptBridge_js();
     }
     [self _evaluateJavascript:js];
     if (self.startupMessageQueue) {
@@ -126,7 +127,7 @@ static int logMaxLength = 500;
         }
     }
 }
-
+//是否是WebViewJavascriptBridge框架相关的链接
 - (BOOL)isWebViewJavascriptBridgeURL:(NSURL*)url {
     if (![self isSchemeMatch:url]) {
         return NO;
@@ -134,18 +135,20 @@ static int logMaxLength = 500;
     BOOL result =  [self isBridgeLoadedURL:url] || [self isQueueMessageURL:url];
     return result;
 }
-
+/*
+    是否是WebViewJavascriptBridge发送或者接受的消息
+ */
 - (BOOL)isSchemeMatch:(NSURL*)url {
     NSString* scheme = url.scheme.lowercaseString;
     BOOL result = [scheme isEqualToString:kNewProtocolScheme] || [scheme isEqualToString:kOldProtocolScheme];
     return result;
 }
-
+//是WebViewJavascriptBridge发送的消息还是WebViewJavascriptBridge的初始化消息。
 - (BOOL)isQueueMessageURL:(NSURL*)url {
     NSString* host = url.host.lowercaseString;
     return [self isSchemeMatch:url] && [host isEqualToString:kQueueHasMessage];
 }
-
+//是否是https://__bridge_loaded__这种初始化加载消息
 - (BOOL)isBridgeLoadedURL:(NSURL*)url {
     NSString* host = url.host.lowercaseString;
     BOOL result = [self isSchemeMatch:url] && [host isEqualToString:kBridgeLoaded];
@@ -155,15 +158,15 @@ static int logMaxLength = 500;
 - (void)logUnkownMessage:(NSURL*)url {
     NSLog(@"WebViewJavascriptBridge: WARNING: Received unknown WebViewJavascriptBridge command %@", [url absoluteString]);
 }
-
+//WebViewJavascriptBridge是否已经初始化
 - (NSString *)webViewJavascriptCheckCommand {
     return @"typeof WebViewJavascriptBridge == \'object\';";
 }
-
+//获取WEB消息的JSON字符串
 - (NSString *)webViewJavascriptFetchQueyCommand {
     return @"WebViewJavascriptBridge._fetchQueue();";
 }
-
+//关闭回调超时
 - (void)disableJavscriptAlertBoxSafetyTimeout {
     [self sendData:nil responseCallback:nil handlerName:@"_disableJavascriptAlertBoxSafetyTimeout"];
 }
@@ -182,7 +185,7 @@ static int logMaxLength = 500;
         [self _dispatchMessage:message];
     }
 }
-
+//把消息发送给WEB环境
 - (void)_dispatchMessage:(WVJBMessage*)message {
     NSString *messageJSON = [self _serializeMessage:message pretty:NO];
     [self _log:@"SEND" json:messageJSON];
@@ -205,12 +208,12 @@ static int logMaxLength = 500;
         });
     }
 }
-
+//oc消息JSON序列化
 - (NSString *)_serializeMessage:(id)message pretty:(BOOL)pretty{
     NSString *result = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:message options:(NSJSONWritingOptions)(pretty ? NSJSONWritingPrettyPrinted : 0) error:nil] encoding:NSUTF8StringEncoding];
     return result;
 }
-
+//消息反序列化
 - (NSArray*)_deserializeMessageJSON:(NSString *)messageJSON {
     NSArray *result = [NSJSONSerialization JSONObjectWithData:[messageJSON dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
     return result;
