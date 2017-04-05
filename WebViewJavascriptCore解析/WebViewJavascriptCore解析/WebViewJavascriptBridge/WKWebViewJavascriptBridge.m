@@ -24,6 +24,7 @@
     [WebViewJavascriptBridgeBase enableLogging];
 }
 
+//初始化一个OC环境的桥WKWebViewJavascriptBridge并且初始化。
 + (instancetype)bridgeForWebView:(WKWebView*)webView {
     WKWebViewJavascriptBridge* bridge = [[self alloc] init];
     [bridge _setupInstance:webView];
@@ -47,6 +48,12 @@
     [self callHandler:handlerName data:data responseCallback:nil];
 }
 
+
+/*
+    handerName:OC调用JS提供的方法
+    data:{@"OC调用JS方法的参数":@"OC调用JS方法"}
+    responseCallback:回调block
+ */
 - (void)callHandler:(NSString *)handlerName data:(id)data responseCallback:(WVJBResponseCallback)responseCallback {
     [_base sendData:data responseCallback:responseCallback handlerName:handlerName];
 }

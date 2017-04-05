@@ -20,6 +20,9 @@ static int logMaxLength = 500;
 + (void)enableLogging { logging = true; }
 + (void)setLogMaxLength:(int)length { logMaxLength = length;}
 
+//messageHandlers用于保存OC环境注册的方法，key是方法名，value是这个方法对应的回调block
+//startupMessageQueue用于保存是实话过程中需要发送给javascirpt环境的消息。
+//responseCallbacks用于保存OC于javascript环境相互调用的回调模块。通过_uniqueId加上时间戳来确定每个调用的回调。
 - (id)init {
     if (self = [super init]) {
         self.messageHandlers = [NSMutableDictionary dictionary];
@@ -118,7 +121,9 @@ static int logMaxLength = 500;
     }else{
         js = WebViewJavascriptBridge_js();
     }
+    //把javascript代码注入webview中执行
     [self _evaluateJavascript:js];
+    //如果javascript环境初始化完成以后，有startupMessageQueue消息。则立即发送消息。
     if (self.startupMessageQueue) {
         NSArray* queue = self.startupMessageQueue;
         self.startupMessageQueue = nil;

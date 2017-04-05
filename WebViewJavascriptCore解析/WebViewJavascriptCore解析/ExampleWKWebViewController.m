@@ -47,6 +47,7 @@
     
     
     [self renderButtons:webView];
+    
     [self loadExamplePage:webView];
 }
 
