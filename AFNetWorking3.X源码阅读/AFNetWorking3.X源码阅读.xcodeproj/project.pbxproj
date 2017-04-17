@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D129F431EA2362B0076FAD6 /* AFURLSessionManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */; };
 		4D6571541E94D05E00EE7E8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571531E94D05E00EE7E8E /* main.m */; };
 		4D6571571E94D05E00EE7E8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571561E94D05E00EE7E8E /* AppDelegate.m */; };
 		4D65715A1E94D05E00EE7E8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571591E94D05E00EE7E8E /* ViewController.m */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D129F411EA2362B0076FAD6 /* AFURLSessionManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManagerViewController.h; sourceTree = "<group>"; };
+		4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManagerViewController.m; sourceTree = "<group>"; };
 		4D65714F1E94D05E00EE7E8E /* AFNetWorking3.X源码阅读.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AFNetWorking3.X源码阅读.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6571531E94D05E00EE7E8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D6571551E94D05E00EE7E8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				4D6571601E94D05E00EE7E8E /* LaunchScreen.storyboard */,
 				4D6571631E94D05E00EE7E8E /* Info.plist */,
 				4D6571521E94D05E00EE7E8E /* Supporting Files */,
+				4D129F411EA2362B0076FAD6 /* AFURLSessionManagerViewController.h */,
+				4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */,
 			);
 			path = "AFNetWorking3.X源码阅读";
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				4D6571541E94D05E00EE7E8E /* main.m in Sources */,
 				4D6571B41E94D1D800EE7E8E /* AFURLRequestSerialization.m in Sources */,
 				4D65719A1E94D1D000EE7E8E /* AFAutoPurgingImageCache.m in Sources */,
+				4D129F431EA2362B0076FAD6 /* AFURLSessionManagerViewController.m in Sources */,
 				4D6571B61E94D1D800EE7E8E /* AFURLSessionManager.m in Sources */,
 				4D6571A11E94D1D000EE7E8E /* UIRefreshControl+AFNetworking.m in Sources */,
 				4D6571A21E94D1D000EE7E8E /* UIWebView+AFNetworking.m in Sources */,
@@ -624,6 +630,7 @@
 				4D65717E1E94D05E00EE7E8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D65717F1E94D05E00EE7E8E /* Build configuration list for PBXNativeTarget "AFNetWorking3.X源码阅读Tests" */ = {
 			isa = XCConfigurationList;
@@ -632,6 +639,7 @@
 				4D6571811E94D05E00EE7E8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D6571821E94D05E00EE7E8E /* Build configuration list for PBXNativeTarget "AFNetWorking3.X源码阅读UITests" */ = {
 			isa = XCConfigurationList;
@@ -640,6 +648,7 @@
 				4D6571841E94D05E00EE7E8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

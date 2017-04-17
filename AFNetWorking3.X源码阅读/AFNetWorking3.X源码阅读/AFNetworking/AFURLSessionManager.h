@@ -10,10 +10,13 @@
 
 /**
  `AFURLSessionManager` creates and manages an `NSURLSession` object based on a specified `NSURLSessionConfiguration` object, which conforms to `<NSURLSessionTaskDelegate>`, `<NSURLSessionDataDelegate>`, `<NSURLSessionDownloadDelegate>`, and `<NSURLSessionDelegate>`.
-
+ `AFURLSessionManager`根据一个指定的`NSURLSessionConfiguration`创建和管理一个`NSURLSession`对象。并且这个对象实现了`<NSURLSessionTaskDelegate>`, `<NSURLSessionDataDelegate>`, `<NSURLSessionDownloadDelegate>`, 和 `<NSURLSessionDelegate>`这几个协议的协议方法。
+ 
  ## Subclassing Notes
 
  This is the base class for `AFHTTPSessionManager`, which adds functionality specific to making HTTP requests. If you are looking to extend `AFURLSessionManager` specifically for HTTP, consider subclassing `AFHTTPSessionManager` instead.
+ 
+ 
 
  ## NSURLSession & NSURLSessionTask Delegate Methods
 
@@ -65,17 +68,22 @@
  */
 
 NS_ASSUME_NONNULL_BEGIN
-
+/*
+  `AFURLSessionManager`根据一个指定的`NSURLSessionConfiguration`创建和管理一个`NSURLSession`对象。并且这个对象实现了`<NSURLSessionTaskDelegate>`, `<NSURLSessionDataDelegate>`, `<NSURLSessionDownloadDelegate>`, 和 `<NSURLSessionDelegate>`这几个协议的协议方法。
+ 
+ */
 @interface AFURLSessionManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate, NSSecureCoding, NSCopying>
 
 /**
  The managed session.
  */
+//AFURLSessionManager通过session来管理和创建网络请求。
 @property (readonly, nonatomic, strong) NSURLSession *session;
 
 /**
  The operation queue on which delegate callbacks are run.
  */
+//处理网络请求回调的操作队列
 @property (readonly, nonatomic, strong) NSOperationQueue *operationQueue;
 
 /**
@@ -83,6 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @warning `responseSerializer` must not be `nil`.
  */
+
 @property (nonatomic, strong) id <AFURLResponseSerialization> responseSerializer;
 
 ///-------------------------------

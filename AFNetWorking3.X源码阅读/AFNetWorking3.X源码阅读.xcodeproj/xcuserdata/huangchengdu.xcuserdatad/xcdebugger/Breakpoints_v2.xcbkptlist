@@ -38,7 +38,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -54,7 +54,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -70,7 +70,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -86,7 +86,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -118,7 +118,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -134,7 +134,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -150,7 +150,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -166,7 +166,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -182,7 +182,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -195,49 +195,49 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__72-[AFURLSessionManagerTaskDelegate URLSession:task:didCompleteWithError:]_block_invoke_3"
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.327533"
+                  timestampString = "513949136.118096"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "227"
                   endingLineNumber = "227"
-                  offsetFromSymbolStart = "154">
+                  offsetFromSymbolStart = "133">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__copy_helper_block_.120"
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.329326"
+                  timestampString = "513949136.120831"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "227"
                   endingLineNumber = "227"
-                  offsetFromSymbolStart = "62">
+                  offsetFromSymbolStart = "94">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__destroy_helper_block_.121"
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.330869"
+                  timestampString = "513949136.123174"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "227"
                   endingLineNumber = "227"
-                  offsetFromSymbolStart = "34">
+                  offsetFromSymbolStart = "57">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -277,7 +277,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -309,7 +309,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -469,7 +469,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -485,7 +485,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -501,7 +501,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -517,7 +517,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -533,7 +533,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -549,7 +549,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -581,7 +581,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -597,7 +597,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -613,7 +613,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -645,7 +645,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -661,7 +661,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -677,7 +677,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -789,7 +789,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -821,7 +821,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -837,7 +837,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -905,12 +905,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.455085"
+                  timestampString = "513950726.0636"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "718"
                   endingLineNumber = "718"
-                  offsetFromSymbolStart = "152">
+                  offsetFromSymbolStart = "196">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -920,12 +920,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.456802"
+                  timestampString = "513950726.065224"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "718"
                   endingLineNumber = "718"
-                  offsetFromSymbolStart = "30">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -969,12 +969,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.463391"
+                  timestampString = "513950726.074418"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
                   endingLineNumber = "740"
-                  offsetFromSymbolStart = "152">
+                  offsetFromSymbolStart = "196">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -984,12 +984,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.465093"
+                  timestampString = "513950726.076495"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
                   endingLineNumber = "740"
-                  offsetFromSymbolStart = "30">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1017,12 +1017,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.472318"
+                  timestampString = "513950726.080746"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "754"
                   endingLineNumber = "754"
-                  offsetFromSymbolStart = "132">
+                  offsetFromSymbolStart = "165">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1032,12 +1032,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.474084"
+                  timestampString = "513950726.083636"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "754"
                   endingLineNumber = "754"
-                  offsetFromSymbolStart = "30">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1045,7 +1045,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1058,34 +1058,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[AFURLSessionManager downloadTaskWithRequest:progress:destination:completionHandler:]"
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.479379"
+                  timestampString = "513949136.298267"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "771"
                   endingLineNumber = "771"
-                  offsetFromSymbolStart = "152">
+                  offsetFromSymbolStart = "196">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__86-[AFURLSessionManager downloadTaskWithRequest:progress:destination:completionHandler:]_block_invoke"
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.480957"
+                  timestampString = "513949136.300603"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "771"
                   endingLineNumber = "771"
-                  offsetFromSymbolStart = "30">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1113,12 +1113,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.484598"
+                  timestampString = "513950726.088129"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "786"
                   endingLineNumber = "786"
-                  offsetFromSymbolStart = "152">
+                  offsetFromSymbolStart = "196">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1128,12 +1128,12 @@
                   moduleName = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetWorking3.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/AFNetworking/AFURLSessionManager.m"
-                  timestampString = "513849298.486112"
+                  timestampString = "513950726.089865"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "786"
                   endingLineNumber = "786"
-                  offsetFromSymbolStart = "30">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1205,7 +1205,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1221,7 +1221,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1237,7 +1237,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1253,7 +1253,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1269,7 +1269,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1413,7 +1413,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1429,7 +1429,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1445,7 +1445,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1557,7 +1557,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1653,7 +1653,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -1669,7 +1669,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFNetworking/AFURLSessionManager.m"
@@ -2239,6 +2239,54 @@
             startingLineNumber = "179"
             endingLineNumber = "179"
             landmarkName = "-URLSession:downloadTask:didFinishDownloadingToURL:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFURLSessionManagerViewController.m"
+            timestampString = "513950724.889064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-clickButton:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFURLSessionManagerViewController.m"
+            timestampString = "513950724.889064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-clickButton:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AFNetWorking3.X&#x6e90;&#x7801;&#x9605;&#x8bfb;/AFURLSessionManagerViewController.m"
+            timestampString = "513950724.889064"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-clickButton:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
