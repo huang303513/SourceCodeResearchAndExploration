@@ -119,9 +119,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zkl-qh-9KE">
-                                <rect key="frame" x="153" y="202" width="46" height="30"/>
+                                <rect key="frame" x="65" y="202" width="222" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="AFURLSessionManager请求数据"/>
                                 <connections>
                                     <action selector="clickButton:" destination="cgX-Zk-8jZ" eventType="touchUpInside" id="rkz-1b-jHh"/>
                                 </connections>
@@ -132,6 +132,14 @@
                                     <constraint firstAttribute="height" constant="282" id="Wad-es-KHX"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXL-nl-CGV">
+                                <rect key="frame" x="64" y="140" width="222" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AFURLSessionManager上传图片"/>
+                                <connections>
+                                    <action selector="uploadPic:" destination="cgX-Zk-8jZ" eventType="touchUpInside" id="AHG-he-Atg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

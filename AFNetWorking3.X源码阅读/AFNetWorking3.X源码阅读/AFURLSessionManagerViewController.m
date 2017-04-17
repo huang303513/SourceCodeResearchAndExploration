@@ -24,6 +24,29 @@ static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.pn
     
 }
 
+- (IBAction)uploadPic:(id)sender {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:@"http://www.freeimagehosting.net//upl.php"]];
+    [request setValue:@"image/png" forHTTPHeaderField:@"Content-type"];
+     //[request setValue:@"Content-Disposition" forHTTPHeaderField:@"Content-type"];
+    [request setValue:@"text/html" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"POST"];
+    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
+    [request setTimeoutInterval:60];
+    
+    NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]);
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionUploadTask *task = [manager uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
+        NSLog(@"上传进度:%lld",uploadProgress.completedUnitCount);
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSLog(@"%@",responseObject);
+    }];
+    
+    [task resume];
+}
+
+
+//请求数据
 - (IBAction)clickButton:(id)sender {
     //通过默认配置初始化Session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];

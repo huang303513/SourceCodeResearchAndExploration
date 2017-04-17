@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D129F431EA2362B0076FAD6 /* AFURLSessionManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */; };
+		4D4F6A541EA48976005F95CF /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4F6A531EA48976005F95CF /* 1.png */; };
 		4D6571541E94D05E00EE7E8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571531E94D05E00EE7E8E /* main.m */; };
 		4D6571571E94D05E00EE7E8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571561E94D05E00EE7E8E /* AppDelegate.m */; };
 		4D65715A1E94D05E00EE7E8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571591E94D05E00EE7E8E /* ViewController.m */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		4D129F411EA2362B0076FAD6 /* AFURLSessionManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManagerViewController.h; sourceTree = "<group>"; };
 		4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManagerViewController.m; sourceTree = "<group>"; };
+		4D4F6A531EA48976005F95CF /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		4D65714F1E94D05E00EE7E8E /* AFNetWorking3.X源码阅读.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AFNetWorking3.X源码阅读.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6571531E94D05E00EE7E8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D6571551E94D05E00EE7E8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		4D6571521E94D05E00EE7E8E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4D4F6A531EA48976005F95CF /* 1.png */,
 				4D6571531E94D05E00EE7E8E /* main.m */,
 			);
 			name = "Supporting Files";
@@ -350,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D6571621E94D05E00EE7E8E /* LaunchScreen.storyboard in Resources */,
+				4D4F6A541EA48976005F95CF /* 1.png in Resources */,
 				4D65715F1E94D05E00EE7E8E /* Assets.xcassets in Resources */,
 				4D65715D1E94D05E00EE7E8E /* Main.storyboard in Resources */,
 			);
