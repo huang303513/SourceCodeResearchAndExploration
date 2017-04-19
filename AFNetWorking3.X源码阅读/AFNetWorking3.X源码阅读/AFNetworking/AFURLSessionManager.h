@@ -163,6 +163,10 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see https://github.com/AFNetworking/AFNetworking/issues/1675
  */
+
+/**
+ 用于处理uploadTask在iOS7环境下面有可能创建失败的情况
+ */
 @property (nonatomic, assign) BOOL attemptsToRecreateUploadTasksForBackgroundSessions;
 
 ///---------------------

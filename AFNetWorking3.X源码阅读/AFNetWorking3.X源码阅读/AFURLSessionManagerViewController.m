@@ -36,6 +36,7 @@ static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.pn
     NSData *data = UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]);
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
     NSURLSessionUploadTask *task = [manager uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"上传进度:%lld",uploadProgress.completedUnitCount);
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
@@ -80,12 +81,10 @@ static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.pn
         }];
     }
     //监听网络状态
-    AFNetworkReachabilityManager *reachManager = [AFNetworkReachabilityManager sharedManager];
-    [reachManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         NSLog(@"%ld",(long)status);
     }];
-    [reachManager startMonitoring];
-    manager.reachabilityManager = reachManager;
+    [manager.reachabilityManager startMonitoring];
     
     NSURL *URL = [NSURL URLWithString:bigPic];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
