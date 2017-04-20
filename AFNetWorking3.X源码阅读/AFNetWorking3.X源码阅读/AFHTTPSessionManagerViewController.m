@@ -8,6 +8,8 @@
 
 #import "AFHTTPSessionManagerViewController.h"
 #import "AFNetworking.h"
+
+static NSString *url = @"http://activity.test.chuangchuang.cn/uploadFile";
 @interface AFHTTPSessionManagerViewController ()
 
 @end
@@ -45,7 +47,7 @@
     //请求体图片数据
     NSData *imageData = UIImagePNGRepresentation([UIImage imageNamed:@"1.png"]);
     //创建request
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:@"http://activity.test.chuangchuang.cn/uploadFile"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url]];
     //post方法
     [request setHTTPMethod:@"POST"];
     // 设置请求头格式为Content-Type:multipart/form-data; boundary=xxxxx
@@ -69,7 +71,7 @@
 }
 
 - (IBAction)multipartformPost3:(id)sender {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:@"http://activity.test.chuangchuang.cn/uploadFile"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url]];
     //post方法
     [request setHTTPMethod:@"POST"];
     //参数
@@ -118,7 +120,7 @@
 }
 
 - (IBAction)multipartformPost2:(id)sender {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:@"http://activity.test.chuangchuang.cn/uploadFile"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url]];
     //post方法
     [request setHTTPMethod:@"POST"];
     //参数
@@ -180,7 +182,7 @@
     [request setHTTPMethod:@"POST"];
     [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
     [request setTimeoutInterval:20];
-    NSURL *url = [NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"test.txt" ofType:nil]];
+    NSURL *url = [NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"]];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURLSessionDataTask *task = [session uploadTaskWithRequest:request fromFile:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSString *result = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
