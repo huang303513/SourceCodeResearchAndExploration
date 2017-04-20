@@ -33,6 +33,8 @@
 [iOS 中 HTTPS 证书验证浅析](http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578489&idx=2&sn=2731c8de546f423b983aad1340f30af5&chksm=84b3b6feb3c43fe8309c70d3aa5a325451a60414ade02e533def9ccf2e017f91a6c08bbc7c3b&mpshare=1&scene=23&srcid=0112Y9LZ4FFh3McYUojtSV7F#rd)<br/>
 [iOS自签名HTTPS证书单向校验方案](http://www.jianshu.com/p/1baead685de4)</br>
 
+[如何使用ip直接访问https网站?](https://segmentfault.com/a/1190000004359232)</br>
+
 ###源码阅读系列博客<br/>
 [FMDB源码阅读系列](http://www.cnblogs.com/polobymulberry/category/789988.html)
 
