@@ -1094,12 +1094,16 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     } else {
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
             if ([self.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
+                //验证证书是否有效模式
                 disposition = NSURLSessionAuthChallengeUseCredential;
+                //获取证书对象
                 credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
             } else {
+                //取消。
                 disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
             }
         } else {
+            //默认模式、应该是验证public key的模式
             disposition = NSURLSessionAuthChallengePerformDefaultHandling;
         }
     }

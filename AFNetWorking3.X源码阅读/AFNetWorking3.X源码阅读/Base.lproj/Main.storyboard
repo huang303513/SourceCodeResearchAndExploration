@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--URL Session View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NSURLSessionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -33,7 +33,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="downloadTask"/>
                                 <connections>
-                                    <action selector="requestDownloadTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="45Q-mc-fBi"/>
+                                    <action selector="downloadTaskRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DEj-Ws-uX7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyc-sa-Zab">
@@ -41,7 +41,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="blockTask"/>
                                 <connections>
-                                    <action selector="requestBlockTaskTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hdD-eT-64I"/>
+                                    <action selector="blockDataTaskRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ana-Pq-izk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZuX-WW-stN">
@@ -49,7 +49,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="dataTask"/>
                                 <connections>
-                                    <action selector="requestDataTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DHD-cD-yHG"/>
+                                    <action selector="dataTaskRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DP5-uc-NnJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -62,17 +62,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="RSe-lC-kxs"/>
                     <connections>
-                        <outlet property="imageView" destination="weo-ai-Pd7" id="xZI-7n-QIc"/>
+                        <outlet property="imageView" destination="weo-ai-Pd7" id="Omh-p1-DLf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2367" y="-978"/>
+            <point key="canvasLocation" x="1412" y="-1442"/>
         </scene>
-        <!--View Controller-->
+        <!--URL Session View Controller-->
         <scene sceneID="D3Q-QQ-MDk">
             <objects>
-                <viewController id="Xvd-4H-oym" sceneMemberID="viewController">
+                <viewController id="Xvd-4H-oym" customClass="NSURLSessionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qgu-Xa-FeO"/>
                         <viewControllerLayoutGuide type="bottom" id="Hqc-Vn-R9X"/>
@@ -95,6 +95,14 @@
                                 <state key="normal" title="AFURLSessionManager测试"/>
                                 <connections>
                                     <segue destination="cgX-Zk-8jZ" kind="push" id="YIY-Fp-vP5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ll7-aJ-uiS">
+                                <rect key="frame" x="63" y="233" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AFHTTPSessionManager测试"/>
+                                <connections>
+                                    <segue destination="6CJ-eK-K8m" kind="push" id="HCs-We-AQ9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -155,7 +163,81 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYv-vd-0IN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2460" y="-323.38830584707648"/>
+            <point key="canvasLocation" x="2137" y="-1442"/>
+        </scene>
+        <!--Session Manager View Controller-->
+        <scene sceneID="2QL-or-ukv">
+            <objects>
+                <viewController id="6CJ-eK-K8m" customClass="AFHTTPSessionManagerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y69-Ny-JNj"/>
+                        <viewControllerLayoutGuide type="bottom" id="VPD-hU-hvU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Px1-3t-b8K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q65-o0-zrg">
+                                <rect key="frame" x="-9" y="86" width="367" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="application/x-www-form-urlencoded格式的POST请求"/>
+                                <connections>
+                                    <action selector="visitBaidu:" destination="6CJ-eK-K8m" eventType="touchUpInside" id="WM5-T6-pBY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ps5-cd-RLz">
+                                <rect key="frame" x="57" y="146" width="235" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="multipart/form-data格式Post请求1"/>
+                                <connections>
+                                    <action selector="updatePic:" destination="6CJ-eK-K8m" eventType="touchUpInside" id="QAH-xd-8Is"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWU-zb-HkH">
+                                <rect key="frame" x="59" y="300" width="231" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="application/json格式的POST请求1"/>
+                                <connections>
+                                    <action selector="applicationjsonPOST1:" destination="6CJ-eK-K8m" eventType="touchUpInside" id="49X-SV-3Q2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFd-lE-FRb">
+                                <rect key="frame" x="41" y="201" width="267" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="multipart/form-data格式Post原生实现2"/>
+                                <connections>
+                                    <action selector="multipartformPost2:" destination="6CJ-eK-K8m" eventType="touchUpInside" id="gVx-ON-Bma"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXz-wo-LUD">
+                                <rect key="frame" x="69" y="255" width="237" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="multipart/form-data格式Post原生3"/>
+                                <connections>
+                                    <action selector="multipartformPost3:" destination="6CJ-eK-K8m" eventType="touchUpInside" id="BlB-vF-85o"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hF-Gi-21f">
+                                <rect key="frame" x="45" y="340" width="264" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="application/json格式的POST原生实现2"/>
+                                <connections>
+                                    <action selector="applicationjsonPOST2:" destination="6CJ-eK-K8m" eventType="touchUpInside" id="TyJ-rg-FKh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gig-jS-qDx">
+                                <rect key="frame" x="156" y="408" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="访问百度"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vb9-TR-bLB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dga-a6-6az" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1194" y="360"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6o9-RV-UgD">

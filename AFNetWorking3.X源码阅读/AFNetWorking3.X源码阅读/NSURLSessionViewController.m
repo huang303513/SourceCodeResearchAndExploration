@@ -6,17 +6,17 @@
 //  Copyright © 2017年 huangchengdu. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "NSURLSessionViewController.h"
 
 static NSString *const bigPic = @"http://i1.piimg.com/4851/d1498fea89ae3bc1.png";
 static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.png";
 
-@interface ViewController ()<NSURLSessionDelegate>
+@interface NSURLSessionViewController ()<NSURLSessionDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property(nonatomic,strong)NSMutableData *data;
 @end
 
-@implementation ViewController
+@implementation NSURLSessionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,7 +24,7 @@ static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.pn
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (IBAction)requestDataTest:(id)sender {
+- (IBAction)dataTaskRequest:(id)sender {
      [self clear];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc] init]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:bigPic]];
@@ -33,7 +33,7 @@ static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.pn
 }
 
 
-- (IBAction)requestDownloadTest:(id)sender {
+- (IBAction)downloadTaskRequest:(id)sender {
      [self clear];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc] init]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:bigPic]];
@@ -41,7 +41,7 @@ static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.pn
     [dataTask resume];
 }
 
--(IBAction)requestBlockTaskTest:(id)sender{
+-(IBAction)blockDataTaskRequest:(id)sender{
     [self clear];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:bigPic]];

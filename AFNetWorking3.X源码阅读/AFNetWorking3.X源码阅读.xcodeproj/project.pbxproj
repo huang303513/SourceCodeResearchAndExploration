@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		4D129F431EA2362B0076FAD6 /* AFURLSessionManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */; };
 		4D4F6A541EA48976005F95CF /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4F6A531EA48976005F95CF /* 1.png */; };
+		4D4F6A8E1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4F6A8D1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m */; };
+		4D4F6A901EA76687005F95CF /* baidu.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4D4F6A8F1EA76687005F95CF /* baidu.com.cer */; };
+		4D4F6A921EA83FCA005F95CF /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4D4F6A911EA83FCA005F95CF /* test.txt */; };
 		4D6571541E94D05E00EE7E8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571531E94D05E00EE7E8E /* main.m */; };
 		4D6571571E94D05E00EE7E8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571561E94D05E00EE7E8E /* AppDelegate.m */; };
-		4D65715A1E94D05E00EE7E8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571591E94D05E00EE7E8E /* ViewController.m */; };
+		4D65715A1E94D05E00EE7E8E /* NSURLSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571591E94D05E00EE7E8E /* NSURLSessionViewController.m */; };
 		4D65715D1E94D05E00EE7E8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D65715B1E94D05E00EE7E8E /* Main.storyboard */; };
 		4D65715F1E94D05E00EE7E8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D65715E1E94D05E00EE7E8E /* Assets.xcassets */; };
 		4D6571621E94D05E00EE7E8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6571601E94D05E00EE7E8E /* LaunchScreen.storyboard */; };
@@ -55,12 +58,16 @@
 		4D129F411EA2362B0076FAD6 /* AFURLSessionManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManagerViewController.h; sourceTree = "<group>"; };
 		4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManagerViewController.m; sourceTree = "<group>"; };
 		4D4F6A531EA48976005F95CF /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		4D4F6A8C1EA759D5005F95CF /* AFHTTPSessionManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManagerViewController.h; sourceTree = "<group>"; };
+		4D4F6A8D1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManagerViewController.m; sourceTree = "<group>"; };
+		4D4F6A8F1EA76687005F95CF /* baidu.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = baidu.com.cer; sourceTree = "<group>"; };
+		4D4F6A911EA83FCA005F95CF /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		4D65714F1E94D05E00EE7E8E /* AFNetWorking3.X源码阅读.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AFNetWorking3.X源码阅读.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6571531E94D05E00EE7E8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D6571551E94D05E00EE7E8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D6571561E94D05E00EE7E8E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4D6571581E94D05E00EE7E8E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4D6571591E94D05E00EE7E8E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4D6571581E94D05E00EE7E8E /* NSURLSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSURLSessionViewController.h; sourceTree = "<group>"; };
+		4D6571591E94D05E00EE7E8E /* NSURLSessionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSURLSessionViewController.m; sourceTree = "<group>"; };
 		4D65715C1E94D05E00EE7E8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D65715E1E94D05E00EE7E8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D6571611E94D05E00EE7E8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -158,15 +165,15 @@
 				4D6571851E94D1D000EE7E8E /* UIKit+AFNetworking */,
 				4D6571551E94D05E00EE7E8E /* AppDelegate.h */,
 				4D6571561E94D05E00EE7E8E /* AppDelegate.m */,
-				4D6571581E94D05E00EE7E8E /* ViewController.h */,
-				4D6571591E94D05E00EE7E8E /* ViewController.m */,
 				4D65715B1E94D05E00EE7E8E /* Main.storyboard */,
-				4D65715E1E94D05E00EE7E8E /* Assets.xcassets */,
 				4D6571601E94D05E00EE7E8E /* LaunchScreen.storyboard */,
-				4D6571631E94D05E00EE7E8E /* Info.plist */,
 				4D6571521E94D05E00EE7E8E /* Supporting Files */,
+				4D6571581E94D05E00EE7E8E /* NSURLSessionViewController.h */,
+				4D6571591E94D05E00EE7E8E /* NSURLSessionViewController.m */,
 				4D129F411EA2362B0076FAD6 /* AFURLSessionManagerViewController.h */,
 				4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */,
+				4D4F6A8C1EA759D5005F95CF /* AFHTTPSessionManagerViewController.h */,
+				4D4F6A8D1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m */,
 			);
 			path = "AFNetWorking3.X源码阅读";
 			sourceTree = "<group>";
@@ -174,6 +181,10 @@
 		4D6571521E94D05E00EE7E8E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4D4F6A911EA83FCA005F95CF /* test.txt */,
+				4D4F6A8F1EA76687005F95CF /* baidu.com.cer */,
+				4D65715E1E94D05E00EE7E8E /* Assets.xcassets */,
+				4D6571631E94D05E00EE7E8E /* Info.plist */,
 				4D4F6A531EA48976005F95CF /* 1.png */,
 				4D6571531E94D05E00EE7E8E /* main.m */,
 			);
@@ -354,7 +365,9 @@
 			files = (
 				4D6571621E94D05E00EE7E8E /* LaunchScreen.storyboard in Resources */,
 				4D4F6A541EA48976005F95CF /* 1.png in Resources */,
+				4D4F6A901EA76687005F95CF /* baidu.com.cer in Resources */,
 				4D65715F1E94D05E00EE7E8E /* Assets.xcassets in Resources */,
+				4D4F6A921EA83FCA005F95CF /* test.txt in Resources */,
 				4D65715D1E94D05E00EE7E8E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,7 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D65715A1E94D05E00EE7E8E /* ViewController.m in Sources */,
+				4D65715A1E94D05E00EE7E8E /* NSURLSessionViewController.m in Sources */,
 				4D6571B31E94D1D800EE7E8E /* AFSecurityPolicy.m in Sources */,
 				4D6571571E94D05E00EE7E8E /* AppDelegate.m in Sources */,
 				4D65719C1E94D1D000EE7E8E /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -398,6 +411,7 @@
 				4D6571B21E94D1D800EE7E8E /* AFNetworkReachabilityManager.m in Sources */,
 				4D65719F1E94D1D000EE7E8E /* UIImageView+AFNetworking.m in Sources */,
 				4D65719D1E94D1D000EE7E8E /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				4D4F6A8E1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m in Sources */,
 				4D6571B11E94D1D800EE7E8E /* AFHTTPSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
