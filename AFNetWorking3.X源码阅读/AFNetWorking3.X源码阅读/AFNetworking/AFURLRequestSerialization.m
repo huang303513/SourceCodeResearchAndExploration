@@ -30,6 +30,14 @@
 NSString * const AFURLRequestSerializationErrorDomain = @"com.alamofire.error.serialization.request";
 NSString * const AFNetworkingOperationFailingURLRequestErrorKey = @"com.alamofire.serialization.request.error.response";
 
+/**
+ 把parameters这个字典转换为url的query参数。并且绑定给request对象
+
+ @param request query参数绑定的request对象
+ @param parameters 序列化的参数
+ @param error 错误
+ @return 序列化以后的query参数
+ */
 typedef NSString * (^AFQueryStringSerializationBlock)(NSURLRequest *request, id parameters, NSError *__autoreleasing *error);
 
 /**
@@ -43,6 +51,14 @@ typedef NSString * (^AFQueryStringSerializationBlock)(NSURLRequest *request, id 
  should be percent-escaped in the query string.
     - parameter string: The string to be percent-escaped.
     - returns: The percent-escaped string.
+ */
+#pragma mark  AFPercentEscapedStringFromString方法的作用就是把一个普通字符串转换为百分号编码的字符串
+/**
+ 把一个普通字符串转换为百分号编码的字符串
+ http://blog.csdn.net/qq_32010299/article/details/51790407
+
+ @param string 一个字符串
+ @return 百分号编码的字符串
  */
 NSString * AFPercentEscapedStringFromString(NSString *string) {
     static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@"; // does not include "?" or "/" due to RFC 3986 - Section 3.4
@@ -76,7 +92,7 @@ NSString * AFPercentEscapedStringFromString(NSString *string) {
 	return escaped;
 }
 
-#pragma mark -
+#pragma mark - AFQueryStringPair的主要功能就是把一个key和vaue的键值对转换为百分号编码格式的键值对并且用=链接起来
 
 @interface AFQueryStringPair : NSObject
 @property (readwrite, nonatomic, strong) id field;
@@ -101,6 +117,11 @@ NSString * AFPercentEscapedStringFromString(NSString *string) {
     return self;
 }
 
+/**
+ 把key、value键值对转换为百分号编码，并且链接起来
+
+ @return 转换后的字符串
+ */
 - (NSString *)URLEncodedStringValue {
     if (!self.value || [self.value isEqual:[NSNull null]]) {
         return AFPercentEscapedStringFromString([self.field description]);
@@ -111,11 +132,18 @@ NSString * AFPercentEscapedStringFromString(NSString *string) {
 
 @end
 
-#pragma mark -
+#pragma mark - 分别把一个字典或者key、value键值对转换为url的query参数
 
 FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromDictionary(NSDictionary *dictionary);
 FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value);
 
+
+/**
+ 把一个字典转换为百分号编码的query参数
+
+ @param parameters 要转换的字典
+ @return query参数
+ */
 NSString * AFQueryStringFromParameters(NSDictionary *parameters) {
     NSMutableArray *mutablePairs = [NSMutableArray array];
     for (AFQueryStringPair *pair in AFQueryStringPairsFromDictionary(parameters)) {
@@ -129,6 +157,13 @@ NSArray * AFQueryStringPairsFromDictionary(NSDictionary *dictionary) {
     return AFQueryStringPairsFromKeyAndValue(nil, dictionary);
 }
 
+/**
+ 分别把一个字典、数组、集合转换为一个AFQueryStringPair对象的的数组。
+
+ @param key key
+ @param value value
+ @return AFQueryStringPair类型数组
+ */
 NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     NSMutableArray *mutableQueryStringComponents = [NSMutableArray array];
 
@@ -140,27 +175,31 @@ NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         for (id nestedKey in [dictionary.allKeys sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
             id nestedValue = dictionary[nestedKey];
             if (nestedValue) {
+                //如果是字典，就取出每一对key、value处理
                 [mutableQueryStringComponents addObjectsFromArray:AFQueryStringPairsFromKeyAndValue((key ? [NSString stringWithFormat:@"%@[%@]", key, nestedKey] : nestedKey), nestedValue)];
             }
         }
     } else if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = value;
         for (id nestedValue in array) {
+            //如果是数组，则取出元素，添加一个额外的key处理
             [mutableQueryStringComponents addObjectsFromArray:AFQueryStringPairsFromKeyAndValue([NSString stringWithFormat:@"%@[]", key], nestedValue)];
         }
     } else if ([value isKindOfClass:[NSSet class]]) {
         NSSet *set = value;
         for (id obj in [set sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
+            //如果是集合，就是用默认key和集合元素处理
             [mutableQueryStringComponents addObjectsFromArray:AFQueryStringPairsFromKeyAndValue(key, obj)];
         }
     } else {
+        //添加处理后的key和value
         [mutableQueryStringComponents addObject:[[AFQueryStringPair alloc] initWithField:key value:value]];
     }
-
+    //返回key和vaue数组。
     return mutableQueryStringComponents;
 }
 
-#pragma mark -
+#pragma mark - `AFStreamingMultipartFormData`是一个私有类。继承了`AFMultipartFormData`协议。实现了对multiform请求的请求体拼装的功能。
 
 @interface AFStreamingMultipartFormData : NSObject <AFMultipartFormData>
 - (instancetype)initWithURLRequest:(NSMutableURLRequest *)urlRequest
@@ -169,7 +208,7 @@ NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 - (NSMutableURLRequest *)requestByFinalizingMultipartFormData;
 @end
 
-#pragma mark -
+#pragma mark - request请求序列化要观察的属性列表、是一个数组，里面有对蜂窝数据、缓存策略、cookie、管道、网络状态、超时这几个元素。
 
 static NSArray * AFHTTPRequestSerializerObservedKeyPaths() {
     static NSArray *_AFHTTPRequestSerializerObservedKeyPaths = nil;
@@ -183,9 +222,16 @@ static NSArray * AFHTTPRequestSerializerObservedKeyPaths() {
 
 static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerObserverContext;
 
+#pragma mark `AFHTTPRequestSerializer`主要实现了大部分解析功能。
+/**
+ 参数解析、multiformdata请求体数据拼装
+ */
 @interface AFHTTPRequestSerializer ()
+//某个request需要观察的属性集合
 @property (readwrite, nonatomic, strong) NSMutableSet *mutableObservedChangedKeyPaths;
+//存储request的请求头域
 @property (readwrite, nonatomic, strong) NSMutableDictionary *mutableHTTPRequestHeaders;
+//用于修改或者设置请求体域的dispatch_queue_t。
 @property (readwrite, nonatomic, strong) dispatch_queue_t requestHeaderModificationQueue;
 @property (readwrite, nonatomic, assign) AFHTTPRequestQueryStringSerializationStyle queryStringSerializationStyle;
 @property (readwrite, nonatomic, copy) AFQueryStringSerializationBlock queryStringSerialization;
@@ -210,13 +256,20 @@ static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerOb
 
     // Accept-Language HTTP Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
     NSMutableArray *acceptLanguagesComponents = [NSMutableArray array];
+    /*
+     *枚举系统的language列表。然后设置`Accept-Language`请求头域。优先级逐级降低，最多五个。
+     */
     [[NSLocale preferredLanguages] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         float q = 1.0f - (idx * 0.1f);
         [acceptLanguagesComponents addObject:[NSString stringWithFormat:@"%@;q=%0.1g", obj, q]];
         *stop = q <= 0.5f;
     }];
+    //数组元素使用`, `分割
     [self setValue:[acceptLanguagesComponents componentsJoinedByString:@", "] forHTTPHeaderField:@"Accept-Language"];
 
+    /*
+     *设置User-Agent请求头域的值。
+     */
     NSString *userAgent = nil;
 #if TARGET_OS_IOS
     // User-Agent Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.43
@@ -227,9 +280,16 @@ static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerOb
 #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
     userAgent = [NSString stringWithFormat:@"%@/%@ (Mac OS X %@)", [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleExecutableKey] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey], [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey], [[NSProcessInfo processInfo] operatingSystemVersionString]];
 #endif
+    
     if (userAgent) {
+        /*
+         *如果userAgent里面包含非ASCII码的字符，比如中文，则需要转换。这里是转换为对应的拉丁字母。
+         AFNetWorking3.X源码阅读/1.0 (iPhone; iOS 10.2; Scale/2.00)
+         AFNetWorking3.X yuan ma yue du/1.0 (iPhone; iOS 10.2; Scale/2.00)
+         */
         if (![userAgent canBeConvertedToEncoding:NSASCIIStringEncoding]) {
             NSMutableString *mutableUserAgent = [userAgent mutableCopy];
+            //转换为拉丁字母
             if (CFStringTransform((__bridge CFMutableStringRef)(mutableUserAgent), NULL, (__bridge CFStringRef)@"Any-Latin; Latin-ASCII; [:^ASCII:] Remove", false)) {
                 userAgent = mutableUserAgent;
             }
@@ -238,9 +298,13 @@ static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerOb
     }
 
     // HTTP Method Definitions; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+    //需要把parameters转换为query参数的方法集合。
     self.HTTPMethodsEncodingParametersInURI = [NSSet setWithObjects:@"GET", @"HEAD", @"DELETE", nil];
 
     self.mutableObservedChangedKeyPaths = [NSMutableSet set];
+    /*
+     添加对蜂窝数据、缓存策略、cookie、管道、网络状态、超时这几个属性的观察。
+     */
     for (NSString *keyPath in AFHTTPRequestSerializerObservedKeyPaths()) {
         if ([self respondsToSelector:NSSelectorFromString(keyPath)]) {
             [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew context:AFHTTPRequestSerializerObserverContext];
@@ -250,6 +314,9 @@ static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerOb
     return self;
 }
 
+/**
+ 移除对蜂窝数据、缓存策略、cookie、管道、网络状态、超时这几个属性的观察。
+ */
 - (void)dealloc {
     for (NSString *keyPath in AFHTTPRequestSerializerObservedKeyPaths()) {
         if ([self respondsToSelector:NSSelectorFromString(keyPath)]) {
@@ -258,8 +325,7 @@ static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerOb
     }
 }
 
-#pragma mark -
-
+#pragma mark - 手动触发蜂窝数据、缓存策略、cookie、管道、网络状态、超时的观察。可以用于测试这些属性变化是否崩溃等。
 // Workarounds for crashing behavior using Key-Value Observing with XCTest
 // See https://github.com/AFNetworking/AFNetworking/issues/2523
 
@@ -299,8 +365,13 @@ static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerOb
     [self didChangeValueForKey:NSStringFromSelector(@selector(timeoutInterval))];
 }
 
-#pragma mark -
+#pragma mark - 请求头域操作的各种getter和setter。
 
+/**
+ 返回请求头域key和vaue
+
+ @return 字典
+ */
 - (NSDictionary *)HTTPRequestHeaders {
     NSDictionary __block *value;
     dispatch_sync(self.requestHeaderModificationQueue, ^{
@@ -309,6 +380,12 @@ static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerOb
     return value;
 }
 
+/**
+ 设置一个请求头域
+
+ @param value vaue
+ @param field 域名
+ */
 - (void)setValue:(NSString *)value
 forHTTPHeaderField:(NSString *)field
 {
@@ -316,7 +393,12 @@ forHTTPHeaderField:(NSString *)field
         [self.mutableHTTPRequestHeaders setValue:value forKey:field];
     });
 }
+/**
+ 返回指定请求头域的值
 
+ @param field 域名
+ @return 值
+ */
 - (NSString *)valueForHTTPHeaderField:(NSString *)field {
     NSString __block *value;
     dispatch_sync(self.requestHeaderModificationQueue, ^{
@@ -325,6 +407,12 @@ forHTTPHeaderField:(NSString *)field
     return value;
 }
 
+/**
+ 设置Basic Authorization的用户名和密码。记住需要是base64编码格式的。
+
+ @param username 用户
+ @param password 密码
+ */
 - (void)setAuthorizationHeaderFieldWithUsername:(NSString *)username
                                        password:(NSString *)password
 {
@@ -333,13 +421,16 @@ forHTTPHeaderField:(NSString *)field
     [self setValue:[NSString stringWithFormat:@"Basic %@", base64AuthCredentials] forHTTPHeaderField:@"Authorization"];
 }
 
+/**
+ 移除Basic Authorization的请求头
+ */
 - (void)clearAuthorizationHeader {
     dispatch_barrier_async(self.requestHeaderModificationQueue, ^{
         [self.mutableHTTPRequestHeaders removeObjectForKey:@"Authorization"];
     });
 }
 
-#pragma mark -
+#pragma mark - 把`queryStringSerialization`这个Block置为nil或者初始化
 
 - (void)setQueryStringSerializationWithStyle:(AFHTTPRequestQueryStringSerializationStyle)style {
     self.queryStringSerializationStyle = style;
@@ -350,8 +441,17 @@ forHTTPHeaderField:(NSString *)field
     self.queryStringSerialization = block;
 }
 
-#pragma mark -
+#pragma mark - 通过`AFURLRequestSerialization`来创建`NSMutableURLRequest`系列api
 
+/**
+ 根据给定的url、方法名、参数构建一个request。
+
+ @param method 方法名
+ @param URLString url地址
+ @param parameters 参数，根据不同的请求方法构建出不同的模式
+ @param error 构建出错
+ @return 返回一个非multipartForm请求
+ */
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method
                                  URLString:(NSString *)URLString
                                 parameters:(id)parameters
@@ -366,18 +466,32 @@ forHTTPHeaderField:(NSString *)field
 
     NSMutableURLRequest *mutableRequest = [[NSMutableURLRequest alloc] initWithURL:url];
     mutableRequest.HTTPMethod = method;
-
+    /*
+     *mutableObservedChangedKeyPaths集合里面的属性都通过`setValue: forKey`手动设置一下。估计目的是触发这几个属性的kvo。
+     */
     for (NSString *keyPath in AFHTTPRequestSerializerObservedKeyPaths()) {
         if ([self.mutableObservedChangedKeyPaths containsObject:keyPath]) {
             [mutableRequest setValue:[self valueForKeyPath:keyPath] forKey:keyPath];
         }
     }
-
+    /*
+     根据parameters和HTTPRequestHeaders构建一个request
+     */
     mutableRequest = [[self requestBySerializingRequest:mutableRequest withParameters:parameters error:error] mutableCopy];
 
 	return mutableRequest;
 }
 
+/**
+ 构建一个multipartForm的request。并且通过`AFMultipartFormData`类型的formData来构建请求体
+
+ @param method 方法名，一般都是POST
+ @param URLString 请求地址
+ @param parameters 请求头参数
+ @param block 用于构建请求体的Block
+ @param error 构建请求体出错
+ @return 返回一个构建好的request
+ */
 - (NSMutableURLRequest *)multipartFormRequestWithMethod:(NSString *)method
                                               URLString:(NSString *)URLString
                                              parameters:(NSDictionary *)parameters
@@ -386,14 +500,23 @@ forHTTPHeaderField:(NSString *)field
 {
     NSParameterAssert(method);
     NSParameterAssert(![method isEqualToString:@"GET"] && ![method isEqualToString:@"HEAD"]);
-
+    /*
+     先构建一个普通的request对象，然后在构建出multipartFrom的request
+     * 在这一步将会把parameters加入请求头或者请求体。然后把`AFURLRequestSerialization`指定的headers加入request的请求头中。这个request就只差构建multipartFrom部分了
+     */
     NSMutableURLRequest *mutableRequest = [self requestWithMethod:method URLString:URLString parameters:nil error:error];
-
+    /*
+     *初始化一个`AFStreamingMultipartFormData`对象。用于封装multipartFrom的body部分
+     */
     __block AFStreamingMultipartFormData *formData = [[AFStreamingMultipartFormData alloc] initWithURLRequest:mutableRequest stringEncoding:NSUTF8StringEncoding];
 
     if (parameters) {
+        /*
+         把parameters拼接成`AFQueryStringPair`对象。然后根据取出的key和value处理。
+         */
         for (AFQueryStringPair *pair in AFQueryStringPairsFromDictionary(parameters)) {
             NSData *data = nil;
+            //把value处理为NSData类型
             if ([pair.value isKindOfClass:[NSData class]]) {
                 data = pair.value;
             } else if ([pair.value isEqual:[NSNull null]]) {
@@ -411,7 +534,7 @@ forHTTPHeaderField:(NSString *)field
     if (block) {
         block(formData);
     }
-
+    //body具体序列化操作
     return [formData requestByFinalizingMultipartFormData];
 }
 
@@ -469,8 +592,16 @@ forHTTPHeaderField:(NSString *)field
     return mutableRequest;
 }
 
-#pragma mark - AFURLRequestSerialization
+#pragma mark - AFURLRequestSerialization的序列化params的方法，负责具体的request拼接
 
+/**
+ 根据不同类型的request，不parameters添加请求的不同地方。如果是get，则构建成query部分。如果是post，则构建成请求体
+
+ @param request 需要再次处理的request
+ @param parameters 要处理的参数
+ @param error 错误
+ @return 处理成功的request
+ */
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
                                withParameters:(id)parameters
                                         error:(NSError *__autoreleasing *)error
@@ -478,7 +609,9 @@ forHTTPHeaderField:(NSString *)field
     NSParameterAssert(request);
 
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
-
+    /*
+     把`HTTPRequestHeaders`属性放入request的请求域中
+     */
     [self.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id field, id value, BOOL * __unused stop) {
         if (![request valueForHTTPHeaderField:field]) {
             [mutableRequest setValue:value forHTTPHeaderField:field];
@@ -486,7 +619,11 @@ forHTTPHeaderField:(NSString *)field
     }];
 
     NSString *query = nil;
+    /*
+     把parameters序列化为url的query部分
+     */
     if (parameters) {
+        //如果指定了queryStringSerialization，表示用户要自定义序列化操作
         if (self.queryStringSerialization) {
             NSError *serializationError;
             query = self.queryStringSerialization(request, parameters, &serializationError);
@@ -498,7 +635,7 @@ forHTTPHeaderField:(NSString *)field
 
                 return nil;
             }
-        } else {
+        } else {//使用默认的序列化操作
             switch (self.queryStringSerializationStyle) {
                 case AFHTTPRequestQueryStringDefaultStyle:
                     query = AFQueryStringFromParameters(parameters);
@@ -506,7 +643,9 @@ forHTTPHeaderField:(NSString *)field
             }
         }
     }
-
+    /*
+    `HTTPMethodsEncodingParametersInURI`包含`GET`,`HEAD`,`DELETE`。如果是这个三种方法，则把query加入url的后面。否则把query加入request的请求体
+     */
     if ([self.HTTPMethodsEncodingParametersInURI containsObject:[[request HTTPMethod] uppercaseString]]) {
         if (query && query.length > 0) {
             mutableRequest.URL = [NSURL URLWithString:[[mutableRequest.URL absoluteString] stringByAppendingFormat:mutableRequest.URL.query ? @"&%@" : @"?%@", query]];
@@ -516,6 +655,7 @@ forHTTPHeaderField:(NSString *)field
         if (!query) {
             query = @"";
         }
+        //如果没有请求头。则设置请求头`application/x-www-form-urlencoded`。
         if (![mutableRequest valueForHTTPHeaderField:@"Content-Type"]) {
             [mutableRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         }
@@ -526,7 +666,12 @@ forHTTPHeaderField:(NSString *)field
 }
 
 #pragma mark - NSKeyValueObserving
+/**
+ 如果kvo的触发机制是默认出发。则返回true，否则返回false。在这里，只要是`AFHTTPRequestSerializerObservedKeyPaths`里面的属性，我们都取消自动出发kvo机制，使用手动触发。
 
+ @param key kvo的key
+ @return bool值
+ */
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
     if ([AFHTTPRequestSerializerObservedKeyPaths() containsObject:key]) {
         return NO;
@@ -540,33 +685,30 @@ forHTTPHeaderField:(NSString *)field
                         change:(NSDictionary *)change
                        context:(void *)context
 {
+    //是否是选择要观察的属性
     if (context == AFHTTPRequestSerializerObserverContext) {
+        //如果属性值为null，则表示么有这个属性，移除对其的观察
         if ([change[NSKeyValueChangeNewKey] isEqual:[NSNull null]]) {
             [self.mutableObservedChangedKeyPaths removeObject:keyPath];
         } else {
+            //添加到要观察的属性的集合
             [self.mutableObservedChangedKeyPaths addObject:keyPath];
         }
     }
 }
-
-#pragma mark - NSSecureCoding
-
+#pragma mark - NSSecureCoding。归档接档协议实现。有两个属性，一个是`mutableHTTPRequestHeaders`，一个是`queryStringSerializationStyle`。
 + (BOOL)supportsSecureCoding {
     return YES;
 }
-
 - (instancetype)initWithCoder:(NSCoder *)decoder {
     self = [self init];
     if (!self) {
         return nil;
     }
-
     self.mutableHTTPRequestHeaders = [[decoder decodeObjectOfClass:[NSDictionary class] forKey:NSStringFromSelector(@selector(mutableHTTPRequestHeaders))] mutableCopy];
     self.queryStringSerializationStyle = (AFHTTPRequestQueryStringSerializationStyle)[[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(queryStringSerializationStyle))] unsignedIntegerValue];
-
     return self;
 }
-
 - (void)encodeWithCoder:(NSCoder *)coder {
     dispatch_sync(self.requestHeaderModificationQueue, ^{
         [coder encodeObject:self.mutableHTTPRequestHeaders forKey:NSStringFromSelector(@selector(mutableHTTPRequestHeaders))];
@@ -574,8 +716,7 @@ forHTTPHeaderField:(NSString *)field
     [coder encodeInteger:self.queryStringSerializationStyle forKey:NSStringFromSelector(@selector(queryStringSerializationStyle))];
 }
 
-#pragma mark - NSCopying
-
+#pragma mark - NSCopying。复制协议实现。复制了三个属性，分别是`mutableHTTPRequestHeaders`、`queryStringSerializationStyle`、`queryStringSerialization`。
 - (instancetype)copyWithZone:(NSZone *)zone {
     AFHTTPRequestSerializer *serializer = [[[self class] allocWithZone:zone] init];
     dispatch_sync(self.requestHeaderModificationQueue, ^{
@@ -589,7 +730,7 @@ forHTTPHeaderField:(NSString *)field
 
 @end
 
-#pragma mark -
+#pragma mark - 用于拼接`MultipartForm`请求的请求体全局方法列表
 
 static NSString * AFCreateMultipartFormBoundary() {
     return [NSString stringWithFormat:@"Boundary+%08X%08X", arc4random(), arc4random()];
@@ -652,7 +793,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 - (void)appendHTTPBodyPart:(AFHTTPBodyPart *)bodyPart;
 @end
 
-#pragma mark -
+#pragma mark -  负责MultipartFrom的Body的具体构建。比如boundary的指定、请求体数据的拼接等
 
 @interface AFStreamingMultipartFormData ()
 @property (readwrite, nonatomic, copy) NSMutableURLRequest *request;
@@ -780,6 +921,12 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     [self appendPartWithHeaders:mutableHeaders body:data];
 }
 
+/**
+ 根据指定的key和value拼接到`Content-Disposition`属性中
+
+ @param data 参数值
+ @param name 参数名
+ */
 - (void)appendPartWithFormData:(NSData *)data
                           name:(NSString *)name
 {
@@ -787,10 +934,16 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
     [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"", name] forKey:@"Content-Disposition"];
-
+    //把处理好的数据加入对应的request的请求体中`Content-Disposition`部分
     [self appendPartWithHeaders:mutableHeaders body:data];
 }
 
+/**
+ 给一个multipartForm的`Content-Disposition`添加boundary
+
+ @param headers 请求头域
+ @param body 值
+ */
 - (void)appendPartWithHeaders:(NSDictionary *)headers
                          body:(NSData *)body
 {

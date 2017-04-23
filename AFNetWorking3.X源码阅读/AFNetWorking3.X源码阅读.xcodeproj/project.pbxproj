@@ -12,6 +12,7 @@
 		4D4F6A8E1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4F6A8D1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m */; };
 		4D4F6A901EA76687005F95CF /* baidu.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4D4F6A8F1EA76687005F95CF /* baidu.com.cer */; };
 		4D4F6A941EA8425F005F95CF /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4D4F6A931EA8425F005F95CF /* test.txt */; };
+		4D56F9771EAAE3CF000B1958 /* AFURLRequestSerializationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D56F9761EAAE3CF000B1958 /* AFURLRequestSerializationViewController.m */; };
 		4D6571541E94D05E00EE7E8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571531E94D05E00EE7E8E /* main.m */; };
 		4D6571571E94D05E00EE7E8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571561E94D05E00EE7E8E /* AppDelegate.m */; };
 		4D65715A1E94D05E00EE7E8E /* NSURLSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571591E94D05E00EE7E8E /* NSURLSessionViewController.m */; };
@@ -62,6 +63,8 @@
 		4D4F6A8D1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManagerViewController.m; sourceTree = "<group>"; };
 		4D4F6A8F1EA76687005F95CF /* baidu.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = baidu.com.cer; sourceTree = "<group>"; };
 		4D4F6A931EA8425F005F95CF /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
+		4D56F9751EAAE3CF000B1958 /* AFURLRequestSerializationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerializationViewController.h; sourceTree = "<group>"; };
+		4D56F9761EAAE3CF000B1958 /* AFURLRequestSerializationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerializationViewController.m; sourceTree = "<group>"; };
 		4D65714F1E94D05E00EE7E8E /* AFNetWorking3.X源码阅读.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AFNetWorking3.X源码阅读.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6571531E94D05E00EE7E8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D6571551E94D05E00EE7E8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				4D129F421EA2362B0076FAD6 /* AFURLSessionManagerViewController.m */,
 				4D4F6A8C1EA759D5005F95CF /* AFHTTPSessionManagerViewController.h */,
 				4D4F6A8D1EA759D5005F95CF /* AFHTTPSessionManagerViewController.m */,
+				4D56F9751EAAE3CF000B1958 /* AFURLRequestSerializationViewController.h */,
+				4D56F9761EAAE3CF000B1958 /* AFURLRequestSerializationViewController.m */,
 			);
 			path = "AFNetWorking3.X源码阅读";
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				4D65719B1E94D1D000EE7E8E /* AFImageDownloader.m in Sources */,
 				4D6571A01E94D1D000EE7E8E /* UIProgressView+AFNetworking.m in Sources */,
 				4D6571541E94D05E00EE7E8E /* main.m in Sources */,
+				4D56F9771EAAE3CF000B1958 /* AFURLRequestSerializationViewController.m in Sources */,
 				4D6571B41E94D1D800EE7E8E /* AFURLRequestSerialization.m in Sources */,
 				4D65719A1E94D1D000EE7E8E /* AFAutoPurgingImageCache.m in Sources */,
 				4D129F431EA2362B0076FAD6 /* AFURLSessionManagerViewController.m in Sources */,

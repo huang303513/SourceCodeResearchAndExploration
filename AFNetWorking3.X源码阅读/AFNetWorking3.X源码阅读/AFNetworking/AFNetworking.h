@@ -38,4 +38,5 @@
     #import "AFURLSessionManager.h"
     #import "AFHTTPSessionManager.h"
 
+FOUNDATION_EXPORT NSString const *url;
 #endif /* _AFNETWORKING_ */

@@ -21,7 +21,6 @@ static NSString *const smallPic = @"http://i1.piimg.com/4851/97aef4680d359905.pn
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (IBAction)dataTaskRequest:(id)sender {

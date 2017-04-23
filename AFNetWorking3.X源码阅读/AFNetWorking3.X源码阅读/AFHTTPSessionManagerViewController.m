@@ -8,8 +8,7 @@
 
 #import "AFHTTPSessionManagerViewController.h"
 #import "AFNetworking.h"
-#warning url要修改。这里就不上传了。
-static NSString *url = @"";
+
 @interface AFHTTPSessionManagerViewController ()
 
 @end
