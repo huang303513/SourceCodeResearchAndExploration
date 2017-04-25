@@ -1024,7 +1024,13 @@ didBecomeInvalidWithError:(NSError *)error
 
     [[NSNotificationCenter defaultCenter] postNotificationName:AFURLSessionDidInvalidateNotification object:session];
 }
-
+/*
+ // 只要访问的是HTTPS的路径就会调用
+ // 该方法的作用就是处理服务器返回的证书, 需要在该方法中告诉系统是否需要安装服务器返回的证书
+ // NSURLAuthenticationChallenge : 授权质问
+ //+ 受保护空间
+ //+ 服务器返回的证书类型
+ */
 - (void)URLSession:(NSURLSession *)session
 didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
@@ -1035,8 +1041,15 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     if (self.sessionDidReceiveAuthenticationChallenge) {
         disposition = self.sessionDidReceiveAuthenticationChallenge(session, challenge, &credential);
     } else {
+        //判断服务器返回的证书是否是服务器信任的
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+            /*disposition：如何处理证书
+             NSURLSessionAuthChallengePerformDefaultHandling:默认方式处理
+             NSURLSessionAuthChallengeUseCredential：使用指定的证书
+             NSURLSessionAuthChallengeCancelAuthenticationChallenge：取消请求
+             */
             if ([self.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
+                //创建证书
                 credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
                 if (credential) {
                     disposition = NSURLSessionAuthChallengeUseCredential;
@@ -1050,8 +1063,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
             disposition = NSURLSessionAuthChallengePerformDefaultHandling;
         }
     }
-
     if (completionHandler) {
+        //安装证书
         completionHandler(disposition, credential);
     }
 }

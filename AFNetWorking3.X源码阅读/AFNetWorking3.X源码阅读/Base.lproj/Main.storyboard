@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3r3-xm-kWA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3r3-xm-kWA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -111,6 +111,14 @@
                                 <state key="normal" title="AFURLRequestSerialization测试"/>
                                 <connections>
                                     <segue destination="Svt-uL-iou" kind="push" id="ofh-bf-72d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQS-5P-gj8">
+                                <rect key="frame" x="100" y="328" width="147" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AFSecurityPolicy测试"/>
+                                <connections>
+                                    <segue destination="0av-PL-8Bc" kind="push" id="1G5-6t-38k"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -291,6 +299,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dga-a6-6az" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1194" y="360"/>
+        </scene>
+        <!--Security Policy View Controller-->
+        <scene sceneID="G71-ZJ-s8Q">
+            <objects>
+                <viewController id="0av-PL-8Bc" customClass="AFSecurityPolicyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o67-YR-kTU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bmz-ks-zif"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5J9-Kz-xI2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wq0-HM-say">
+                                <rect key="frame" x="116" y="145" width="108" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="自签名证书认证"/>
+                                <connections>
+                                    <action selector="buttion1:" destination="0av-PL-8Bc" eventType="touchUpInside" id="iBR-aE-1tf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPe-Ki-eWV">
+                                <rect key="frame" x="88" y="214" width="169" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="通用证书认证之手动处理"/>
+                                <connections>
+                                    <action selector="button2:" destination="0av-PL-8Bc" eventType="touchUpInside" id="mB8-2G-WQD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-ru-Jne">
+                                <rect key="frame" x="84" y="289" width="169" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="通用证书认证之默认处理"/>
+                                <connections>
+                                    <action selector="button3:" destination="0av-PL-8Bc" eventType="touchUpInside" id="hCr-Jo-AJO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fBD-IW-4g8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2c-kf-LcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1892" y="388.15592203898052"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6o9-RV-UgD">

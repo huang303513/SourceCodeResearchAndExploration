@@ -36,10 +36,17 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ `AFSecurityPolicy`让客户端和受信任的服务器通讯，通过遵循X.509标准的证书和公钥来判断。
+ */
 @interface AFSecurityPolicy : NSObject <NSSecureCoding, NSCopying>
 
 /**
  The criteria by which server trust should be evaluated against the pinned SSL certificates. Defaults to `AFSSLPinningModeNone`.
+ */
+
+/**
+ 与受信任的服务器通信的SSL认证的等级。默认是`AFSSLPinningModeNone`。
  */
 @property (readonly, nonatomic, assign) AFSSLPinningMode SSLPinningMode;
 
@@ -50,15 +57,29 @@ NS_ASSUME_NONNULL_BEGIN
  
  Note that if pinning is enabled, `evaluateServerTrust:forDomain:` will return true if any pinned certificate matches.
  */
+
+/**
+ 用于SSL服务器认证的证书列表。是NSData类型的数据。
+ 
+ 默认情况下，这个属性包含了target对应的所有证书,即`.cer`文件。如果使用的是AFNetworking的静态包，则不会包含任何证书信息，此时，我们可以使用`certificatesInBundle`来加载target里面的证书。通过`policyWithPinningMode:withPinnedCertificates`方法来指定一个认证等级。
+ */
 @property (nonatomic, strong, nullable) NSSet <NSData *> *pinnedCertificates;
 
 /**
  Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to `NO`.
  */
+
+/**
+ 是否允许无效的或者过期的证书简历SSL建立链接。默认是NO
+ */
 @property (nonatomic, assign) BOOL allowInvalidCertificates;
 
 /**
  Whether or not to validate the domain name in the certificate's CN field. Defaults to `YES`.
+ */
+
+/**
+ 是否验证证书中的主机名。默认是YES
  */
 @property (nonatomic, assign) BOOL validatesDomainName;
 
@@ -71,6 +92,13 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return The certificates included in the given bundle.
  */
+
+/**
+ 从MainBundle中获取所有证书
+
+ @param bundle 返回包含在bundle中的证书集合。如果AFNetworking使用的是静态库，我们必须通过这个方法来加载证书。并且通过`policyWithPinningMode:withPinnedCertificates`方法来指定认证类型。
+ @return 返回bundle里面的证书
+ */
 + (NSSet <NSData *> *)certificatesInBundle:(NSBundle *)bundle;
 
 ///-----------------------------------------
@@ -81,6 +109,12 @@ NS_ASSUME_NONNULL_BEGIN
  Returns the shared default security policy, which does not allow invalid certificates, validates domain name, and does not validate against pinned certificates or public keys.
 
  @return The default security policy.
+ */
+
+/**
+ 返回默认的安全认证策略。这个策略不允许非法证书、验证主机名、不验证证书内容和公钥
+
+ @return 返回认证策略
  */
 + (instancetype)defaultPolicy;
 
@@ -95,6 +129,13 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return A new security policy.
  */
+
+/**
+ 根据指定的认证模型返回对应的认证策略
+
+ @param pinningMode 认证模型
+ @return 认证策略
+ */
 + (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode;
 
 /**
@@ -104,6 +145,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param pinnedCertificates The certificates to pin against.
 
  @return A new security policy.
+ */
+
+/**
+ 返回指定证书和指定认证模型的认证策略
+
+ @param pinningMode 认证模型
+ @param pinnedCertificates 证书
+ @return 认证策略
  */
 + (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode withPinnedCertificates:(NSSet <NSData *> *)pinnedCertificates;
 
@@ -120,6 +169,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param domain The domain of serverTrust. If `nil`, the domain will not be validated.
 
  @return Whether or not to trust the server.
+ */
+
+/**
+为serverTrust对象指定认证策略，如果domain不为nil,则包括对主机名的认证。这个方法必须在接受到`authentication challenge`返回的时候调用。
+
+ @param serverTrust 服务器的X.509标准的证书数据
+ @param domain 认证服务器的主机名。如果是nil,则不会对主机名进行认证。
+ @return serverTrust是否通过认证
  */
 - (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
                   forDomain:(nullable NSString *)domain;
