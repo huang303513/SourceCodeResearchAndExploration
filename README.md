@@ -34,6 +34,8 @@
 [iOS自签名HTTPS证书单向校验方案](http://www.jianshu.com/p/1baead685de4)</br>
 
 [如何使用ip直接访问https网站?](https://segmentfault.com/a/1190000004359232)</br>
+[iOS中HTTP/HTTPS授权访问(一)](http://www.jianshu.com/p/88336eab2b8d)</br>
+[iOS中HTTP/HTTPS授权访问(二)](http://www.jianshu.com/p/ebee00c785bd)</br>
 
 ###源码阅读系列博客<br/>
 [FMDB源码阅读系列](http://www.cnblogs.com/polobymulberry/category/789988.html)
