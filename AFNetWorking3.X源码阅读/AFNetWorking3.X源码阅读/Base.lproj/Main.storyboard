@@ -114,11 +114,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQS-5P-gj8">
-                                <rect key="frame" x="100" y="328" width="147" height="30"/>
+                                <rect key="frame" x="90" y="367" width="147" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="AFSecurityPolicy测试"/>
                                 <connections>
                                     <segue destination="0av-PL-8Bc" kind="push" id="1G5-6t-38k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfT-Ct-d4X">
+                                <rect key="frame" x="35" y="319" width="229" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AFURLResponseSerialization测试"/>
+                                <connections>
+                                    <segue destination="mci-4t-YV7" kind="push" id="0vF-cR-zn0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -128,7 +136,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9A-zA-hiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="-331"/>
+            <point key="canvasLocation" x="1554" y="-361"/>
+        </scene>
+        <!--URL Response Serialization View Controller-->
+        <scene sceneID="tZK-E0-2H7">
+            <objects>
+                <viewController id="mci-4t-YV7" customClass="AFURLResponseSerializationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mIM-Z0-nrR"/>
+                        <viewControllerLayoutGuide type="bottom" id="mXq-dO-m7A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8cd-xl-sXc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJs-C5-cv4">
+                                <rect key="frame" x="157" y="143" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickButton1:" destination="mci-4t-YV7" eventType="touchUpInside" id="USk-8l-6U7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p82-gX-u6t">
+                                <rect key="frame" x="157" y="246" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickButton2:" destination="mci-4t-YV7" eventType="touchUpInside" id="t6j-aa-zh3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSf-ms-g5h">
+                                <rect key="frame" x="164" y="341" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickButton3:" destination="mci-4t-YV7" eventType="touchUpInside" id="9PZ-xY-RaQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="i2E-cQ-V0Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iWR-0X-0G8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2665" y="-837"/>
         </scene>
         <!--URL Request Serialization View Controller-->
         <scene sceneID="AUZ-if-rZt">
@@ -143,17 +196,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoX-mH-hJI">
-                                <rect key="frame" x="146" y="163" width="59" height="30"/>
+                                <rect key="frame" x="69" y="163" width="213" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="request1"/>
+                                <state key="normal" title="multipart/form-data请求头拼接"/>
                                 <connections>
                                     <action selector="request1:" destination="Svt-uL-iou" eventType="touchUpInside" id="jiu-iW-590"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9V-SZ-9tl">
-                                <rect key="frame" x="145" y="252" width="61" height="30"/>
+                                <rect key="frame" x="122" y="252" width="108" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="request2"/>
+                                <state key="normal" title="原生请求头拼装"/>
                                 <connections>
                                     <action selector="request2:" destination="Svt-uL-iou" eventType="touchUpInside" id="g9O-iB-gjs"/>
                                 </connections>

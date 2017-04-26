@@ -60,31 +60,45 @@ static BOOL AFErrorOrUnderlyingErrorHasCodeInDomain(NSError *error, NSInteger co
     return NO;
 }
 
+/**
+ 移除JSON对象的value为nil或者null的属性
+
+ @param JSONObject JSON对象
+ @param readingOptions 解析的参数
+ @return 返回处理结束以后的JSON对象
+ */
 static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingOptions readingOptions) {
+    //如果JSON对象是一个数组
     if ([JSONObject isKindOfClass:[NSArray class]]) {
         NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:[(NSArray *)JSONObject count]];
         for (id value in (NSArray *)JSONObject) {
             [mutableArray addObject:AFJSONObjectByRemovingKeysWithNullValues(value, readingOptions)];
         }
-
+        //如果readingOptions是NSJSONReadingMutableContainers类型，则返回一个可变数组
         return (readingOptions & NSJSONReadingMutableContainers) ? mutableArray : [NSArray arrayWithArray:mutableArray];
     } else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithDictionary:JSONObject];
         for (id <NSCopying> key in [(NSDictionary *)JSONObject allKeys]) {
             id value = (NSDictionary *)JSONObject[key];
+            //如果value是nil，则直接移除
             if (!value || [value isEqual:[NSNull null]]) {
                 [mutableDictionary removeObjectForKey:key];
             } else if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSDictionary class]]) {
+                //如果是数组或者字典，则迭代处理
                 mutableDictionary[key] = AFJSONObjectByRemovingKeysWithNullValues(value, readingOptions);
             }
         }
-
+        //如果readingOptions是NSJSONReadingMutableContainers类型，则返回一个可变数组。
         return (readingOptions & NSJSONReadingMutableContainers) ? mutableDictionary : [NSDictionary dictionaryWithDictionary:mutableDictionary];
     }
 
     return JSONObject;
 }
-
+/**
+ `AFURLResponseSerialization`协议可以把一个对象解析成更直观、有用的对象，并且根据不同的对象做不同的解析。同时也可以做一些额外的认证或者检测工作。
+ 
+ 一个带有`2XX`状态码和`application/json`类型的网络请求，会返回一个JSON序列化的返回对象，我们需要把这个对象处理成一个更直接的对象。
+ */
 @implementation AFHTTPResponseSerializer
 
 + (instancetype)serializer {
@@ -96,8 +110,9 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     if (!self) {
         return nil;
     }
-
+    //只接受200到300之间返回的数据，也就是请求成功返回的数据
     self.acceptableStatusCodes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)];
+    //接受的mimeType为nil
     self.acceptableContentTypes = nil;
 
     return self;
@@ -105,6 +120,14 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 
 #pragma mark -
 
+/**
+ 判断一个`NSHTTPURLResponse`对象是否是在指定的情况下是否是正确的
+
+ @param response `NSHTTPURLResponse`对象
+ @param data 返回的数据
+ @param error 传入一个error对象来接受获取的error
+ @return YES or NO,是否正确
+ */
 - (BOOL)validateResponse:(NSHTTPURLResponse *)response
                     data:(NSData *)data
                    error:(NSError * __autoreleasing *)error
@@ -113,6 +136,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     NSError *validationError = nil;
 
     if (response && [response isKindOfClass:[NSHTTPURLResponse class]]) {
+        //错误情况一
         if (self.acceptableContentTypes && ![self.acceptableContentTypes containsObject:[response MIMEType]] &&
             !([response MIMEType] == nil && [data length] == 0)) {
 
@@ -125,13 +149,13 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
                 if (data) {
                     mutableUserInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] = data;
                 }
-
+                //把error对象封装给validationError
                 validationError = AFErrorWithUnderlyingError([NSError errorWithDomain:AFURLResponseSerializationErrorDomain code:NSURLErrorCannotDecodeContentData userInfo:mutableUserInfo], validationError);
             }
 
             responseIsValid = NO;
         }
-
+        //错误情况二
         if (self.acceptableStatusCodes && ![self.acceptableStatusCodes containsIndex:(NSUInteger)response.statusCode] && [response URL]) {
             NSMutableDictionary *mutableUserInfo = [@{
                                                NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedStringFromTable(@"Request failed: %@ (%ld)", @"AFNetworking", nil), [NSHTTPURLResponse localizedStringForStatusCode:response.statusCode], (long)response.statusCode],
@@ -148,7 +172,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
             responseIsValid = NO;
         }
     }
-
+    //如果传入了error参数，则把错误对象赋值给error对象
     if (error && !responseIsValid) {
         *error = validationError;
     }
@@ -156,8 +180,17 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     return responseIsValid;
 }
 
-#pragma mark - AFURLResponseSerialization
+#pragma mark - AFURLResponseSerialization协议的方法
 
+
+/**
+ 验证指定的response和data对象是否是正确的，正确返回data对象，错误返回一个bool值
+
+ @param response `NSURLResponse`对象
+ @param data data对象
+ @param error error参数
+ @return 返回一个bool值
+ */
 - (id)responseObjectForResponse:(NSURLResponse *)response
                            data:(NSData *)data
                           error:(NSError *__autoreleasing *)error
@@ -203,10 +236,19 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 @end
 
 #pragma mark -
+//在使用苹果自带的JSON解析时，我们往往搞不清楚该传哪一个参数，下面我一一介绍一下这些参数的含义
+// 1、直接填0                         返回的对象是不可变的，NSDictionary或NSArray
+// 2、NSJSONReadingMutableLeaves      返回的JSON对象中字符串的值类型为NSMutableString
+// 3、NSJSONReadingMutableContainers  返回可变容器，NSMutableDictionary或NSMutableArray，返回的是数组字典嵌套的情况，每一层都是可变的
+// 4、NSJSONReadingAllowFragments     允许JSON字符串最外层既不是NSArray也不是NSDictionary，但必须是有效的JSON Fragment，比如@"234"这个字符串。
+
+
+
 
 @implementation AFJSONResponseSerializer
 
 + (instancetype)serializer {
+    //默认的JSON序列化类型是0
     return [self serializerWithReadingOptions:(NSJSONReadingOptions)0];
 }
 
@@ -222,7 +264,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     if (!self) {
         return nil;
     }
-
+    //接受的contentType
     self.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
 
     return self;
@@ -555,6 +597,14 @@ static UIImage * AFImageWithDataAtScale(NSData *data, CGFloat scale) {
     return [[UIImage alloc] initWithCGImage:[image CGImage] scale:scale orientation:image.imageOrientation];
 }
 
+/**
+ 创建不同scale大小条件下同样大小的图片。并且把图片解压缩，以提高图片的渲染效率
+
+ @param response 返回的对象
+ @param data 图片数据
+ @param scale 屏幕分辨率倍数
+ @return 返回当前屏幕分辨率倍数下同样大小的图片
+ */
 static UIImage * AFInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse *response, NSData *data, CGFloat scale) {
     if (!data || [data length] == 0) {
         return nil;

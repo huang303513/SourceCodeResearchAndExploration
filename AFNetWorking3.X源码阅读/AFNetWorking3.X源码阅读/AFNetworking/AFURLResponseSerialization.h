@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 
  For example, a JSON response serializer may check for an acceptable status code (`2XX` range) and content type (`application/json`), decoding a valid JSON response into an object.
  */
+
+/**
+ `AFURLResponseSerialization`协议可以把一个对象解析成更直观、有用的对象，并且根据不同的对象做不同的解析。同时也可以做一些额外的认证或者检测工作。
+ 
+ 一个带有`2XX`状态码和`application/json`类型的网络请求，会返回一个JSON序列化的返回对象，我们需要把这个对象处理成一个更直接的对象。
+ */
 @protocol AFURLResponseSerialization <NSObject, NSSecureCoding, NSCopying>
 
 /**
@@ -39,6 +45,15 @@ NS_ASSUME_NONNULL_BEGIN
  @param error The error that occurred while attempting to decode the response data.
 
  @return The object decoded from the specified response data.
+ */
+
+/**
+ 通过一个`NSURLResponse`对象和一个data数据做解析。
+
+ @param response `NSURLResponse`对象
+ @param data 需要解析的数据
+ @param error 错误
+ @return 返回一个处理结束的对象
  */
 - (nullable id)responseObjectForResponse:(nullable NSURLResponse *)response
                            data:(nullable NSData *)data

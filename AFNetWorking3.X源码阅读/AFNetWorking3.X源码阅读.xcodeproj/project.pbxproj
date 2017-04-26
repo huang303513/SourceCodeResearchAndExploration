@@ -38,6 +38,7 @@
 		4D6571B41E94D1D800EE7E8E /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571AC1E94D1D800EE7E8E /* AFURLRequestSerialization.m */; };
 		4D6571B51E94D1D800EE7E8E /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571AE1E94D1D800EE7E8E /* AFURLResponseSerialization.m */; };
 		4D6571B61E94D1D800EE7E8E /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6571B01E94D1D800EE7E8E /* AFURLSessionManager.m */; };
+		4DE9D7AB1EB0B8EA0038C4E8 /* AFURLResponseSerializationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9D7AA1EB0B8EA0038C4E8 /* AFURLResponseSerializationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,8 @@
 		4D6571AE1E94D1D800EE7E8E /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		4D6571AF1E94D1D800EE7E8E /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		4D6571B01E94D1D800EE7E8E /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		4DE9D7A91EB0B8EA0038C4E8 /* AFURLResponseSerializationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerializationViewController.h; sourceTree = "<group>"; };
+		4DE9D7AA1EB0B8EA0038C4E8 /* AFURLResponseSerializationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerializationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 				4D56F9761EAAE3CF000B1958 /* AFURLRequestSerializationViewController.m */,
 				4D5817E21EAF299F000DF34A /* AFSecurityPolicyViewController.h */,
 				4D5817E31EAF299F000DF34A /* AFSecurityPolicyViewController.m */,
+				4DE9D7A91EB0B8EA0038C4E8 /* AFURLResponseSerializationViewController.h */,
+				4DE9D7AA1EB0B8EA0038C4E8 /* AFURLResponseSerializationViewController.m */,
 			);
 			name = "使用和测试案列";
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				4D6571A01E94D1D000EE7E8E /* UIProgressView+AFNetworking.m in Sources */,
 				4D6571541E94D05E00EE7E8E /* main.m in Sources */,
 				4D56F9771EAAE3CF000B1958 /* AFURLRequestSerializationViewController.m in Sources */,
+				4DE9D7AB1EB0B8EA0038C4E8 /* AFURLResponseSerializationViewController.m in Sources */,
 				4D6571B41E94D1D800EE7E8E /* AFURLRequestSerialization.m in Sources */,
 				4D65719A1E94D1D000EE7E8E /* AFAutoPurgingImageCache.m in Sources */,
 				4D129F431EA2362B0076FAD6 /* AFURLSessionManagerViewController.m in Sources */,
