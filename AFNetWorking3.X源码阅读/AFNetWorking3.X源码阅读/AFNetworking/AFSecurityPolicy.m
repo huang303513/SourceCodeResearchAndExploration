@@ -324,7 +324,7 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
     } else if (!AFServerTrustIsValid(serverTrust) && !self.allowInvalidCertificates) {
         return NO;
     }
-    //根据证书验证策略、公钥认证策略、其他认证策略来处理不同情况
+    //根据证书验证策略、数字签名认证策略、其他认证策略来处理不同情况
     switch (self.SSLPinningMode) {
         case AFSSLPinningModeNone://不验证公钥和证书
         default:
@@ -354,7 +354,7 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
             
             return NO;
         }
-        case AFSSLPinningModePublicKey: {//只验证证书里面的公钥
+        case AFSSLPinningModePublicKey: {//只验证证书里面的数字签名
             NSUInteger trustedPublicKeyCount = 0;
             //根据serverTrust对象和SecPolicyCreateBasicX509认证策略，获取对应的公钥集合
             NSArray *publicKeys = AFPublicKeyTrustChainForServerTrust(serverTrust);

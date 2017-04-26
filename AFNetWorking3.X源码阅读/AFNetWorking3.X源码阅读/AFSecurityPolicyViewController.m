@@ -21,8 +21,6 @@
 //自建证书认证
 - (IBAction)buttion1:(id)sender {
     NSURL *url = [NSURL URLWithString:@"https://kyfw.12306.cn/otn/leftTicket/init"];
-    //    NSURL *url = [NSURL URLWithString:@"https://www.apple.com/"];
-    //    NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
    // [request setValue:@"text/html" forHTTPHeaderField:@"Accept"];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -52,6 +50,7 @@
     
     AFSecurityPolicy *securityPolicy;
     if (true) {
+        //对于自签名证书，这里只能是
         securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:set];
     }else{
         // AFSSLPinningModeCertificate 使用证书验证模式。下面这个方法会默认使用项目里面的所有证书
@@ -72,8 +71,6 @@
 
 //认证证书认证
 - (IBAction)button2:(id)sender {
-   
-    //    NSURL *url = [NSURL URLWithString:@"https://www.apple.com/"];
     NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     //[request setValue:@"text/html" forHTTPHeaderField:@"Accept"];
@@ -103,6 +100,7 @@
     
     AFSecurityPolicy *securityPolicy;
     if (true) {
+        //这里只能用AFSSLPinningModeNone才能成功，而且我系统的证书列表里面已经有百度的证书了
         securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone withPinnedCertificates:set];
     }else{
         // AFSSLPinningModeCertificate 使用证书验证模式。下面这个方法会默认使用项目里面的所有证书

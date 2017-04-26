@@ -22,6 +22,13 @@
 #import <Foundation/Foundation.h>
 #import <Security/Security.h>
 
+/**
+ 证书的验证类型
+
+ - AFSSLPinningModeNone: 不使用`pinned certificates`来验证证书
+ - AFSSLPinningModePublicKey: 使用`pinned certificates`来验证证书的公钥
+ - AFSSLPinningModeCertificate: 使用`pinned certificates`来验证整个证书
+ */
 typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
     AFSSLPinningModeNone,
     AFSSLPinningModePublicKey,
