@@ -19,6 +19,7 @@
     
     uint8_t c;
     [data getBytes:&c length:1];
+    //根据字母的ASC码比较
     switch (c) {
         case 0xFF:
             return SDImageFormatJPEG;
