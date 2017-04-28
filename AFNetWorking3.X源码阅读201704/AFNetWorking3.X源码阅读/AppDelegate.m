@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "AFNetworking.h"
 
-NSString const *url = @"http://activity.test.chuangchuang.cn/uploadFile";
+NSString const *url = @"https://www.baidu.com";
 @interface AppDelegate ()
 
 @end
