@@ -10,6 +10,11 @@
 #import "SDWebImageCompat.h"
 #import "SDImageCacheConfig.h"
 
+/**
+ 缓存的类型、内存、磁盘、不缓存。
+
+ - but: <#but description#>
+ */
 typedef NS_ENUM(NSInteger, SDImageCacheType) {
     /**
      * The image wasn't available the SDWebImage caches, but was downloaded from the web.

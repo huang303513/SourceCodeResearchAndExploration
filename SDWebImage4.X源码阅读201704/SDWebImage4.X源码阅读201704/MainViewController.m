@@ -9,6 +9,8 @@
 #import "MainViewController.h"
 #import "NSData+ImageContentType.h"
 #import "SDWebImageCompat.h"
+#import "Config.h"
+
 @interface MainViewController ()
 
 @end
@@ -27,8 +29,8 @@
 - (IBAction)getImageType:(id)sender {
     NSData *imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"rock.gif" ofType:nil]];
     SDImageFormat formate = [NSData sd_imageFormatForImageData:imageData];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"%d",formate] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alert show];
+    NSString *message = [NSString stringWithFormat:@"%d",formate];
+    alert(message);
 }
 
 
@@ -41,7 +43,7 @@
     UIImage *dis2ScaleImage = SDScaledImageForKey(@"dist@2x.png", sourceImage);
     UIImage *dis3ScaleImage = SDScaledImageForKey(@"dist@3x.png", sourceImage);
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSLog(@"document:%@",documentPath);
+    //NSLog(@"document:%@",documentPath);
     NSString *path1 = [documentPath stringByAppendingPathComponent:@"dist.png"];
     [UIImagePNGRepresentation(sourceImage) writeToFile:path1 atomically:YES];
     NSString *path2 = [documentPath stringByAppendingPathComponent:@"dist@2x.png"];

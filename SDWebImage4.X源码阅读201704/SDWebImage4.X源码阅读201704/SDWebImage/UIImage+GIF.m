@@ -14,11 +14,16 @@
 
 @implementation UIImage (GIF)
 
+/**
+ 根据gif图片的data生成对应的gif的UIImage对象
+
+ @param data gif图片的data对象
+ @return 生成的image对象。这里只获取gif图片的第一张图像，如果要实现gif完整图像，使用FLAnimatedImageView
+ */
 + (UIImage *)sd_animatedGIFWithData:(NSData *)data {
     if (!data) {
         return nil;
     }
-
     CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
 
     size_t count = CGImageSourceGetCount(source);
@@ -40,7 +45,9 @@
         
         CGImageRef CGImage = CGImageSourceCreateImageAtIndex(source, 0, NULL);
 #if SD_UIKIT || SD_WATCH
+        //获取gif图片的第一张图片
         UIImage *frameImage = [UIImage imageWithCGImage:CGImage scale:scale orientation:UIImageOrientationUp];
+        //用第一张图片生成一个新的gif图片
         staticImage = [UIImage animatedImageWithImages:@[frameImage] duration:0.0f];
 #elif SD_MAC
         staticImage = [[UIImage alloc] initWithCGImage:CGImage size:NSZeroSize];

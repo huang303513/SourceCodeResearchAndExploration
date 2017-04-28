@@ -13,6 +13,13 @@
 
 + (nullable UIImage *)sd_imageWithData:(nullable NSData *)data;
 - (nullable NSData *)sd_imageData;
+
+/**
+ 根据指定的图片类型，把image对象转换为对应格式的data
+
+ @param imageFormat 指定的image格式
+ @return 返回data对象
+ */
 - (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat;
 
 @end

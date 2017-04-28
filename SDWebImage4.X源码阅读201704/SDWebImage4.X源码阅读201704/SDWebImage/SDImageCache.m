@@ -18,6 +18,9 @@
 @interface AutoPurgeCache : NSCache
 @end
 
+/**
+ 如果接收到内存警告、移除所有的缓存对象
+ */
 @implementation AutoPurgeCache
 
 - (nonnull instancetype)init {
@@ -39,6 +42,12 @@
 @end
 
 
+/**
+ 计算一张图片占用内存的大小
+
+ @param image 图片
+ @return 占用内存大小
+ */
 FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 #if SD_MAC
     return image.size.height * image.size.width;
@@ -46,7 +55,9 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return image.size.height * image.size.width * image.scale * image.scale;
 #endif
 }
-
+/**
+ 单列对象、用处管理图片的缓存以及缓存图片的处理
+ */
 @interface SDImageCache ()
 
 #pragma mark - Properties
@@ -86,17 +97,16 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
                        diskCacheDirectory:(nonnull NSString *)directory {
     if ((self = [super init])) {
         NSString *fullNamespace = [@"com.hackemist.SDWebImageCache." stringByAppendingString:ns];
-        
-        // Create IO serial queue
+        // 初始化一个串行的dispatch_queue_t
         _ioQueue = dispatch_queue_create("com.hackemist.SDWebImageCache", DISPATCH_QUEUE_SERIAL);
-        
+        //初始化缓存策略配置对象
         _config = [[SDImageCacheConfig alloc] init];
         
-        // Init the memory cache
+        // 初始化内存缓存对象
         _memCache = [[AutoPurgeCache alloc] init];
         _memCache.name = fullNamespace;
 
-        // Init the disk cache
+        // 初始化磁盘缓存路径
         if (directory != nil) {
             _diskCachePath = [directory stringByAppendingPathComponent:fullNamespace];
         } else {
@@ -109,17 +119,23 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
         });
 
 #if SD_UIKIT
-        // Subscribe to app events
+        /*
+         当应用收到内存警告的时候，清除内存缓存。
+         */
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(clearMemory)
                                                      name:UIApplicationDidReceiveMemoryWarningNotification
                                                    object:nil];
-
+        /*
+         当应用终止的时候，清除老数据
+         */
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(deleteOldFiles)
                                                      name:UIApplicationWillTerminateNotification
                                                    object:nil];
-
+        /*
+         当应用进入后台的时候，在后台删除老数据
+         */
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(backgroundDeleteOldFiles)
                                                      name:UIApplicationDidEnterBackgroundNotification
@@ -135,6 +151,9 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     SDDispatchQueueRelease(_ioQueue);
 }
 
+/**
+ 当前queue是否在ioQueue
+ */
 - (void)checkIfQueueIsIOQueue {
     const char *currentQueueLabel = dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL);
     const char *ioQueueLabel = dispatch_queue_get_label(self.ioQueue);
@@ -144,7 +163,9 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 }
 
 #pragma mark - Cache paths
-
+/*
+ 添加只能读的缓存目录
+ */
 - (void)addReadOnlyCachePath:(nonnull NSString *)path {
     if (!self.customPaths) {
         self.customPaths = [NSMutableArray new];
@@ -155,6 +176,13 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     }
 }
 
+/**
+ 获取指定key对应的完整缓存路径
+
+ @param key key，对应一张图片。比如图片的名字
+ @param path 指定根目录
+ @return 完整目录
+ */
 - (nullable NSString *)cachePathForKey:(nullable NSString *)key inPath:(nonnull NSString *)path {
     NSString *filename = [self cachedFileNameForKey:key];
     return [path stringByAppendingPathComponent:filename];
@@ -164,6 +192,15 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return [self cachePathForKey:key inPath:self.diskCachePath];
 }
 
+
+/**
+ MD5加密
+ X 表示以十六进制形式输出
+ 02 表示不足两位，前面补0输出；出过两位，不影响
+
+ @param key key
+ @return 加密后的数据
+ */
 - (nullable NSString *)cachedFileNameForKey:(nullable NSString *)key {
     const char *str = key.UTF8String;
     if (str == NULL) {
@@ -178,12 +215,18 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return filename;
 }
 
+/**
+ 图片缓存目录
+
+ @param fullNamespace 自定义目录
+ @return 完整目录
+ */
 - (nullable NSString *)makeDiskCachePath:(nonnull NSString*)fullNamespace {
     NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     return [paths[0] stringByAppendingPathComponent:fullNamespace];
 }
 
-#pragma mark - Store Ops
+#pragma mark - 图片缓存具体实现的一些列方法
 
 - (void)storeImage:(nullable UIImage *)image
             forKey:(nullable NSString *)key
@@ -198,6 +241,15 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     [self storeImage:image imageData:nil forKey:key toDisk:toDisk completion:completionBlock];
 }
 
+/**
+ 把一张图片存入缓存的具体实现
+
+ @param image 缓存的图片对象
+ @param imageData 缓存的图片数据
+ @param key 缓存对应的key
+ @param toDisk 是否缓存到瓷片
+ @param completionBlock 缓存完成回调
+ */
 - (void)storeImage:(nullable UIImage *)image
          imageData:(nullable NSData *)imageData
             forKey:(nullable NSString *)key
@@ -209,21 +261,27 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
         }
         return;
     }
-    // if memory cache is enabled
+    //缓存到内存
     if (self.config.shouldCacheImagesInMemory) {
+        //计算缓存数据的大小
         NSUInteger cost = SDCacheCostForImage(image);
+        //加入缓存对此昂
         [self.memCache setObject:image forKey:key cost:cost];
     }
     
     if (toDisk) {
+        /*
+         在一个线性队列中做磁盘缓存操作。
+         */
         dispatch_async(self.ioQueue, ^{
             NSData *data = imageData;
-            
             if (!data && image) {
+                //获取图片的类型GIF/PNG等
                 SDImageFormat imageFormatFromData = [NSData sd_imageFormatForImageData:data];
+                //根据指定的SDImageFormat。把图片转换为对应的data数据
                 data = [image sd_imageDataAsFormat:imageFormatFromData];
             }
-            
+            //把处理好了的数据存入磁盘
             [self storeImageDataToDisk:data forKey:key];
             if (completionBlock) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -244,20 +302,22 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     }
     
     [self checkIfQueueIsIOQueue];
-    
+    //缓存目录是否已经初始化
     if (![_fileManager fileExistsAtPath:_diskCachePath]) {
         [_fileManager createDirectoryAtPath:_diskCachePath withIntermediateDirectories:YES attributes:nil error:NULL];
     }
     
     // get cache Path for image key
+    //获取key对应的完整缓存路径
     NSString *cachePathForKey = [self defaultCachePathForKey:key];
     // transform to NSUrl
     NSURL *fileURL = [NSURL fileURLWithPath:cachePathForKey];
-    
+    //把数据存入路径
     [_fileManager createFileAtPath:cachePathForKey contents:imageData attributes:nil];
     
     // disable iCloud backup
     if (self.config.shouldDisableiCloud) {
+        //给文件添加到运行存储到iCloud属性
         [fileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
     }
 }
@@ -282,6 +342,12 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     });
 }
 
+/**
+ 根据key获取缓存在内存中的图片
+
+ @param key key
+ @return 缓存的图片
+ */
 - (nullable UIImage *)imageFromMemoryCacheForKey:(nullable NSString *)key {
     return [self.memCache objectForKey:key];
 }
@@ -308,7 +374,14 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return image;
 }
 
+/**
+ 根据指定的key，获取存储在磁盘上的数据
+
+ @param key 图片对应的key
+ @return 返回图片数据
+ */
 - (nullable NSData *)diskImageDataBySearchingAllPathsForKey:(nullable NSString *)key {
+    //获取key对应的path
     NSString *defaultPath = [self defaultCachePathForKey:key];
     NSData *data = [NSData dataWithContentsOfFile:defaultPath];
     if (data) {
@@ -317,11 +390,16 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 
     // fallback because of https://github.com/rs/SDWebImage/pull/976 that added the extension to the disk file name
     // checking the key with and without the extension
+    /*
+     如果key么有后缀名，则会走到这里通过这里读取
+     */
     data = [NSData dataWithContentsOfFile:defaultPath.stringByDeletingPathExtension];
     if (data) {
         return data;
     }
-
+    /*
+     如果在默认路径没有找到图片，则在自定义路径迭代查找
+     */
     NSArray<NSString *> *customPaths = [self.customPaths copy];
     for (NSString *path in customPaths) {
         NSString *filePath = [self cachePathForKey:key inPath:path];
@@ -341,7 +419,14 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return nil;
 }
 
+/**
+ 根据指定的key获取image对象
+
+ @param key key
+ @return image对象
+ */
 - (nullable UIImage *)diskImageForKey:(nullable NSString *)key {
+    //获取磁盘数据
     NSData *data = [self diskImageDataBySearchingAllPathsForKey:key];
     if (data) {
         UIImage *image = [UIImage sd_imageWithData:data];
@@ -372,6 +457,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     UIImage *image = [self imageFromMemoryCacheForKey:key];
     if (image) {
         NSData *diskData = nil;
+        //是否是gif图片
         if ([image isGIF]) {
             diskData = [self diskImageDataBySearchingAllPathsForKey:key];
         }
@@ -380,14 +466,13 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
         }
         return nil;
     }
-
+    //新建一个NSOperation来获取磁盘图片
     NSOperation *operation = [NSOperation new];
     dispatch_async(self.ioQueue, ^{
         if (operation.isCancelled) {
             // do not call the completion if cancelled
             return;
         }
-
         @autoreleasepool {
             NSData *diskData = [self diskImageDataBySearchingAllPathsForKey:key];
             UIImage *diskImage = [self diskImageForKey:key];
@@ -456,12 +541,20 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     self.memCache.countLimit = maxCountLimit;
 }
 
-#pragma mark - Cache clean Ops
+#pragma mark - 内存缓存清理相关操作
 
+/**
+ 清理当前SDImageCache对象的内存缓存
+ */
 - (void)clearMemory {
     [self.memCache removeAllObjects];
 }
 
+/**
+ 移除所有的缓存图片数据
+
+ @param completion 移除完成以后回调
+ */
 - (void)clearDiskOnCompletion:(nullable SDWebImageNoParamsBlock)completion {
     dispatch_async(self.ioQueue, ^{
         [_fileManager removeItemAtPath:self.diskCachePath error:nil];
@@ -469,7 +562,6 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
                 withIntermediateDirectories:YES
                                  attributes:nil
                                       error:NULL];
-
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion();
@@ -482,6 +574,12 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     [self deleteOldFilesWithCompletionBlock:nil];
 }
 
+/**
+ 当应用终止或者进入后台都回调用这个方法来清除缓存图片。
+ 这里会根据图片存储时间来清理图片、默认是一周，从最老的图片开始清理。如果图片缓存空间小于一个规定值，则不考虑。
+
+ @param completionBlock 清除完成以后的回调
+ */
 - (void)deleteOldFilesWithCompletionBlock:(nullable SDWebImageNoParamsBlock)completionBlock {
     dispatch_async(self.ioQueue, ^{
         NSURL *diskCacheURL = [NSURL fileURLWithPath:self.diskCachePath isDirectory:YES];
@@ -568,6 +666,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
         return;
     }
     UIApplication *application = [UIApplication performSelector:@selector(sharedApplication)];
+    //如果backgroundTask对应的时间结束了。任务还么有处理完成。则直接终止任务
     __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
         // Clean up any unfinished task business by marking where you
         // stopped or ending the task outright.
@@ -576,6 +675,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     }];
 
     // Start the long-running task and return immediately.
+    //图片清理结束以后。处理完成
     [self deleteOldFilesWithCompletionBlock:^{
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;

@@ -15,6 +15,7 @@
 		4D942C741EB21130006D4907 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D942C711EB21130006D4907 /* Info.plist */; };
 		4D942C771EB21CE9006D4907 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D942C761EB21CE9006D4907 /* MainViewController.m */; };
 		4D942C791EB2258A006D4907 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D942C781EB2258A006D4907 /* 2.png */; };
+		4D942C7D1EB2F356006D4907 /* SDImageCacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D942C7C1EB2F356006D4907 /* SDImageCacheViewController.m */; };
 		4DE9D7BA1EB0D9160038C4E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9D7B91EB0D9160038C4E8 /* main.m */; };
 		4DE9D7BD1EB0D9160038C4E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9D7BC1EB0D9160038C4E8 /* AppDelegate.m */; };
 		4DE9D7C31EB0D9160038C4E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9D7C11EB0D9160038C4E8 /* Main.storyboard */; };
@@ -54,6 +55,9 @@
 		4D942C751EB21CE9006D4907 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		4D942C761EB21CE9006D4907 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		4D942C781EB2258A006D4907 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		4D942C7A1EB2F1E7006D4907 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		4D942C7B1EB2F356006D4907 /* SDImageCacheViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCacheViewController.h; sourceTree = "<group>"; };
+		4D942C7C1EB2F356006D4907 /* SDImageCacheViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCacheViewController.m; sourceTree = "<group>"; };
 		4DE9D7B51EB0D9160038C4E8 /* SDWebImage4.X源码阅读201704.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDWebImage4.X源码阅读201704.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DE9D7B91EB0D9160038C4E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4DE9D7BB1EB0D9160038C4E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				4DE9D7C61EB0D9160038C4E8 /* LaunchScreen.storyboard */,
 				4DE9D7C91EB0D9160038C4E8 /* Info.plist */,
 				4DE9D7B91EB0D9160038C4E8 /* main.m */,
+				4D942C7A1EB2F1E7006D4907 /* Config.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -178,6 +183,8 @@
 				4DE9D7C11EB0D9160038C4E8 /* Main.storyboard */,
 				4D942C751EB21CE9006D4907 /* MainViewController.h */,
 				4D942C761EB21CE9006D4907 /* MainViewController.m */,
+				4D942C7B1EB2F356006D4907 /* SDImageCacheViewController.h */,
+				4D942C7C1EB2F356006D4907 /* SDImageCacheViewController.m */,
 			);
 			name = "测试验证";
 			sourceTree = "<group>";
@@ -327,6 +334,7 @@
 				4DE9D7FB1EB0D9E90038C4E8 /* FLAnimatedImageView+WebCache.m in Sources */,
 				4DE9D8061EB0D9E90038C4E8 /* SDWebImagePrefetcher.m in Sources */,
 				4DE9D8031EB0D9E90038C4E8 /* SDWebImageDownloader.m in Sources */,
+				4D942C7D1EB2F356006D4907 /* SDImageCacheViewController.m in Sources */,
 				4DE9D7BD1EB0D9160038C4E8 /* AppDelegate.m in Sources */,
 				4DE9D80A1EB0D9E90038C4E8 /* UIImage+WebP.m in Sources */,
 				4DE9D80C1EB0D9E90038C4E8 /* UIImageView+WebCache.m in Sources */,

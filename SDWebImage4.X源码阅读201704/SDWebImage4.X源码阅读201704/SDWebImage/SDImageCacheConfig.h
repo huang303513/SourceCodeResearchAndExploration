@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SDWebImageCompat.h"
 
+
+/**
+ 图片缓存策略记录。比如是否解压缩、是否允许iCloud、是否允许内存缓存、缓存时间等。
+ */
 @interface SDImageCacheConfig : NSObject
 
 /**
