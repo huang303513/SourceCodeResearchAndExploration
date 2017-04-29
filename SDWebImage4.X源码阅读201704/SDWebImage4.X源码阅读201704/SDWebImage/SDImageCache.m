@@ -445,6 +445,13 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return SDScaledImageForKey(key, image);
 }
 
+/**
+ 在缓存中查询对应key的数据。通过一个NSOperation来完成
+
+ @param key 要查询的key
+ @param doneBlock 查询结束以后的Block
+ @return 返回做查询操作的Block
+ */
 - (nullable NSOperation *)queryCacheOperationForKey:(nullable NSString *)key done:(nullable SDCacheQueryCompletedBlock)doneBlock {
     if (!key) {
         if (doneBlock) {

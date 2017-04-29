@@ -161,6 +161,10 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 
 @class SDWebImageManager;
 
+
+/**
+ SDWebImageManagerDelegate用于帮助SDWebImageManager从网络加载图片。
+ */
 @protocol SDWebImageManagerDelegate <NSObject>
 
 @optional
@@ -184,6 +188,16 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
  * @param imageURL     The url of the image to transform
  *
  * @return The transformed image object.
+ */
+
+/**
+ 当图片下载完成以后缓存以前。通过这个方法来立即transform图片。
+ 这个方法在一个global queue中调用以防止阻塞主线程
+
+ @param imageManager SDWebImageManager对象
+ @param image image数据
+ @param imageURL image的url
+ @return 返回处理结束以后的图片
  */
 - (nullable UIImage *)imageManager:(nonnull SDWebImageManager *)imageManager transformDownloadedImage:(nullable UIImage *)image withURL:(nullable NSURL *)imageURL;
 
