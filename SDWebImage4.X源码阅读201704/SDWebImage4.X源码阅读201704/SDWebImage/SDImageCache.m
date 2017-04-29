@@ -498,15 +498,22 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     [self removeImageForKey:key fromDisk:YES withCompletion:completion];
 }
 
+/**
+ 移除指定key对应的缓存数据
+
+ @param key key
+ @param fromDisk 是否也清除磁盘缓存
+ @param completion 回调
+ */
 - (void)removeImageForKey:(nullable NSString *)key fromDisk:(BOOL)fromDisk withCompletion:(nullable SDWebImageNoParamsBlock)completion {
     if (key == nil) {
         return;
     }
-
+    //移除内存缓存
     if (self.config.shouldCacheImagesInMemory) {
         [self.memCache removeObjectForKey:key];
     }
-
+    //移除磁盘缓存
     if (fromDisk) {
         dispatch_async(self.ioQueue, ^{
             [_fileManager removeItemAtPath:[self defaultCachePathForKey:key] error:nil];
@@ -582,10 +589,16 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
  */
 - (void)deleteOldFilesWithCompletionBlock:(nullable SDWebImageNoParamsBlock)completionBlock {
     dispatch_async(self.ioQueue, ^{
+        //获取磁盘缓存的默认根目录
         NSURL *diskCacheURL = [NSURL fileURLWithPath:self.diskCachePath isDirectory:YES];
+        
         NSArray<NSString *> *resourceKeys = @[NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey];
 
         // This enumerator prefetches useful properties for our cache files.
+        /*
+         第二个参数制定了需要获取的属性集合
+         第三个参数表示不迭代隐藏文件
+        */
         NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtURL:diskCacheURL
                                                    includingPropertiesForKeys:resourceKeys
                                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
@@ -599,50 +612,67 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
         //
         //  1. Removing files that are older than the expiration date.
         //  2. Storing file attributes for the size-based cleanup pass.
+        /*
+         迭代缓存目录。有两个目的：
+         1 删除比指定日期更老的图片
+         2 记录文件的大小，以提供给后面删除使用
+         */
         NSMutableArray<NSURL *> *urlsToDelete = [[NSMutableArray alloc] init];
         for (NSURL *fileURL in fileEnumerator) {
             NSError *error;
+            //获取指定url对应文件的指定三种属性的key和value
             NSDictionary<NSString *, id> *resourceValues = [fileURL resourceValuesForKeys:resourceKeys error:&error];
-
             // Skip directories and errors.
+            //如果是文件夹则返回
             if (error || !resourceValues || [resourceValues[NSURLIsDirectoryKey] boolValue]) {
                 continue;
             }
 
             // Remove files that are older than the expiration date;
+            //获取指定url文件对应的修改日期
             NSDate *modificationDate = resourceValues[NSURLContentModificationDateKey];
+            //如果修改日期大于指定日期，则加入要移除的数组里
             if ([[modificationDate laterDate:expirationDate] isEqualToDate:expirationDate]) {
                 [urlsToDelete addObject:fileURL];
                 continue;
             }
 
             // Store a reference to this file and account for its total size.
+            //获取指定的url对应的文件的大小，并且把url与对应大小存入一个字典中
             NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
             currentCacheSize += totalAllocatedSize.unsignedIntegerValue;
             cacheFiles[fileURL] = resourceValues;
         }
-        
+        //删除所有最后修改日期大于指定日期的所有文件
         for (NSURL *fileURL in urlsToDelete) {
             [_fileManager removeItemAtURL:fileURL error:nil];
         }
 
         // If our remaining disk cache exceeds a configured maximum size, perform a second
         // size-based cleanup pass.  We delete the oldest files first.
+        /*
+         如果我们当前缓存的大小超过了默认大小，则按照日期删除，直到缓存大小<默认大小的一半
+         */
         if (self.config.maxCacheSize > 0 && currentCacheSize > self.config.maxCacheSize) {
             // Target half of our maximum cache size for this cleanup pass.
             const NSUInteger desiredCacheSize = self.config.maxCacheSize / 2;
 
             // Sort the remaining cache files by their last modification time (oldest first).
+            //根据文件创建的时间排序
             NSArray<NSURL *> *sortedFiles = [cacheFiles keysSortedByValueWithOptions:NSSortConcurrent
                                                                      usingComparator:^NSComparisonResult(id obj1, id obj2) {
                                                                          return [obj1[NSURLContentModificationDateKey] compare:obj2[NSURLContentModificationDateKey]];
                                                                      }];
 
             // Delete files until we fall below our desired cache size.
+            /*
+             迭代删除缓存，直到缓存大小是默认缓存大小的一半
+             */
             for (NSURL *fileURL in sortedFiles) {
                 if ([_fileManager removeItemAtURL:fileURL error:nil]) {
                     NSDictionary<NSString *, id> *resourceValues = cacheFiles[fileURL];
                     NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
+                    //总得缓存大小减去当前要删除文件的大小
                     currentCacheSize -= totalAllocatedSize.unsignedIntegerValue;
 
                     if (currentCacheSize < desiredCacheSize) {
@@ -651,6 +681,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
                 }
             }
         }
+        //执行完毕，主线程回调
         if (completionBlock) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock();
@@ -660,6 +691,10 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 }
 
 #if SD_UIKIT
+
+/**
+ 应用进入后台的时候，调用这个方法
+ */
 - (void)backgroundDeleteOldFiles {
     Class UIApplicationClass = NSClassFromString(@"UIApplication");
     if(!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)]) {
@@ -670,6 +705,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
         // Clean up any unfinished task business by marking where you
         // stopped or ending the task outright.
+        //当任务非正常终止的时候，做清理工作
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];
@@ -677,6 +713,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     // Start the long-running task and return immediately.
     //图片清理结束以后。处理完成
     [self deleteOldFilesWithCompletionBlock:^{
+        //清理完成以后，终止任务
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];

@@ -34,10 +34,15 @@ NSString *key = @"SDWebImageClassDiagram.png";
 - (IBAction)clickButton1:(id)sender {
 
     [self.imageCache storeImage:[UIImage imageNamed:key] forKey:key toDisk:YES completion:^{
-        alert(@"回调");
+        showMessage(@"回调", self);
     }];
 }
 
+/**
+ 从缓存查询图片的过程
+
+ @param sender nil
+ */
 - (IBAction)clickButton2:(id)sender {
     self.imageView.image = nil;
     [self.imageCache queryCacheOperationForKey:key done:^(UIImage * _Nullable image, NSData * _Nullable data, SDImageCacheType cacheType) {
@@ -49,18 +54,30 @@ NSString *key = @"SDWebImageClassDiagram.png";
         }else{
             type = @"没有缓存";
         }
-        alert(type);
+        showMessage(type, self);
         self.imageView.image = [UIImage imageWithData:data];
     }];
 }
+
+/**
+ 模拟应用进入后台，清除缓存数据
+
+ @param sender nil
+ */
 - (IBAction)clickButton3:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidEnterBackgroundNotification object:nil];
     
 }
+/*
+ 发送内存警告。清除内存缓存
+ */
 - (IBAction)clickButton4:(id)sender {
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 }
 - (IBAction)clickButton5:(id)sender {
-    
+//    SDImageCacheConfig *config = [[SDImageCacheConfig alloc]init];
+//    config.maxCacheSize = 0.001;
+//    self.imageCache.config = config;
 }
 
 

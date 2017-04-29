@@ -62,7 +62,7 @@
 #if SD_UIKIT || SD_WATCH
 
 /**
- 根据图片数据获取图片的方法
+ 根据图片数据获取图片的方向
 
  @param imageData 图片数据
  @return 方向

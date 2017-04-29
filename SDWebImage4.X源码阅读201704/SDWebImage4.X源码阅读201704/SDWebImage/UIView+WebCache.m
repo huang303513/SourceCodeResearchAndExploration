@@ -36,8 +36,11 @@ static char TAG_ACTIVITY_SHOW;
                          completed:(nullable SDExternalCompletionBlock)completedBlock {
     NSString *validOperationKey = operationKey ?: NSStringFromClass([self class]);
     [self sd_cancelImageLoadOperationWithKey:validOperationKey];
+    /*
+     把UIImageView的加载图片操作和他自身用关联对象关联起来，方便后面取消等操作。关联的key就是UIImageView对应的类名
+     */
     objc_setAssociatedObject(self, &imageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+    //如果有设置站位图，则先显示展位图
     if (!(options & SDWebImageDelayPlaceholder)) {
         dispatch_main_async_safe(^{
             [self sd_setImage:placeholder imageData:nil basedOnClassOrViaCustomSetImageBlock:setImageBlock];
@@ -46,6 +49,7 @@ static char TAG_ACTIVITY_SHOW;
     
     if (url) {
         // check if activityView is enabled or not
+        //如果UIImageView对象有设置添加转动菊花数据，加载的时候添加转动的菊花
         if ([self sd_showActivityIndicatorView]) {
             [self sd_addActivityIndicator];
         }

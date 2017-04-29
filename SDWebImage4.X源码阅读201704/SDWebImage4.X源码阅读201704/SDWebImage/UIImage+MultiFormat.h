@@ -10,7 +10,12 @@
 #import "NSData+ImageContentType.h"
 
 @interface UIImage (MultiFormat)
-
+/**
+ 根据image的data数据。生成对应的image对象
+ 
+ @param data 图片的数据
+ @return image对象
+ */
 + (nullable UIImage *)sd_imageWithData:(nullable NSData *)data;
 - (nullable NSData *)sd_imageData;
 

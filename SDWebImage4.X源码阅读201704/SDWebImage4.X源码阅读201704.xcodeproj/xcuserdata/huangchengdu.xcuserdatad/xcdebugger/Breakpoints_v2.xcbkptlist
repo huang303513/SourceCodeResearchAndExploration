@@ -538,7 +538,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
-            timestampString = "515053222.206775"
+            timestampString = "515082413.191182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "584"
@@ -554,7 +554,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.421696"
+                  timestampString = "515082609.547293"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "584"
@@ -569,7 +569,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.423371"
+                  timestampString = "515082609.549589"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "584"
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
-            timestampString = "515053222.206775"
+            timestampString = "515082413.191182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "665"
-            endingLineNumber = "665"
+            startingLineNumber = "693"
+            endingLineNumber = "693"
             landmarkName = "-backgroundDeleteOldFiles"
             landmarkType = "7">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
-            timestampString = "515053222.206775"
+            timestampString = "515082413.191182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "690"
-            endingLineNumber = "690"
+            startingLineNumber = "720"
+            endingLineNumber = "720"
             landmarkName = "-getSize"
             landmarkType = "7">
             <Locations>
@@ -618,11 +618,11 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.431342"
+                  timestampString = "515082609.558179"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "690"
-                  endingLineNumber = "690"
+                  startingLineNumber = "720"
+                  endingLineNumber = "720"
                   offsetFromSymbolStart = "60">
                </Location>
                <Location
@@ -633,11 +633,11 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.433981"
+                  timestampString = "515082609.560107"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "690"
-                  endingLineNumber = "690"
+                  startingLineNumber = "720"
+                  endingLineNumber = "720"
                   offsetFromSymbolStart = "35">
                </Location>
             </Locations>
@@ -650,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
-            timestampString = "515053222.206775"
+            timestampString = "515082413.191182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "703"
-            endingLineNumber = "703"
+            startingLineNumber = "733"
+            endingLineNumber = "733"
             landmarkName = "-getDiskCount"
             landmarkType = "7">
             <Locations>
@@ -666,11 +666,11 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.438049"
+                  timestampString = "515082609.564723"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "703"
-                  endingLineNumber = "703"
+                  startingLineNumber = "733"
+                  endingLineNumber = "733"
                   offsetFromSymbolStart = "60">
                </Location>
                <Location
@@ -681,11 +681,11 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.439885"
+                  timestampString = "515082609.567029"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "703"
-                  endingLineNumber = "703"
+                  startingLineNumber = "733"
+                  endingLineNumber = "733"
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>
@@ -698,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
-            timestampString = "515053222.206775"
+            timestampString = "515082413.191182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "713"
-            endingLineNumber = "713"
+            startingLineNumber = "743"
+            endingLineNumber = "743"
             landmarkName = "-calculateSizeWithCompletionBlock:"
             landmarkType = "7">
             <Locations>
@@ -714,11 +714,11 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.443599"
+                  timestampString = "515082609.571273"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "713"
-                  endingLineNumber = "713"
+                  startingLineNumber = "743"
+                  endingLineNumber = "743"
                   offsetFromSymbolStart = "172">
                </Location>
                <Location
@@ -729,11 +729,11 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.445938"
+                  timestampString = "515082609.57312"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "713"
-                  endingLineNumber = "713"
+                  startingLineNumber = "743"
+                  endingLineNumber = "743"
                   offsetFromSymbolStart = "49">
                </Location>
             </Locations>
@@ -746,11 +746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDImageCacheViewController.m"
-            timestampString = "515050616.699882"
+            timestampString = "515055700.667204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "-clickButton1:"
             landmarkType = "7">
             <Locations>
@@ -938,7 +938,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.479041"
+                  timestampString = "515082609.603336"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "471"
@@ -953,7 +953,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515053223.481482"
+                  timestampString = "515082609.606301"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "471"
@@ -1088,6 +1088,86 @@
             startingLineNumber = "433"
             endingLineNumber = "433"
             landmarkName = "-diskImageForKey:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
+            timestampString = "515082413.191182"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "588"
+            endingLineNumber = "588"
+            landmarkName = "-deleteOldFilesWithCompletionBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
+            timestampString = "515082443.789102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
+            landmarkName = "-backgroundDeleteOldFiles"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
+            timestampString = "515082446.202565"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
+            landmarkName = "-backgroundDeleteOldFiles"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
+            timestampString = "515082465.954615"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
+            landmarkName = "-deleteOldFilesWithCompletionBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDImageCache.m"
+            timestampString = "515082472.657643"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "621"
+            endingLineNumber = "621"
+            landmarkName = "-deleteOldFilesWithCompletionBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
