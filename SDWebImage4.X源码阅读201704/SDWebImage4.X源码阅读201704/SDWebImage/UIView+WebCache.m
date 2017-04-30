@@ -27,6 +27,17 @@ static char TAG_ACTIVITY_SHOW;
     return objc_getAssociatedObject(self, &imageURLKey);
 }
 
+/**
+ 所有UIView及其子类都是通过这个方法来加载图片
+
+ @param url 加载的url
+ @param placeholder 占位图
+ @param options 加载选项
+ @param operationKey key
+ @param setImageBlock Block
+ @param progressBlock 进度Block
+ @param completedBlock 回调Block
+ */
 - (void)sd_internalSetImageWithURL:(nullable NSURL *)url
                   placeholderImage:(nullable UIImage *)placeholder
                            options:(SDWebImageOptions)options
@@ -34,6 +45,8 @@ static char TAG_ACTIVITY_SHOW;
                      setImageBlock:(nullable SDSetImageBlock)setImageBlock
                           progress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
                          completed:(nullable SDExternalCompletionBlock)completedBlock {
+    
+    //取消当前类所对应的所有下载Operation对象
     NSString *validOperationKey = operationKey ?: NSStringFromClass([self class]);
     [self sd_cancelImageLoadOperationWithKey:validOperationKey];
     /*
@@ -55,6 +68,9 @@ static char TAG_ACTIVITY_SHOW;
         }
         
         __weak __typeof(self)wself = self;
+        /*
+         *operation是一个`SDWebImageCombinedOperation`对象
+         */
         id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager loadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSData *data, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             __strong __typeof (wself) sself = wself;
             [sself sd_removeActivityIndicator];
@@ -82,6 +98,7 @@ static char TAG_ACTIVITY_SHOW;
                 }
             });
         }];
+        //关联Operationkey与Operation对象
         [self sd_setImageLoadOperation:operation forKey:validOperationKey];
     } else {
         dispatch_main_async_safe(^{
@@ -94,6 +111,9 @@ static char TAG_ACTIVITY_SHOW;
     }
 }
 
+/**
+ 取消当前Class对应的所有加载请求
+ */
 - (void)sd_cancelCurrentImageLoad {
     [self sd_cancelImageLoadOperationWithKey:NSStringFromClass([self class])];
 }

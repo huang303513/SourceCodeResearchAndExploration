@@ -75,9 +75,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ie8-9K-Mwd">
-                                <rect key="frame" x="169" y="144" width="46" height="30"/>
+                                <rect key="frame" x="116" y="144" width="153" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="图片解压缩与非加压缩"/>
                                 <connections>
                                     <action selector="clickButton1:" destination="nDG-kq-nTn" eventType="touchUpInside" id="3sK-Sw-kKZ"/>
                                 </connections>

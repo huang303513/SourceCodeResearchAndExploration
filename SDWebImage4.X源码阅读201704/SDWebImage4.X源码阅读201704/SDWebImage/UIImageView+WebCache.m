@@ -40,6 +40,15 @@
     [self sd_setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:completedBlock];
 }
 
+/**
+ UIImageView加载图片的主要方法
+
+ @param url url
+ @param placeholder 占位图
+ @param options 加载选项
+ @param progressBlock 进度Block
+ @param completedBlock 完成Block
+ */
 - (void)sd_setImageWithURL:(nullable NSURL *)url
           placeholderImage:(nullable UIImage *)placeholder
                    options:(SDWebImageOptions)options
@@ -54,14 +63,24 @@
                            completed:completedBlock];
 }
 
+/**
+ 加载图片数据。但是优先使用先前url缓存的图片作为占位图显示。然后再去加载最新的图片
+
+ @param url url
+ @param placeholder 占位图
+ @param options 加载选项
+ @param progressBlock 进度Block
+ @param completedBlock 完成Block
+ */
 - (void)sd_setImageWithPreviousCachedImageWithURL:(nullable NSURL *)url
                                  placeholderImage:(nullable UIImage *)placeholder
                                           options:(SDWebImageOptions)options
                                          progress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
                                         completed:(nullable SDExternalCompletionBlock)completedBlock {
+    //获取url缓存到本地的图片
     NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:url];
     UIImage *lastPreviousCachedImage = [[SDImageCache sharedImageCache] imageFromCacheForKey:key];
-    
+    //走正常的加载流程
     [self sd_setImageWithURL:url placeholderImage:lastPreviousCachedImage ?: placeholder options:options progress:progressBlock completed:completedBlock];    
 }
 

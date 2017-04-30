@@ -235,7 +235,7 @@
 
             // download if no image or requested to refresh anyway, and download allowed by delegate
             /*
-             获取图片加载的选项。各种枚举类型集合
+             把图片加载的`SDWebImageOptions`类型枚举转换为图片下载的`SDWebImageDownloaderOptions`类型的枚举
              */
             SDWebImageDownloaderOptions downloaderOptions = 0;
             if (options & SDWebImageLowPriority) downloaderOptions |= SDWebImageDownloaderLowPriority;

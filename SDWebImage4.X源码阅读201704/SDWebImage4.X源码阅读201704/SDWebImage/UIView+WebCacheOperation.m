@@ -28,6 +28,13 @@ typedef NSMutableDictionary<NSString *, id> SDOperationsDictionary;
     return operations;
 }
 
+
+/**
+ 关联Operation对象与key对象
+
+ @param operation Operation对象
+ @param key key
+ */
 - (void)sd_setImageLoadOperation:(nullable id)operation forKey:(nullable NSString *)key {
     if (key) {
         [self sd_cancelImageLoadOperationWithKey:key];
@@ -38,6 +45,11 @@ typedef NSMutableDictionary<NSString *, id> SDOperationsDictionary;
     }
 }
 
+/**
+ 取消当前key对应的所有实现了SDWebImageOperation协议的Operation对象
+
+ @param key Operation对应的key
+ */
 - (void)sd_cancelImageLoadOperationWithKey:(nullable NSString *)key {
     // Cancel in progress downloader from queue
     SDOperationsDictionary *operationDictionary = [self operationDictionary];

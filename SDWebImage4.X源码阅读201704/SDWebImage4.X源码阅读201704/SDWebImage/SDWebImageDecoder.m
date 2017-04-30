@@ -12,23 +12,37 @@
 @implementation UIImage (ForceDecode)
 
 #if SD_UIKIT || SD_WATCH
+//每个像素占用的字节数
 static const size_t kBytesPerPixel = 4;
+//色彩空间占用的字节数
 static const size_t kBitsPerComponent = 8;
 
+/**
+ 解压缩图片
+
+ @param image UIImage对象
+ @return 返回解压缩以后的图片
+ */
 + (nullable UIImage *)decodedImageWithImage:(nullable UIImage *)image {
+    //图片是否能够加压缩
     if (![UIImage shouldDecodeImage:image]) {
         return image;
     }
     
     // autorelease the bitmap context and all vars to help system to free memory when there are memory warning.
     // on iOS7, do not forget to call [[SDImageCache sharedImageCache] clearMemory];
+    /*
+     *解压缩操作放入一个自动释放池里面。一遍自动释放所有的变量。
+     */
     @autoreleasepool{
         
         CGImageRef imageRef = image.CGImage;
+        //获取图片的色彩空间
         CGColorSpaceRef colorspaceRef = [UIImage colorSpaceForImageRef:imageRef];
-        
+        //宽度和高度
         size_t width = CGImageGetWidth(imageRef);
         size_t height = CGImageGetHeight(imageRef);
+        //图片占用的字节数
         size_t bytesPerRow = kBytesPerPixel * width;
 
         // kCGImageAlphaNone is not supported in CGBitmapContextCreate.
@@ -47,6 +61,7 @@ static const size_t kBitsPerComponent = 8;
         
         // Draw the image into the context and retrieve the new bitmap image without alpha
         CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+        //创建一个么有alpha通道的图片
         CGImageRef imageRefWithoutAlpha = CGBitmapContextCreateImage(context);
         UIImage *imageWithoutAlpha = [UIImage imageWithCGImage:imageRefWithoutAlpha
                                                          scale:image.scale
@@ -65,6 +80,9 @@ static const size_t kBitsPerComponent = 8;
  * Suggested value for iPad2 and iPhone 4: 120.
  * Suggested value for iPhone 3G and iPod 2 and earlier devices: 30.
  */
+/*
+ *定义一张图片可以占用的最大空间
+ */
 static const CGFloat kDestImageSizeMB = 60.0f;
 
 /*
@@ -76,17 +94,28 @@ static const CGFloat kDestImageSizeMB = 60.0f;
 static const CGFloat kSourceImageTileSizeMB = 20.0f;
 
 static const CGFloat kBytesPerMB = 1024.0f * 1024.0f;
+//1MB可以存储多少像素
 static const CGFloat kPixelsPerMB = kBytesPerMB / kBytesPerPixel;
+//如果像素小于这个值，则不解压缩
 static const CGFloat kDestTotalPixels = kDestImageSizeMB * kPixelsPerMB;
 static const CGFloat kTileTotalPixels = kSourceImageTileSizeMB * kPixelsPerMB;
 
 static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to overlap the seems where tiles meet.
 
+
+
+/**
+ 如果原始图片占用的空间太大。则按照一定的比例解压缩。从而不让图片占用的空间太大。
+
+ @param image UIImage对象
+ @return 返回处理结束的UIImage对象
+ */
 + (nullable UIImage *)decodedAndScaledDownImageWithImage:(nullable UIImage *)image {
+    //图片是否支持解压缩
     if (![UIImage shouldDecodeImage:image]) {
         return image;
     }
-    
+    //图片不需要处理。直接解压缩
     if (![UIImage shouldScaleDownImage:image]) {
         return [UIImage decodedImageWithImage:image];
     }
@@ -207,6 +236,12 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     }
 }
 
+/**
+ imge是否能够加压缩
+
+ @param image 图片
+ @return 能否解压缩
+ */
 + (BOOL)shouldDecodeImage:(nullable UIImage *)image {
     // Prevent "CGBitmapContextCreateImage: invalid context 0x0" error
     if (image == nil) {
@@ -214,18 +249,20 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     }
 
     // do not decode animated images
+    //如果是动态图片不处理
     if (image.images != nil) {
         return NO;
     }
     
     CGImageRef imageRef = image.CGImage;
-    
+    //获取image的alpha通道。通过通道获取图片数据
     CGImageAlphaInfo alpha = CGImageGetAlphaInfo(imageRef);
     BOOL anyAlpha = (alpha == kCGImageAlphaFirst ||
                      alpha == kCGImageAlphaLast ||
                      alpha == kCGImageAlphaPremultipliedFirst ||
                      alpha == kCGImageAlphaPremultipliedLast);
     // do not decode images with alpha
+    //如果有alpha通道值，则不处理
     if (anyAlpha) {
         return NO;
     }
@@ -233,6 +270,12 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     return YES;
 }
 
+/**
+ 图片是否支持scale处理
+
+ @param image UIImage对象
+ @return 是否支持scale
+ */
 + (BOOL)shouldScaleDownImage:(nonnull UIImage *)image {
     BOOL shouldScaleDown = YES;
         
@@ -240,7 +283,9 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     CGSize sourceResolution = CGSizeZero;
     sourceResolution.width = CGImageGetWidth(sourceImageRef);
     sourceResolution.height = CGImageGetHeight(sourceImageRef);
+    //图片总共像素
     float sourceTotalPixels = sourceResolution.width * sourceResolution.height;
+    
     float imageScale = kDestTotalPixels / sourceTotalPixels;
     if (imageScale < 1) {
         shouldScaleDown = YES;
@@ -251,6 +296,12 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     return shouldScaleDown;
 }
 
+/**
+ 获取图片的色彩空间
+
+ @param imageRef 图片
+ @return 色彩空间
+ */
 + (CGColorSpaceRef)colorSpaceForImageRef:(CGImageRef)imageRef {
     // current
     CGColorSpaceModel imageColorSpaceModel = CGColorSpaceGetModel(CGImageGetColorSpace(imageRef));

@@ -10,6 +10,9 @@
 #import <Foundation/Foundation.h>
 #import "SDWebImageCompat.h"
 
+/**
+ 把UIImage对象解压缩。
+ */
 @interface UIImage (ForceDecode)
 
 + (nullable UIImage *)decodedImageWithImage:(nullable UIImage *)image;

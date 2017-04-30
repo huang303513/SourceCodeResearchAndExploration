@@ -19,6 +19,10 @@
 @property (strong, nonatomic, nonnull) NSOperationQueue *downloadQueue;
 @property (weak, nonatomic, nullable) NSOperation *lastAddedOperation;
 @property (assign, nonatomic, nullable) Class operationClass;
+
+/**
+ 用于记录url和他对应的SDWebImageDownloaderOperation对象。
+ */
 @property (strong, nonatomic, nonnull) NSMutableDictionary<NSURL *, SDWebImageDownloaderOperation *> *URLOperations;
 @property (strong, nonatomic, nullable) SDHTTPHeadersMutableDictionary *HTTPHeaders;
 // This queue is used to serialize the handling of the network responses of all the download operation in a single queue
@@ -106,6 +110,12 @@
     SDDispatchQueueRelease(_barrierQueue);
 }
 
+/**
+ 添加或者移除请求头域
+
+ @param value 请求头域值
+ @param field 请求头域名
+ */
 - (void)setValue:(nullable NSString *)value forHTTPHeaderField:(nullable NSString *)field {
     if (value) {
         self.HTTPHeaders[field] = value;
@@ -119,6 +129,11 @@
     return self.HTTPHeaders[field];
 }
 
+/**
+ 设置NSOperationQueue并行下载的数量
+
+ @param maxConcurrentDownloads 下载数量
+ */
 - (void)setMaxConcurrentDownloads:(NSInteger)maxConcurrentDownloads {
     _downloadQueue.maxConcurrentOperationCount = maxConcurrentDownloads;
 }
@@ -131,6 +146,11 @@
     return _downloadQueue.maxConcurrentOperationCount;
 }
 
+/**
+ 制定一个`SDWebImageDownloader`的子类作为下载类
+
+ @param operationClass 类名
+ */
 - (void)setOperationClass:(nullable Class)operationClass {
     if (operationClass && [operationClass isSubclassOfClass:[NSOperation class]] && [operationClass conformsToProtocol:@protocol(SDWebImageDownloaderOperationInterface)]) {
         _operationClass = operationClass;
@@ -139,6 +159,15 @@
     }
 }
 
+/**
+ 新建一个SDWebImageDownloadOperation对象来来做具体的下载操作。同时指定缓存策略、cookie策略、自定义请求头域等。
+
+ @param url url
+ @param options 加载选项
+ @param progressBlock 进度progress
+ @param completedBlock 完成回调
+ @return 返回一个SDWebImageDownloadToken，用于关联一个请求
+ */
 - (nullable SDWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
                                                    options:(SDWebImageDownloaderOptions)options
                                                   progress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
@@ -153,6 +182,10 @@
         }
 
         // In order to prevent from potential duplicate caching (NSURLCache + SDImageCache) we disable the cache for image requests if told otherwise
+        /*
+         *为了避免可能存在的NSURLCache和SDImageCache同时缓存。我们默认不允许image对象的NSURLCache对象。
+         具体缓存策略参考http://www.jianshu.com/p/855c2c6e761f
+         */
         NSURLRequestCachePolicy cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
         if (options & SDWebImageDownloaderUseNSURLCache) {
             if (options & SDWebImageDownloaderIgnoreCachedResponse) {
@@ -163,31 +196,38 @@
         }
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:cachePolicy timeoutInterval:timeoutInterval];
-        
+        //使用cookies
         request.HTTPShouldHandleCookies = (options & SDWebImageDownloaderHandleCookies);
+        //使用管道
         request.HTTPShouldUsePipelining = YES;
+        //添加自定义请求头
         if (sself.headersFilter) {
             request.allHTTPHeaderFields = sself.headersFilter(url, [sself.HTTPHeaders copy]);
         }
         else {
             request.allHTTPHeaderFields = sself.HTTPHeaders;
         }
+        //初始化一个自定义NSOperation对象
         SDWebImageDownloaderOperation *operation = [[sself.operationClass alloc] initWithRequest:request inSession:sself.session options:options];
+        //是否解压缩返回的图片
         operation.shouldDecompressImages = sself.shouldDecompressImages;
-        
+        //指定验证信息
         if (sself.urlCredential) {
             operation.credential = sself.urlCredential;
         } else if (sself.username && sself.password) {
             operation.credential = [NSURLCredential credentialWithUser:sself.username password:sself.password persistence:NSURLCredentialPersistenceForSession];
         }
-        
+        //指定优先级
         if (options & SDWebImageDownloaderHighPriority) {
             operation.queuePriority = NSOperationQueuePriorityHigh;
         } else if (options & SDWebImageDownloaderLowPriority) {
             operation.queuePriority = NSOperationQueuePriorityLow;
         }
-
+        //把operatin添加进入NSOperationQueue中
         [sself.downloadQueue addOperation:operation];
+        /*
+         如果是LIFO这种模式，则需要手动指定operation之间的依赖关系
+         */
         if (sself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder) {
             // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
             [sself.lastAddedOperation addDependency:operation];
@@ -198,6 +238,11 @@
     }];
 }
 
+/**
+ 移除一个图片加载操作
+
+ @param token 通过token来确定操作
+ */
 - (void)cancel:(nullable SDWebImageDownloadToken *)token {
     dispatch_barrier_async(self.barrierQueue, ^{
         SDWebImageDownloaderOperation *operation = self.URLOperations[token.url];
@@ -223,12 +268,16 @@
     __block SDWebImageDownloadToken *token = nil;
 
     dispatch_barrier_sync(self.barrierQueue, ^{
+        //看是否当前url是否有对应的Operation图片加载对象
         SDWebImageDownloaderOperation *operation = self.URLOperations[url];
+        //如果没有，则直接创建一个。
         if (!operation) {
+            //创建一个operation。并且添加到URLOperation中。
             operation = createCallback();
             self.URLOperations[url] = operation;
 
             __weak SDWebImageDownloaderOperation *woperation = operation;
+            //设置operation操作完成以后的回调
             operation.completionBlock = ^{
               SDWebImageDownloaderOperation *soperation = woperation;
               if (!soperation) return;
@@ -257,6 +306,12 @@
 
 #pragma mark Helper methods
 
+/**
+ 获取task对应的SDWebImageDownloaderOperation。
+
+ @param task task对象
+ @return SDWebImageDownloaderOperation对象
+ */
 - (SDWebImageDownloaderOperation *)operationWithTask:(NSURLSessionTask *)task {
     SDWebImageDownloaderOperation *returnOperation = nil;
     for (SDWebImageDownloaderOperation *operation in self.downloadQueue.operations) {
@@ -277,7 +332,7 @@ didReceiveResponse:(NSURLResponse *)response
 
     // Identify the operation that runs this task and pass it the delegate method
     SDWebImageDownloaderOperation *dataOperation = [self operationWithTask:dataTask];
-
+    //调用`SDWebImageDownloaderOperation`类对应的方法来处理
     [dataOperation URLSession:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
 }
 
@@ -285,7 +340,7 @@ didReceiveResponse:(NSURLResponse *)response
 
     // Identify the operation that runs this task and pass it the delegate method
     SDWebImageDownloaderOperation *dataOperation = [self operationWithTask:dataTask];
-
+    //调用`SDWebImageDownloaderOperation`类对应的方法来处理
     [dataOperation URLSession:session dataTask:dataTask didReceiveData:data];
 }
 
@@ -296,7 +351,7 @@ didReceiveResponse:(NSURLResponse *)response
 
     // Identify the operation that runs this task and pass it the delegate method
     SDWebImageDownloaderOperation *dataOperation = [self operationWithTask:dataTask];
-
+    //调用`SDWebImageDownloaderOperation`类对应的方法来处理
     [dataOperation URLSession:session dataTask:dataTask willCacheResponse:proposedResponse completionHandler:completionHandler];
 }
 
@@ -305,7 +360,7 @@ didReceiveResponse:(NSURLResponse *)response
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     // Identify the operation that runs this task and pass it the delegate method
     SDWebImageDownloaderOperation *dataOperation = [self operationWithTask:task];
-
+    //调用`SDWebImageDownloaderOperation`类对应的方法来处理
     [dataOperation URLSession:session task:task didCompleteWithError:error];
 }
 
@@ -318,7 +373,7 @@ didReceiveResponse:(NSURLResponse *)response
 
     // Identify the operation that runs this task and pass it the delegate method
     SDWebImageDownloaderOperation *dataOperation = [self operationWithTask:task];
-
+    //调用`SDWebImageDownloaderOperation`类对应的方法来处理
     [dataOperation URLSession:session task:task didReceiveChallenge:challenge completionHandler:completionHandler];
 }
 

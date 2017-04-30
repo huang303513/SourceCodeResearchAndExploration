@@ -146,7 +146,7 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
      * If `SDWebImageProgressiveDownload` flag is set the scale down is deactivated.
      */
     /*
-     *默认情况下，图片会按照他的原始大小来解码显示。这个属性会调整图片的尺寸到合适的大小根据设备的内存限制。
+     *默认情况下，图片会按照他的原始大小来解码显示。根据设备的内存限制，这个属性会调整图片的尺寸到合适的大小再解压缩。
      *如果`SDWebImageProgressiveDownload`标记被设置了，则这个flag不起作用。
      */
     SDWebImageScaleDownLargeImages = 1 << 12
