@@ -15,7 +15,7 @@
 @implementation UIImage (GIF)
 
 /**
- 根据gif图片的data生成对应的gif的UIImage对象
+ 根据gif图片的data生成对应的gif的UIImage对象。而且只会取GIF图片的第一张UIImage。
 
  @param data gif图片的data对象
  @return 生成的image对象。这里只获取gif图片的第一张图像，如果要实现gif完整图像，使用FLAnimatedImageView
@@ -25,11 +25,10 @@
         return nil;
     }
     CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
-
+    //获取GIF图片包含的UIImage数量
     size_t count = CGImageSourceGetCount(source);
-
     UIImage *staticImage;
-
+    //如果只有一张UIImage
     if (count <= 1) {
         staticImage = [[UIImage alloc] initWithData:data];
     } else {
@@ -42,7 +41,7 @@
         CGFloat scale = 1;
         scale = [UIScreen mainScreen].scale;
 #endif
-        
+        //获取第一张UIImage对象
         CGImageRef CGImage = CGImageSourceCreateImageAtIndex(source, 0, NULL);
 #if SD_UIKIT || SD_WATCH
         //获取gif图片的第一张图片
@@ -60,6 +59,11 @@
     return staticImage;
 }
 
+/**
+ 判断一张图片是不是GIF图片
+
+ @return bool值
+ */
 - (BOOL)isGIF {
     return (self.images != nil);
 }

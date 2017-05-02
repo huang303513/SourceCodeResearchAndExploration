@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/NSData+ImageContentType.m"
-            timestampString = "514992654.38778"
+            timestampString = "515430604.290627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "+sd_imageFormatForImageData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/NSData+ImageContentType.m"
-            timestampString = "514992654.38778"
+            timestampString = "515430604.290627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "+sd_imageFormatForImageData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -554,7 +554,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.20698"
+                  timestampString = "515430820.020007"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "598"
@@ -569,7 +569,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.209642"
+                  timestampString = "515430820.024456"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "598"
@@ -618,7 +618,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.237593"
+                  timestampString = "515430820.042373"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "734"
@@ -633,7 +633,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.240129"
+                  timestampString = "515430820.045963"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "734"
@@ -666,7 +666,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.256706"
+                  timestampString = "515430820.04964"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "747"
@@ -681,7 +681,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.270015"
+                  timestampString = "515430820.051711"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "747"
@@ -714,7 +714,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.274505"
+                  timestampString = "515430820.055746"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "757"
@@ -729,7 +729,7 @@
                   moduleName = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huangchengdu/Desktop/github/iOSSourceCodeStudy/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage4.X%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB201704/SDWebImage/SDImageCache.m"
-                  timestampString = "515391149.282671"
+                  timestampString = "515430820.057765"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "757"
@@ -1392,6 +1392,38 @@
             startingLineNumber = "35"
             endingLineNumber = "35"
             landmarkName = "-start:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDWebImageDecoder.m"
+            timestampString = "515430689.287546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "+decodedImageWithImage:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDWebImage4.X&#x6e90;&#x7801;&#x9605;&#x8bfb;201704/SDWebImage/SDWebImageDecoder.m"
+            timestampString = "515430696.040972"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "+decodedImageWithImage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

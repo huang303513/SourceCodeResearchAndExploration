@@ -13,7 +13,7 @@
 #endif
 
 /**
- 给定一张图片，获取指定屏幕路分辨率下面的大小。比如两倍大小，三倍大小
+ 给定一张图片，通过scale属性返回一个放大的图片。
 
  @param key 图片名称
  @param image 资源图片
@@ -51,6 +51,7 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
                 if (range.location != NSNotFound) {
                     scale = 2.0;
                 }
+                
                 range = [key rangeOfString:@"@3x."];
                 if (range.location != NSNotFound) {
                     scale = 3.0;

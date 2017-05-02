@@ -27,7 +27,6 @@
     if (!data) {
         return nil;
     }
-    
     UIImage *image;
     //获取data的图片类型，png，gif，jpg
     SDImageFormat imageFormat = [NSData sd_imageFormatForImageData:data];

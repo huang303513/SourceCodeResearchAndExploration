@@ -12,12 +12,19 @@
 
 @implementation NSData (ImageContentType)
 
+/**
+ 根据图片NSData获取图片的类型
+
+ @param data NSData数据
+ @return 图片数据类型
+ */
 + (SDImageFormat)sd_imageFormatForImageData:(nullable NSData *)data {
     if (!data) {
         return SDImageFormatUndefined;
     }
     
     uint8_t c;
+    //获取图片数据的第一个字节数据
     [data getBytes:&c length:1];
     //根据字母的ASC码比较
     switch (c) {

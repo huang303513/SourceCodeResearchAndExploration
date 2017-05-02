@@ -15,8 +15,20 @@
  */
 @interface UIImage (ForceDecode)
 
+/**
+ 解压缩图片
+
+ @param image 原始图片
+ @return 解压缩以后的图片
+ */
 + (nullable UIImage *)decodedImageWithImage:(nullable UIImage *)image;
 
+/**
+ 先把图片缩小然后再解压缩图片
+
+ @param image 原始图片
+ @return 解压缩以后的图片
+ */
 + (nullable UIImage *)decodedAndScaledDownImageWithImage:(nullable UIImage *)image;
 
 @end

@@ -12,7 +12,7 @@
 
 
 /**
- 不同文件类型的枚举
+ 不同图片类型的枚举
 
  - SDImageFormatUndefined: 未知
  - SDImageFormatJPEG: JPG

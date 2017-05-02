@@ -48,6 +48,7 @@ static const size_t kBitsPerComponent = 8;
         // kCGImageAlphaNone is not supported in CGBitmapContextCreate.
         // Since the original image here has no alpha info, use kCGImageAlphaNoneSkipLast
         // to create bitmap graphics contexts without alpha info.
+        //创建一个绘制图片的上下文
         CGContextRef context = CGBitmapContextCreate(NULL,
                                                      width,
                                                      height,
@@ -60,9 +61,11 @@ static const size_t kBitsPerComponent = 8;
         }
         
         // Draw the image into the context and retrieve the new bitmap image without alpha
+        //绘制一个和图片大小一样的图片
         CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
         //创建一个么有alpha通道的图片
         CGImageRef imageRefWithoutAlpha = CGBitmapContextCreateImage(context);
+        //得到解压缩以后的图片
         UIImage *imageWithoutAlpha = [UIImage imageWithCGImage:imageRefWithoutAlpha
                                                          scale:image.scale
                                                    orientation:image.imageOrientation];
@@ -105,7 +108,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
 
 
 /**
- 如果原始图片占用的空间太大。则按照一定的比例解压缩。从而不让图片占用的空间太大。
+ 如果原始图片占用的空间太大。则按照一定的比例解压缩。从而不让解压缩以后的图片占用的空间太大。
 
  @param image UIImage对象
  @return 返回处理结束的UIImage对象
@@ -128,23 +131,28 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         CGImageRef sourceImageRef = image.CGImage;
         
         CGSize sourceResolution = CGSizeZero;
+        //获取原始图片的宽度和高度
         sourceResolution.width = CGImageGetWidth(sourceImageRef);
         sourceResolution.height = CGImageGetHeight(sourceImageRef);
+        //获取原始图片的总像素
         float sourceTotalPixels = sourceResolution.width * sourceResolution.height;
         // Determine the scale ratio to apply to the input image
         // that results in an output image of the defined size.
         // see kDestImageSizeMB, and how it relates to destTotalPixels.
+        //根据一定的比例设置目标图片的宽度和高度
         float imageScale = kDestTotalPixels / sourceTotalPixels;
         CGSize destResolution = CGSizeZero;
         destResolution.width = (int)(sourceResolution.width*imageScale);
         destResolution.height = (int)(sourceResolution.height*imageScale);
         
         // current color space
+        //获取原始图片的像素空间。默认是RGB
         CGColorSpaceRef colorspaceRef = [UIImage colorSpaceForImageRef:sourceImageRef];
-        
+        //每一行像素占用的内存空间大小
         size_t bytesPerRow = kBytesPerPixel * destResolution.width;
         
         // Allocate enough pixel data to hold the output image.
+        //目标图片占用的总内存空间大小。一行占用内存空间大小*高度
         void* destBitmapData = malloc( bytesPerRow * destResolution.height );
         if (destBitmapData == NULL) {
             return image;
@@ -153,6 +161,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         // kCGImageAlphaNone is not supported in CGBitmapContextCreate.
         // Since the original image here has no alpha info, use kCGImageAlphaNoneSkipLast
         // to create bitmap graphics contexts without alpha info.
+        //根据各种设置创建一个上下文环境
         destContext = CGBitmapContextCreate(destBitmapData,
                                             destResolution.width,
                                             destResolution.height,
@@ -165,6 +174,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
             free(destBitmapData);
             return image;
         }
+        //设置目标图片的质量
         CGContextSetInterpolationQuality(destContext, kCGInterpolationHigh);
         
         // Now define the size of the rectangle to be used for the
@@ -227,6 +237,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         if (destImageRef == NULL) {
             return image;
         }
+        //生成处理结束以后的图片
         UIImage *destImage = [UIImage imageWithCGImage:destImageRef scale:image.scale orientation:image.imageOrientation];
         CGImageRelease(destImageRef);
         if (destImage == nil) {
@@ -271,7 +282,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
 }
 
 /**
- 图片是否支持scale处理
+是否需要减少原始图片的大小
 
  @param image UIImage对象
  @return 是否支持scale
@@ -285,7 +296,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     sourceResolution.height = CGImageGetHeight(sourceImageRef);
     //图片总共像素
     float sourceTotalPixels = sourceResolution.width * sourceResolution.height;
-    
+    //如果图片的总像素大于一定比例，则需要做简化处理
     float imageScale = kDestTotalPixels / sourceTotalPixels;
     if (imageScale < 1) {
         shouldScaleDown = YES;

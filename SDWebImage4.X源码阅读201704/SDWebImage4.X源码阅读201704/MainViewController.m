@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "NSData+ImageContentType.h"
 #import "SDWebImageCompat.h"
+#import "SDWebImageDecoder.h"
 #import "Config.h"
 
 @interface MainViewController ()
@@ -30,7 +31,7 @@
     NSData *imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"rock.gif" ofType:nil]];
     SDImageFormat formate = [NSData sd_imageFormatForImageData:imageData];
     NSString *message = [NSString stringWithFormat:@"%d",formate];
-    alert(message);
+    showMessage(message,self);
 }
 
 
@@ -51,6 +52,23 @@
     NSString *path3 = [documentPath stringByAppendingPathComponent:@"dist@3x.png"];
     [UIImagePNGRepresentation(dis3ScaleImage) writeToFile:path3 atomically:YES];
 }
+
+/**
+ 解压缩图片
+
+ @param sender 解压缩图片
+ */
+- (IBAction)unZipImage:(id)sender {
+    UIImage *sourceImage = [UIImage imageNamed:@"2.png"];
+    UIImage *distImage = [UIImage decodedAndScaledDownImageWithImage:sourceImage];
+    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *path1 = [documentPath stringByAppendingPathComponent:@"distImage.png"];
+    [UIImagePNGRepresentation(distImage) writeToFile:path1 atomically:YES];
+    NSString *path2 = [documentPath stringByAppendingPathComponent:@"sourceImage.png"];
+    [UIImagePNGRepresentation(sourceImage) writeToFile:path2 atomically:YES];
+    
+}
+
 
 
 @end
