@@ -17,6 +17,8 @@
 		4D942C791EB2258A006D4907 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D942C781EB2258A006D4907 /* 2.png */; };
 		4D942C7D1EB2F356006D4907 /* SDImageCacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D942C7C1EB2F356006D4907 /* SDImageCacheViewController.m */; };
 		4D942C801EB423C7006D4907 /* SDWebImageManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D942C7F1EB423C7006D4907 /* SDWebImageManagerViewController.m */; };
+		4D942C831EB83502006D4907 /* SDWebImageDownLoaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D942C821EB83502006D4907 /* SDWebImageDownLoaderViewController.m */; };
+		4D942C851EB85C76006D4907 /* SDWebImage学习笔记.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4D942C841EB85C76006D4907 /* SDWebImage学习笔记.txt */; };
 		4DE9D7BA1EB0D9160038C4E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9D7B91EB0D9160038C4E8 /* main.m */; };
 		4DE9D7BD1EB0D9160038C4E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9D7BC1EB0D9160038C4E8 /* AppDelegate.m */; };
 		4DE9D7C31EB0D9160038C4E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9D7C11EB0D9160038C4E8 /* Main.storyboard */; };
@@ -61,6 +63,9 @@
 		4D942C7C1EB2F356006D4907 /* SDImageCacheViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCacheViewController.m; sourceTree = "<group>"; };
 		4D942C7E1EB423C7006D4907 /* SDWebImageManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManagerViewController.h; sourceTree = "<group>"; };
 		4D942C7F1EB423C7006D4907 /* SDWebImageManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManagerViewController.m; sourceTree = "<group>"; };
+		4D942C811EB83502006D4907 /* SDWebImageDownLoaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownLoaderViewController.h; sourceTree = "<group>"; };
+		4D942C821EB83502006D4907 /* SDWebImageDownLoaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownLoaderViewController.m; sourceTree = "<group>"; };
+		4D942C841EB85C76006D4907 /* SDWebImage学习笔记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SDWebImage学习笔记.txt"; sourceTree = "<group>"; };
 		4DE9D7B51EB0D9160038C4E8 /* SDWebImage4.X源码阅读201704.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDWebImage4.X源码阅读201704.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DE9D7B91EB0D9160038C4E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4DE9D7BB1EB0D9160038C4E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 		4DE9D7B81EB0D9160038C4E8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4D942C841EB85C76006D4907 /* SDWebImage学习笔记.txt */,
 				4D942C781EB2258A006D4907 /* 2.png */,
 				4D942C6A1EB21115006D4907 /* rock.gif */,
 				4D942C671EB210AC006D4907 /* SDWebImageSequenceDiagram.png */,
@@ -190,6 +196,8 @@
 				4D942C7C1EB2F356006D4907 /* SDImageCacheViewController.m */,
 				4D942C7E1EB423C7006D4907 /* SDWebImageManagerViewController.h */,
 				4D942C7F1EB423C7006D4907 /* SDWebImageManagerViewController.m */,
+				4D942C811EB83502006D4907 /* SDWebImageDownLoaderViewController.h */,
+				4D942C821EB83502006D4907 /* SDWebImageDownLoaderViewController.m */,
 			);
 			name = "测试验证";
 			sourceTree = "<group>";
@@ -316,6 +324,7 @@
 				4DE9D7C81EB0D9160038C4E8 /* LaunchScreen.storyboard in Resources */,
 				4DE9D7C51EB0D9160038C4E8 /* Assets.xcassets in Resources */,
 				4DE9D7C31EB0D9160038C4E8 /* Main.storyboard in Resources */,
+				4D942C851EB85C76006D4907 /* SDWebImage学习笔记.txt in Resources */,
 				4D942C741EB21130006D4907 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DE9D80D1EB0D9E90038C4E8 /* UIView+WebCache.m in Sources */,
+				4D942C831EB83502006D4907 /* SDWebImageDownLoaderViewController.m in Sources */,
 				4DE9D8051EB0D9E90038C4E8 /* SDWebImageManager.m in Sources */,
 				4DE9D8001EB0D9E90038C4E8 /* SDImageCacheConfig.m in Sources */,
 				4D942C771EB21CE9006D4907 /* MainViewController.m in Sources */,

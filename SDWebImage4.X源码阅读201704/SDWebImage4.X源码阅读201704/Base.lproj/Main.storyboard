@@ -53,6 +53,14 @@
                                     <segue destination="nDG-kq-nTn" kind="push" id="rWI-8k-dFk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jwh-K6-Kw0">
+                                <rect key="frame" x="34" y="298" width="205" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="SDWebImageDownloader测试"/>
+                                <connections>
+                                    <segue destination="3fN-0F-0i2" kind="push" id="UgK-oU-Hos"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -61,6 +69,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="616.79999999999995" y="133.5832083958021"/>
+        </scene>
+        <!--Web Image Down Loader View Controller-->
+        <scene sceneID="Upw-x5-Bk3">
+            <objects>
+                <viewController id="3fN-0F-0i2" customClass="SDWebImageDownLoaderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Il9-Io-A9k"/>
+                        <viewControllerLayoutGuide type="bottom" id="nu6-6K-p8D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xqX-ls-KVY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqO-R3-taN">
+                                <rect key="frame" x="147" y="115" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="开始下载"/>
+                                <connections>
+                                    <action selector="start:" destination="3fN-0F-0i2" eventType="touchUpInside" id="b1d-Oh-vdF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjV-nQ-PFg">
+                                <rect key="frame" x="156" y="183" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="取消下载"/>
+                                <connections>
+                                    <action selector="cancel:" destination="3fN-0F-0i2" eventType="touchUpInside" id="oiS-mg-sTZ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aeD-sI-xrm">
+                                <rect key="frame" x="0.0" y="423" width="375" height="244"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="244" id="Rea-1U-PAs"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agj-hM-VMy">
+                                <rect key="frame" x="163" y="239" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="挂起"/>
+                                <connections>
+                                    <action selector="suspend:" destination="3fN-0F-0i2" eventType="touchUpInside" id="m5P-lV-VpF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aeD-sI-xrm" firstAttribute="leading" secondItem="xqX-ls-KVY" secondAttribute="leading" id="4UI-lD-c8E"/>
+                            <constraint firstItem="nu6-6K-p8D" firstAttribute="top" secondItem="aeD-sI-xrm" secondAttribute="bottom" id="70o-cM-a2J"/>
+                            <constraint firstAttribute="trailing" secondItem="aeD-sI-xrm" secondAttribute="trailing" id="NKI-ZG-xJV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mov-08-nvr"/>
+                    <connections>
+                        <outlet property="imageView" destination="aeD-sI-xrm" id="9cv-9z-KHH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pti-5R-NLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="617" y="841"/>
         </scene>
         <!--Web Image Manager View Controller-->
         <scene sceneID="Dve-Wa-32x">
@@ -75,7 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ie8-9K-Mwd">
-                                <rect key="frame" x="108" y="144" width="169" height="30"/>
+                                <rect key="frame" x="88" y="64" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="图片处理与不处理解压缩"/>
                                 <connections>
@@ -83,7 +150,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5D-Mt-5Zk">
-                                <rect key="frame" x="122" y="182" width="140" height="30"/>
+                                <rect key="frame" x="96" y="112" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="图片加载Cookie处理"/>
                                 <connections>
@@ -93,11 +160,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="44Y-4u-gLD">
                                 <rect key="frame" x="5" y="506" width="370" height="161"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="161" id="GYU-Eq-o57"/>
                                     <constraint firstAttribute="height" constant="161" id="hfF-MN-869"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cta-ep-y3F">
-                                <rect key="frame" x="122" y="229" width="140" height="30"/>
+                                <rect key="frame" x="96" y="166" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="图片加载HTTPS处理"/>
                                 <connections>
@@ -105,23 +173,41 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rW2-oW-ktV">
-                                <rect key="frame" x="130" y="266" width="174" height="30"/>
+                                <rect key="frame" x="88" y="204" width="174" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="图片加载Background处理"/>
                                 <connections>
                                     <action selector="clickButton4:" destination="nDG-kq-nTn" eventType="touchUpInside" id="dgh-g3-b5T"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YzN-Eq-hmB" customClass="FLAnimatedImageView">
+                                <rect key="frame" x="0.0" y="370" width="375" height="138"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="cX6-nB-0iw"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8B-HI-JCP">
+                                <rect key="frame" x="114" y="242" width="123" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="动态图片加载处理"/>
+                                <connections>
+                                    <action selector="clickButton5:" destination="nDG-kq-nTn" eventType="touchUpInside" id="2Uh-uO-Ezm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YzN-Eq-hmB" secondAttribute="trailing" constant="-40" id="3ah-x6-VN6"/>
+                            <constraint firstItem="YzN-Eq-hmB" firstAttribute="leading" secondItem="ZHt-q6-PwT" secondAttribute="leading" id="bei-Pk-b4y"/>
                             <constraint firstAttribute="trailing" secondItem="44Y-4u-gLD" secondAttribute="trailing" id="cMe-H1-dfv"/>
+                            <constraint firstItem="10E-y1-gLt" firstAttribute="top" secondItem="YzN-Eq-hmB" secondAttribute="bottom" constant="159" id="dOx-0H-Axk"/>
                             <constraint firstItem="10E-y1-gLt" firstAttribute="top" secondItem="44Y-4u-gLD" secondAttribute="bottom" id="jyZ-de-mYP"/>
                             <constraint firstItem="44Y-4u-gLD" firstAttribute="leading" secondItem="ZHt-q6-PwT" secondAttribute="leading" constant="5" id="zwl-U2-lPe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ic2-w4-3vq"/>
                     <connections>
+                        <outlet property="animateImageView" destination="YzN-Eq-hmB" id="LKp-yB-C4B"/>
                         <outlet property="imageView" destination="44Y-4u-gLD" id="C6r-br-7Ya"/>
                     </connections>
                 </viewController>

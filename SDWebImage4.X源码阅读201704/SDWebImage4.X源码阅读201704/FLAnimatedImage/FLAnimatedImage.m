@@ -177,6 +177,14 @@ static NSHashTable *allAnimatedImagesWeak;
     return [self initWithAnimatedGIFData:data optimalFrameCacheSize:0 predrawingEnabled:YES];
 }
 
+/**
+ <#Description#>
+
+ @param data 动态图片的NSData
+ @param optimalFrameCacheSize <#optimalFrameCacheSize description#>
+ @param isPredrawingEnabled <#isPredrawingEnabled description#>
+ @return <#return value description#>
+ */
 - (instancetype)initWithAnimatedGIFData:(NSData *)data optimalFrameCacheSize:(NSUInteger)optimalFrameCacheSize predrawingEnabled:(BOOL)isPredrawingEnabled
 {
     // Early return if no data supplied!
@@ -353,6 +361,12 @@ static NSHashTable *allAnimatedImagesWeak;
 }
 
 
+/**
+ 把NSData转换为`FLAnimatedImage`对象。
+
+ @param data 动态图片数据
+ @return 返回FLAnimatedImage对象
+ */
 + (instancetype)animatedImageWithGIFData:(NSData *)data
 {
     FLAnimatedImage *animatedImage = [[FLAnimatedImage alloc] initWithAnimatedGIFData:data];

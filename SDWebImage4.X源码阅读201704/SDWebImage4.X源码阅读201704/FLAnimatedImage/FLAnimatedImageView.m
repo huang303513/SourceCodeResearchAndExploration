@@ -23,13 +23,32 @@
 @interface FLAnimatedImageView ()
 
 // Override of public `readonly` properties as private `readwrite`
+
+/**
+ 当前图片帧
+ */
 @property (nonatomic, strong, readwrite) UIImage *currentFrame;
+
+/**
+ 当前图片帧的索引
+ */
 @property (nonatomic, assign, readwrite) NSUInteger currentFrameIndex;
 
+/**
+ 动态图片总共有多少个UIImage对象
+ */
 @property (nonatomic, assign) NSUInteger loopCountdown;
 @property (nonatomic, assign) NSTimeInterval accumulator;
+
+
+/**
+ http://www.jianshu.com/p/c35a81c3b9eb
+ */
 @property (nonatomic, strong) CADisplayLink *displayLink;
 
+/**
+ 在显示动画之前。我们需要通过这个属性来确定是否显示动画
+ */
 @property (nonatomic, assign) BOOL shouldAnimate; // Before checking this value, call `-updateShouldAnimate` whenever the animated image or visibility (window, superview, hidden, alpha) has changed.
 @property (nonatomic, assign) BOOL needsDisplayWhenImageBecomesAvailable;
 
@@ -93,24 +112,33 @@
 #pragma mark - Accessors
 #pragma mark Public
 
+
+/**
+ animatedImage的setter方法。通过这个属性setter方法来设置FLAnimatedImageView的数据。并且开始动态显示
+
+ @param animatedImage animatedImage属性
+ */
 - (void)setAnimatedImage:(FLAnimatedImage *)animatedImage
 {
     if (![_animatedImage isEqual:animatedImage]) {
         if (animatedImage) {
+            //清除UIImageView以前的图片数据
             // Clear out the image.
             super.image = nil;
             // Ensure disabled highlighting; it's not supported (see `-setHighlighted:`).
             super.highlighted = NO;
             // UIImageView seems to bypass some accessors when calculating its intrinsic content size, so this ensures its intrinsic content size comes from the animated image.
+            //先说intrinsicContentSize，也就是控件的内置大小。比如UILabel，UIButton等控件，他们都有自己的内置大小。控件的内置大小往往是由控件本身的内容所决定的，比如一个UILabel的文字很长，那么该UILabel的内置大小自然会很长。控件的内置大小可以通过UIView的intrinsicContentSize属性来获取内置大小，也可以通过invalidateIntrinsicContentSize方法来在下次UI规划事件中重新计算intrinsicContentSize。如果直接创建一个原始的UIView对象，显然它的内置大小为0。
             [self invalidateIntrinsicContentSize];
         } else {
             // Stop animating before the animated image gets cleared out.
             [self stopAnimating];
         }
-        
+        //赋值
         _animatedImage = animatedImage;
-        
+        //当前动态图片数据帧
         self.currentFrame = animatedImage.posterImage;
+        //当前数据帧索引
         self.currentFrameIndex = 0;
         if (animatedImage.loopCount > 0) {
             self.loopCountdown = animatedImage.loopCount;
@@ -120,8 +148,10 @@
         self.accumulator = 0.0;
         
         // Start animating after the new animated image has been set.
+        //更新对象的状态。从而更新shouldAnimated这个属性的值。
         [self updateShouldAnimate];
         if (self.shouldAnimate) {
+            //开始动态显示
             [self startAnimating];
         }
         
@@ -288,14 +318,16 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
             // independent of the display link's lifetime. Upon image view deallocation, we invalidate the display
             // link which will lead to the deallocation of both the display link and the weak proxy.
             FLWeakProxy *weakProxy = [FLWeakProxy weakProxyForObject:self];
+            //每1/60秒都回调用一次displayDidRefresh方法来做UI处理
             self.displayLink = [CADisplayLink displayLinkWithTarget:weakProxy selector:@selector(displayDidRefresh:)];
-            
+            ////把displayLink加入主线程的commomMode里面
             [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:self.runLoopMode];
         }
 
         // Note: The display link's `.frameInterval` value of 1 (default) means getting callbacks at the refresh rate of the display (~60Hz).
         // Setting it to 2 divides the frame rate by 2 and hence calls back at every other display refresh.
         const NSTimeInterval kDisplayRefreshRate = 60.0; // 60Hz
+        //指定了每次刷新的时候显示的UIImage的数量。
         self.displayLink.frameInterval = MAX([self frameDelayGreatestCommonDivisor] * kDisplayRefreshRate, 1);
 
         self.displayLink.paused = NO;
@@ -352,6 +384,10 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 
 // Don't repeatedly check our window & superview in `-displayDidRefresh:` for performance reasons.
 // Just update our cached value whenever the animated image or visibility (window, superview, hidden, alpha) is changed.
+
+/**
+ 判断当前FLAnimatedImageView是否需要显示动画
+ */
 - (void)updateShouldAnimate
 {
     BOOL isVisible = self.window && self.superview && ![self isHidden] && self.alpha > 0.0;
@@ -359,6 +395,11 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 }
 
 
+/**
+每次都提前处理好下一帧需要显示的图片数据
+
+ @param displayLink 通过displayLink来控制时间
+ */
 - (void)displayDidRefresh:(CADisplayLink *)displayLink
 {
     // If for some reason a wild call makes it through when we shouldn't be animating, bail.
@@ -367,12 +408,13 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
         FLLog(FLLogLevelWarn, @"Trying to animate image when we shouldn't: %@", self);
         return;
     }
-    
+    //获取当前显示数据帧的索引
     NSNumber *delayTimeNumber = [self.animatedImage.delayTimesForIndexes objectForKey:@(self.currentFrameIndex)];
     // If we don't have a frame delay (e.g. corrupt frame), don't update the view but skip the playhead to the next frame (in else-block).
     if (delayTimeNumber) {
         NSTimeInterval delayTime = [delayTimeNumber floatValue];
         // If we have a nil image (e.g. waiting for frame), don't update the view nor playhead.
+        //当前动画帧要显示的UIImage对象
         UIImage *image = [self.animatedImage imageLazilyCachedAtIndex:self.currentFrameIndex];
         if (image) {
             FLLog(FLLogLevelVerbose, @"Showing frame %lu for animated image: %@", (unsigned long)self.currentFrameIndex, self.animatedImage);

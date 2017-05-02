@@ -8,12 +8,17 @@
 
 #import "SDWebImageManagerViewController.h"
 #import "SDWebImageManager.h"
+#import "FLAnimatedImageView.h"
+#import "FLAnimatedImageView+WebCache.h"
 
 static NSString *url = @"http://i1.piimg.com/4851/059582e7cf7a7f43.png";
 //大图。6.1MB。
 static NSString *bigUrl = @"https://www.tuchuang001.com/images/2017/04/30/11.png";
+//gif图片
+static NSString *gifUrl = @"https://www.tuchuang001.com/images/2017/05/01/QQ20150326140155.gif";
 @interface SDWebImageManagerViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *animateImageView;
 
 @end
 
@@ -62,7 +67,7 @@ static NSString *bigUrl = @"https://www.tuchuang001.com/images/2017/04/30/11.png
 }
 
 /**
- HTTPS处理
+ HTTPS处理.忽略SSL证书
 
  @param sender <#sender description#>
  */
@@ -78,7 +83,7 @@ static NSString *bigUrl = @"https://www.tuchuang001.com/images/2017/04/30/11.png
 /**
 应用进入后台下载处理
  
- @param sender <#sender description#>
+ @param sender nil
  */
 - (IBAction)clickButton4:(id)sender {
     [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:bigUrl] options:SDWebImageAllowInvalidSSLCertificates|SDWebImageContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
@@ -88,5 +93,17 @@ static NSString *bigUrl = @"https://www.tuchuang001.com/images/2017/04/30/11.png
     }];
 }
 
+
+/**
+gif动态图片处理
+ 
+ @param sender nil
+ */
+- (IBAction)clickButton5:(id)sender {
+    [self.animateImageView sd_setImageWithURL:[NSURL URLWithString:gifUrl] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates|SDWebImageTransformAnimatedImage completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        NSLog(@"下载完成");
+    }];
+    
+}
 
 @end

@@ -52,8 +52,11 @@ typedef NSMutableDictionary<NSString *, id> SDOperationsDictionary;
  */
 - (void)sd_cancelImageLoadOperationWithKey:(nullable NSString *)key {
     // Cancel in progress downloader from queue
+    //获取当前View对应的所有key
     SDOperationsDictionary *operationDictionary = [self operationDictionary];
+    //获取对应的图片加载Operation
     id operations = operationDictionary[key];
+    //取消所有当前View对应的所有Operation
     if (operations) {
         if ([operations isKindOfClass:[NSArray class]]) {
             for (id <SDWebImageOperation> operation in operations) {
