@@ -296,6 +296,12 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     }
 }
 
+/**
+ 把图片资源存入磁盘
+
+ @param imageData 图片数据
+ @param key key
+ */
 - (void)storeImageDataToDisk:(nullable NSData *)imageData forKey:(nullable NSString *)key {
     if (!imageData || !key) {
         return;
@@ -459,8 +465,8 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
         }
         return nil;
     }
-
     // First check the in-memory cache...
+    //首先从内测中查找图片
     UIImage *image = [self imageFromMemoryCacheForKey:key];
     if (image) {
         NSData *diskData = nil;
@@ -480,14 +486,16 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
             // do not call the completion if cancelled
             return;
         }
+        //在一个自动释放池中处理图片从磁盘加载
         @autoreleasepool {
             NSData *diskData = [self diskImageDataBySearchingAllPathsForKey:key];
             UIImage *diskImage = [self diskImageForKey:key];
             if (diskImage && self.config.shouldCacheImagesInMemory) {
                 NSUInteger cost = SDCacheCostForImage(diskImage);
+                //把从磁盘取出的缓存图片加入内存缓存中
                 [self.memCache setObject:diskImage forKey:key cost:cost];
             }
-
+            //图片处理完成以后回调Block
             if (doneBlock) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     doneBlock(diskImage, diskData, SDImageCacheTypeDisk);
@@ -495,7 +503,6 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
             }
         }
     });
-
     return operation;
 }
 

@@ -46,7 +46,7 @@ typedef NSMutableDictionary<NSString *, id> SDOperationsDictionary;
 }
 
 /**
- 取消当前key对应的所有实现了SDWebImageOperation协议的Operation对象
+ 取消当前key对应的所有`SDWebImageCombinedOperation`对象
 
  @param key Operation对应的key
  */
@@ -61,6 +61,7 @@ typedef NSMutableDictionary<NSString *, id> SDOperationsDictionary;
         if ([operations isKindOfClass:[NSArray class]]) {
             for (id <SDWebImageOperation> operation in operations) {
                 if (operation) {
+                    //SDWebImageCombinedOperation对象的cancel方法。实现具体的取消操作
                     [operation cancel];
                 }
             }

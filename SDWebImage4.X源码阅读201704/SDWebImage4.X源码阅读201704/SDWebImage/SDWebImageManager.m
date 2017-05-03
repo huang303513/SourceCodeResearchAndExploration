@@ -10,16 +10,36 @@
 #import <objc/message.h>
 #import "NSImage+WebCache.h"
 
+
+/**
+ 通过这个对象关联一个`SDWebImageDownloaderOperation`对象
+ */
 @interface SDWebImageCombinedOperation : NSObject <SDWebImageOperation>
 
+/**
+ 用于判断Operation是否已经取消
+ */
 @property (assign, nonatomic, getter = isCancelled) BOOL cancelled;
+
+/**
+ 取消回调
+ */
 @property (copy, nonatomic, nullable) SDWebImageNoParamsBlock cancelBlock;
+
+/**
+ SDWebImageDownloaderOperation对象。可以通过这个属性取消一个NSOperation
+ */
 @property (strong, nonatomic, nullable) NSOperation *cacheOperation;
 
 @end
 
 @implementation SDWebImageCombinedOperation
 
+/**
+ 取消Operation的回调Block
+
+ @param cancelBlock 回调Block
+ */
 - (void)setCancelBlock:(nullable SDWebImageNoParamsBlock)cancelBlock {
     // check if the operation is already cancelled, then we just call the cancelBlock
     if (self.isCancelled) {
@@ -32,9 +52,13 @@
     }
 }
 
+/**
+ 调用cancel方法。这个方法继承自`SDWebImageOperation`协议。方法里面会调用`SDWebImageDownlaoderOperation`或者`NSOperation`的cancel方法
+ */
 - (void)cancel {
     self.cancelled = YES;
     if (self.cacheOperation) {
+        //调用`SDWebImageDownlaoderOperation`或者`NSOperation`的cancel方法
         [self.cacheOperation cancel];
         self.cacheOperation = nil;
     }
@@ -80,11 +104,20 @@
     return [self initWithCache:cache downloader:downloader];
 }
 
+/**
+ 初始化SDImageCache和SDWebImageDownloader对象
+
+ @param cache SDImageCache对象
+ @param downloader SDWebImageDownloader对象
+ @return 返回初始化结果
+ */
 - (nonnull instancetype)initWithCache:(nonnull SDImageCache *)cache downloader:(nonnull SDWebImageDownloader *)downloader {
     if ((self = [super init])) {
         _imageCache = cache;
         _imageDownloader = downloader;
+        //用于保存加载失败的url集合
         _failedURLs = [NSMutableSet new];
+        //用于保存当前正在加载的Operation
         _runningOperations = [NSMutableArray new];
     }
     return self;
@@ -205,6 +238,7 @@
      如果url是失败的url或者url有问题等各种问题。则直接根据opeation来做异常情况的处理
      */
     if (url.absoluteString.length == 0 || (!(options & SDWebImageRetryFailed) && isFailedUrl)) {
+        //构建回调Block
         [self callCompletionBlockForOperation:operation completion:completedBlock error:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:nil] url:url];
         return operation;
     }
@@ -214,7 +248,11 @@
     }
     //根据url获取url对应的key
     NSString *key = [self cacheKeyForURL:url];
-
+    /*
+     *如果图片是从内存加载，则返回的cacheOperation是nil，
+     *如果是从磁盘加载，则返回的cacheOperation是`NSOperation`对象。
+     *如果是从网络加载，则返回的cacheOperation对象是`SDWebImageDownloaderOperation`对象。
+     */
     operation.cacheOperation = [self.imageCache queryCacheOperationForKey:key done:^(UIImage *cachedImage, NSData *cachedData, SDImageCacheType cacheType) {
         //从缓存中获取图片数据返回
         //如果已经取消了操作。则直接返回并且移除对应的opetation对象
@@ -377,7 +415,7 @@
     }
 }
 
-#pragma mark 后面两个函数是做加载异常处理。
+#pragma mark 后面两个函数构建回调Block的函数。
 - (void)callCompletionBlockForOperation:(nullable SDWebImageCombinedOperation*)operation
                              completion:(nullable SDInternalCompletionBlock)completionBlock
                                   error:(nullable NSError *)error
