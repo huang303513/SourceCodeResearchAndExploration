@@ -16,19 +16,38 @@
 
 @interface SDWebImageDownloader () <NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
+/**
+ 所有的下载图片的Operation都加入NSoperationQueue中
+ */
 @property (strong, nonatomic, nonnull) NSOperationQueue *downloadQueue;
+
+/**
+ 最后一个添加的Operation
+ */
 @property (weak, nonatomic, nullable) NSOperation *lastAddedOperation;
+
+/**
+ 自定义的NSOperation子类
+ */
 @property (assign, nonatomic, nullable) Class operationClass;
 
 /**
  用于记录url和他对应的SDWebImageDownloaderOperation对象。
  */
 @property (strong, nonatomic, nonnull) NSMutableDictionary<NSURL *, SDWebImageDownloaderOperation *> *URLOperations;
+
+/**
+ 请求头域字典
+ */
 @property (strong, nonatomic, nullable) SDHTTPHeadersMutableDictionary *HTTPHeaders;
 // This queue is used to serialize the handling of the network responses of all the download operation in a single queue
 @property (SDDispatchQueueSetterSementics, nonatomic, nullable) dispatch_queue_t barrierQueue;
 
 // The session in which data tasks will run
+
+/**
+ 通过这个`NSURLSession`创建请求
+ */
 @property (strong, nonatomic) NSURLSession *session;
 
 @end
@@ -213,8 +232,10 @@
         operation.shouldDecompressImages = sself.shouldDecompressImages;
         //指定验证信息
         if (sself.urlCredential) {
+            //SSL验证
             operation.credential = sself.urlCredential;
         } else if (sself.username && sself.password) {
+            //Basic验证
             operation.credential = [NSURLCredential credentialWithUser:sself.username password:sself.password persistence:NSURLCredentialPersistenceForSession];
         }
         //指定优先级
@@ -230,6 +251,7 @@
          */
         if (sself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder) {
             // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
+            //如果是LIFO，则让前面的operation依赖于最新添加的operation
             [sself.lastAddedOperation addDependency:operation];
             sself.lastAddedOperation = operation;
         }
@@ -253,6 +275,15 @@
     });
 }
 
+/**
+ 给下载过程添加进度
+
+ @param progressBlock 进度Block
+ @param completedBlock 完成Block
+ @param url url地址
+ @param createCallback nil
+ @return 返回SDWebImageDownloadToken。方便后面取消
+ */
 - (nullable SDWebImageDownloadToken *)addProgressCallback:(SDWebImageDownloaderProgressBlock)progressBlock
                                            completedBlock:(SDWebImageDownloaderCompletedBlock)completedBlock
                                                    forURL:(nullable NSURL *)url
@@ -287,7 +318,6 @@
             };
         }
         id downloadOperationCancelToken = [operation addHandlersForProgress:progressBlock completed:completedBlock];
-
         token = [SDWebImageDownloadToken new];
         token.url = url;
         token.downloadOperationCancelToken = downloadOperationCancelToken;

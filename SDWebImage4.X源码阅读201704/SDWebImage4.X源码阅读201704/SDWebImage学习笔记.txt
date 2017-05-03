@@ -11,7 +11,7 @@ SDImageCache:负责SDWebImage的整个缓存工作，是一个单列对象。缓
 
 SDWebImageManager:拥有一个`SDWebImageCache`和`SDWebImageDownloader`属性分别用于图片的缓存和加载处理。为UIView及其子类提供了加载图片的统一接口。管理正在加载操作的集合。这个类是一个单列。还有就是各种加载选项的处理。
 
-SDWebImageDownloader:实现了图片加载的具体处理，如果图片在缓存存在则从缓存区。如果缓存不存在，则直接创建一个。`SDWebImageDownloaderOperation`对象来下载图片。管理NSURLRequest对象请求头的封装、缓存、cookie的设置。加载选项的处理等功能。管理Operation之间的依赖关系。
+SDWebImageDownloader:实现了图片加载的具体处理，如果图片在缓存存在则从缓存区，如果缓存不存在，则直接创建一个。`SDWebImageDownloaderOperation`对象来下载图片。管理NSURLRequest对象请求头的封装、缓存、cookie的设置。加载选项的处理等功能。管理Operation之间的依赖关系。
 
 SDWebImageDownloaderOperation: 一个自定义的并行Operation子类。这个类主要实现了图片下载的具体操作、以及图片下载完成以后的图片解压缩、Operation生命周期管理等。  
 

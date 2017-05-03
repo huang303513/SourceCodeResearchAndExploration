@@ -178,7 +178,6 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
                 __strong __typeof (wself) sself = wself;
                 if (sself) {
                     [sself cancel];
-
                     [app endBackgroundTask:sself.backgroundTaskId];
                     sself.backgroundTaskId = UIBackgroundTaskInvalid;
                 }
@@ -205,10 +204,11 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
         self.dataTask = [session dataTaskWithRequest:self.request];
         self.executing = YES;
     }
-    
+    //发送请求
     [self.dataTask resume];
 
     if (self.dataTask) {
+        //第一次调用进度BLOCK
         for (SDWebImageDownloaderProgressBlock progressBlock in [self callbacksForKey:kProgressCallbackKey]) {
             progressBlock(0, NSURLResponseUnknownLength, self.request.URL);
         }
@@ -232,6 +232,9 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
 #endif
 }
 
+/**
+ 如果要取消一个Operation，就会调用这个方法。
+ */
 - (void)cancel {
     @synchronized (self) {
         [self cancelInternal];
@@ -250,6 +253,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
 
         // As we cancelled the connection, its callback won't be called and thus won't
         // maintain the isFinished and isExecuting flags.
+        //更新状态
         if (self.isExecuting) self.executing = NO;
         if (!self.isFinished) self.finished = YES;
     }
@@ -275,18 +279,32 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
     }
 }
 
+/**
+ 需要手动触发_finished的KVO。这个是自定义并发`NSOperation`必须实现的。
+
+ @param finished 改变状态
+ */
 - (void)setFinished:(BOOL)finished {
     [self willChangeValueForKey:@"isFinished"];
     _finished = finished;
     [self didChangeValueForKey:@"isFinished"];
 }
-
+/**
+ 需要手动触发_executing的KVO。这个是自定义并发`NSOperation`必须实现的。
+ 
+ @param executing 改变状态
+ */
 - (void)setExecuting:(BOOL)executing {
     [self willChangeValueForKey:@"isExecuting"];
     _executing = executing;
     [self didChangeValueForKey:@"isExecuting"];
 }
 
+/**
+ 返回YES，表明这个NSOperation对象是并发的
+
+ @return 返回bool值
+ */
 - (BOOL)isConcurrent {
     return YES;
 }
@@ -468,6 +486,9 @@ didReceiveResponse:(NSURLResponse *)response
 
 #pragma mark NSURLSessionTaskDelegate
 
+/*
+ 网络请求加载完成，在这里处理获得的数据
+ */
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     @synchronized(self) {
         self.dataTask = nil;
@@ -492,13 +513,16 @@ didReceiveResponse:(NSURLResponse *)response
              */
             if (self.imageData) {
                 UIImage *image = [UIImage sd_imageWithData:self.imageData];
+                //获取url对应的缓存Key
                 NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:self.request.URL];
                 
                 image = [self scaledImageForKey:key image:image];
                 
                 // Do not force decoding animated GIFs
                 if (!image.images) {
+                    //是否加压缩图片数据
                     if (self.shouldDecompressImages) {
+                        //如果设置了SDWebImageDownloaderScaleDownLargeImages。则返回处理过的图片
                         if (self.options & SDWebImageDownloaderScaleDownLargeImages) {
 #if SD_UIKIT || SD_WATCH
                             image = [UIImage decodedAndScaledDownImageWithImage:image];
@@ -509,6 +533,7 @@ didReceiveResponse:(NSURLResponse *)response
                         }
                     }
                 }
+                //构建回调Block
                 if (CGSizeEqualToSize(image.size, CGSizeZero)) {
                     [self callCompletionBlocksWithError:[NSError errorWithDomain:SDWebImageErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Downloaded image has 0 pixels"}]];
                 } else {
@@ -521,13 +546,16 @@ didReceiveResponse:(NSURLResponse *)response
     }
     [self done];
 }
-
+/*
+ 验证HTTPS的证书
+ */
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {
     
     NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
     __block NSURLCredential *credential = nil;
-    
+    //使用可信任证书机构的证书
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        //如果SDWebImageDownloaderAllowInvalidSSLCertificates属性设置了，则不验证SSL证书。直接信任
         if (!(self.options & SDWebImageDownloaderAllowInvalidSSLCertificates)) {
             disposition = NSURLSessionAuthChallengePerformDefaultHandling;
         } else {
@@ -535,6 +563,7 @@ didReceiveResponse:(NSURLResponse *)response
             disposition = NSURLSessionAuthChallengeUseCredential;
         }
     } else {
+        //使用自己生成的证书
         if (challenge.previousFailureCount == 0) {
             if (self.credential) {
                 credential = self.credential;
@@ -546,7 +575,7 @@ didReceiveResponse:(NSURLResponse *)response
             disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
         }
     }
-    
+    //验证证书
     if (completionHandler) {
         completionHandler(disposition, credential);
     }

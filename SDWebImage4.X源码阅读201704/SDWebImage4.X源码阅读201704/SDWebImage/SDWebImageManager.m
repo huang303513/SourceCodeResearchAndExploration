@@ -363,6 +363,7 @@
             }];
             //重置cancelBlock，取消下载operation
             operation.cancelBlock = ^{
+                //取消置顶的token对应的下载
                 [self.imageDownloader cancel:subOperationToken];
                 __strong __typeof(weakOperation) strongOperation = weakOperation;
                 [self safelyRemoveOperationFromRunning:strongOperation];
