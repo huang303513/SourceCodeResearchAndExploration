@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol protocolTest <NSObject>
+
+-(void)doTest;
+@end
+
 @interface User : NSObject
 @property UInt64 uid;
 @property NSString *name;
 @property NSDate *created;
+@property id<protocolTest> testProtocol;
 @end

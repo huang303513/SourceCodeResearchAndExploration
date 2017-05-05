@@ -8,6 +8,25 @@
 
 #import "User.h"
 
+@interface User ()<protocolTest>
+{
+    NSString *ivarTest;
+}
+@end
+
+
 @implementation User
+
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        self.testProtocol = self;
+    }
+    return self;
+}
+
+-(void)doTest{
+
+}
 
 @end
