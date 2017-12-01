@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<script type="text/javascript" src="../../vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<div class="el el-if" v-if="bln"><span v-show="false">hidden content</span></div>
+  	<div class="el el-else" v-else><span @click="toggle">visible  content</span></div>
+  	<button @click="toggle">toggle</button>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data: {
+		    bln: true
+		},
+		methods: {
+		    toggle: function () {
+		      this.bln = !this.bln
+		    }
+		}
+	})
+</script>
+</body>
+</html>

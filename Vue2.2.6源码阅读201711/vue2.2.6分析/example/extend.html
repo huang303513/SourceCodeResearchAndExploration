@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<script type="text/javascript" src="../../vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+<div id="mount-point"></div>
+
+<script type="text/javascript">
+
+// var child = {
+// 	 template: '<p>child</p>'
+// };
+// new Vue({
+// 	 template: '<p>parent <child></child></p>',
+// 	 components:{
+// 	 	child: child
+// 	 }
+// }).$mount('#app');
+
+
+// var Profile = Vue.extend({
+//   template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+//   data: function () {
+//     return {
+//       firstName: 'Walter',
+//       lastName: 'White',
+//       alias: 'Heisenberg'
+//     }
+//   }
+// })
+// new Profile().$mount('#mount-point')
+
+
+  var Profile = Vue.extend({
+    template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+  });
+  Vue.mixin({ data: function () {
+    return {
+      firstName: 'Walter',
+      lastName: 'White',
+      alias: 'Heisenberg'
+    }
+  }});
+  new Profile().$mount('#mount-point');
+</script>
+</body>
+</html>

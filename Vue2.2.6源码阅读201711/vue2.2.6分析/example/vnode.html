@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<script type="text/javascript" src="../../vue/dist/vue.js"></script>
+</head>
+<body>
+<!-- 第一种情况 -->
+<div id="app"></div>
+<script>
+	new Vue({
+			render: function(h){
+				return h('div', "test");
+			}
+		}
+	).$mount('#app');
+</script>
+<!-- 第二种情况 -->
+<div id="app1">
+	<my-component></my-component>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app1',
+		components: {
+			'MyComponent': {
+				render: function(h){
+					return h('div', "test");
+				}
+			}
+		}
+	});
+</script>
+<!-- 第三种情况 -->
+<div id="app2">
+	<my-component>test</my-component>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app2'
+	});
+</script>
+
+<!-- 第四种情况 -->
+<div id="app3">
+</div>
+<script type="text/javascript">
+	new Vue({
+		render: function(h){
+			return h(Vue.extend({
+				template: '<div>test</div>'
+			}))
+		}
+	}).$mount('#app3');
+</script>
+</body>
+</html>

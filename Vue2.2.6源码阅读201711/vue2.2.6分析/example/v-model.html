@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<script type="text/javascript" src="../../vue/dist/vue.js"></script>
+</head>
+<body>
+<!-- v-for的值不能作为v-model的值 -->
+<!-- <div id="app">
+	<p v-for="item in value">
+		<input v-model="item"/>
+	</p>
+</div> -->
+
+<!-- select -->
+<!-- <div id="app">
+	<select v-model="value" multiple="multiple">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+	</select>
+	<p>{{value}}</p>
+</div>
+ -->
+
+ <!--checkbox-->
+ <!-- <div id="app">
+ 	<input type="checkbox" v-model.number="value" />
+ 	<p>{{value}}</p>
+ </div> -->
+
+<!--checkbox-->
+<!-- <div id="app">
+ 	<input type="checkbox" v-model.number="trueVal" value="1" />
+ 	<p>{{trueVal}}</p>
+</div> -->
+
+<!--radio-->
+<!-- <div id="app">
+ 	<input type="radio" v-model="value" value="1" />
+ 	<input type="radio" v-model="value" value="0" />
+ 	<p>{{value}}</p>
+</div> -->
+
+<!--input-->
+<!-- <div id="app">
+ 	<input type="text" v-model="value" />
+ 	<span>{{value}}</span>
+</div> -->
+
+<div id="app">
+	<my-component v-model="value"></my-component>
+	<p>{{value}}</p>
+</div>
+<script type="text/javascript">
+	// var vm = new Vue({
+	// 	el: '#app',
+	// 	data: {
+	// 		value: ['test','test1']
+	// 	}
+	// }).$mount('#app');
+
+	// var vm = new Vue({
+	// 	el: '#app',
+	// 	data: {
+	// 		value: [1,2]
+	// 	}
+	// }).$mount('#app');
+
+	// var vm = new Vue({
+	// 	el: '#app',
+	// 	data: {
+	// 		value: 1,
+	// 		trueVal: [1,2]
+	// 	}
+	// }).$mount('#app');
+
+	// var vm = new Vue({
+	// 	el: '#app',
+	// 	data: {
+	// 		value: "哈哈"
+	// 	}
+	// }).$mount('#app');
+
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			value: "哈哈"
+		},
+		components: {
+			myComponent: {
+				template: '<p @click="change">子组件{{value}}</p>',
+				props: ['value'],
+				methods: {
+					change: function(){
+						this.$emit('input', "呵呵");
+					}
+				}
+			}
+		}
+	}).$mount('#app');
+	
+</script>
+
+</body>
+</html>

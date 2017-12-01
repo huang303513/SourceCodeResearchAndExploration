@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title></title>
+	<script type="text/javascript" src="../../vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<div v-for="item in list" key='a'>
+		<div v-once>
+	  		<p>{{msg}}{{item}}</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			msg: "message",
+			list: [1,3,4]
+		}
+	})
+</script>
+<div id="app1">
+	<div v-once>
+  		<p>{{msg}}</p>
+	</div>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app1',
+		data: {
+			msg: "message"
+		}
+	})
+</script>
+</body>
+</html>
