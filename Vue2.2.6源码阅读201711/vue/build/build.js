@@ -8,9 +8,12 @@ if (!fs.existsSync('dist')) {
   fs.mkdirSync('dist')
 }
 
+//获取所有环境的build配置
 let builds = require('./config').getAllBuilds()
 
 // filter builds via command line arg
+//根据指定的配置来筛选build环境。如vue.runtime.common.js,vue-server-renderer
+console.log("==============",process.argv[2],"==============");
 if (process.argv[2]) {
   const filters = process.argv[2].split(',')
   builds = builds.filter(b => {
@@ -39,7 +42,7 @@ function build (builds) {
 
   next()
 }
-
+//执行不同平台的编译
 function buildEntry (config) {
   const isProd = /min\.js$/.test(config.dest)
   return rollup.rollup(config).then(bundle => {
@@ -61,7 +64,7 @@ function buildEntry (config) {
     }
   })
 }
-
+//把编译好的代码压缩保存到dist目录下。
 function write (dest, code, zip) {
   return new Promise((resolve, reject) => {
     function report (extra) {

@@ -1,11 +1,18 @@
 const path = require('path')
 const flow = require('rollup-plugin-flow-no-whitespace')
+//把ES6转换为buble
 const buble = require('rollup-plugin-buble')
+//用于在编译文件之前替代文件里面的相应的字符串
 const replace = require('rollup-plugin-replace')
+//Define aliases when bundling packages with Rollup
 const alias = require('rollup-plugin-alias')
+//vue的版本
 const version = process.env.VERSION || require('../package.json').version
+//获取weex的版本
 const weexVersion = process.env.WEEX_VERSION || require('../packages/weex-vue-framework/package.json').version
-
+/**
+ * 文件头注释
+ */
 const banner =
   '/*!\n' +
   ' * Vue.js v' + version + '\n' +
@@ -126,7 +133,10 @@ const builds = {
     external: Object.keys(require('../packages/weex-template-compiler/package.json').dependencies)
   }
 }
-
+/**
+ * 
+ * @param {不同环境的不同配置选线，入口，出口，环境，plugins等} opts 
+ */
 function genConfig (opts) {
   const config = {
     entry: opts.entry,
@@ -135,8 +145,8 @@ function genConfig (opts) {
     format: opts.format,
     banner: opts.banner,
     moduleName: 'Vue',
-    plugins: [
-      replace({
+    plugins: [//设置plugins
+      replace({//替代对应的属性名称
         __WEEX__: !!opts.weex,
         __WEEX_VERSION__: weexVersion,
         __VERSION__: version
@@ -147,7 +157,7 @@ function genConfig (opts) {
     ].concat(opts.plugins || [])
   }
 
-  if (opts.env) {
+  if (opts.env) {//如果指定了env,则把NODE_ENV指定为对应的值
     config.plugins.push(replace({
       'process.env.NODE_ENV': JSON.stringify(opts.env)
     }))
@@ -156,6 +166,7 @@ function genConfig (opts) {
   return config
 }
 
+//初始化不同环境的不同配置
 if (process.env.TARGET) {
   module.exports = genConfig(builds[process.env.TARGET])
 } else {
